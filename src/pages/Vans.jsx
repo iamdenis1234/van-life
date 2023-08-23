@@ -14,8 +14,9 @@ function Vans() {
       console.log("loading vans");
       const data = await axios("/api/vans");
       if (!ignore) {
-        console.log("ignoring vans");
         setVans(data.data.vans);
+      } else {
+        console.log("ignoring vans");
       }
     }
 
