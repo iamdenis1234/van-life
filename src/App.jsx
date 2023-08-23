@@ -1,7 +1,9 @@
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import "/server.js";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import "./index.css";
 import { About } from "./pages/About.jsx";
 import { Home } from "./pages/Home.jsx";
-import "./index.css";
+import { Vans } from "./pages/Vans.jsx";
 
 export { App };
 
@@ -15,11 +17,13 @@ function App() {
         </Link>
         <nav>
           <Link to="/about">About</Link>
+          <Link to="/vans">Vans</Link>
         </nav>
       </header>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/vans" element={<Vans />} />
       </Routes>
     </BrowserRouter>
   );
