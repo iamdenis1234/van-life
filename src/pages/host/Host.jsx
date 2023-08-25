@@ -30,6 +30,13 @@ function Host() {
         </NavLink>
 
         <NavLink
+          to="vans"
+          style={({ isActive }) => (isActive ? activeStyles : null)}
+        >
+          Vans
+        </NavLink>
+
+        <NavLink
           to="reviews"
           style={({ isActive }) => (isActive ? activeStyles : null)}
         >
