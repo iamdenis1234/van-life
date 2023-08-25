@@ -5,6 +5,7 @@ export { About };
 
 function About() {
   console.log("Render About");
+
   return (
     <div className="about-page-container">
       <img src={bgImg} className="about-hero-image" />

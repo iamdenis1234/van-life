@@ -4,6 +4,7 @@ export { Home };
 
 function Home() {
   console.log("Render Home");
+
   return (
     <div className="home-container">
       <h1>You got the travel plans, we got the travel vans.</h1>
