@@ -11,35 +11,26 @@ function Host() {
     color: "#161616",
   };
 
+  function defineActiveLink({ isActive }) {
+    return isActive ? activeStyles : null;
+  }
+
   return (
     <>
       <nav className="host-nav">
-        <NavLink
-          to="."
-          end
-          style={({ isActive }) => (isActive ? activeStyles : null)}
-        >
+        <NavLink to="." end style={defineActiveLink}>
           Dashboard
         </NavLink>
 
-        <NavLink
-          to="income"
-          style={({ isActive }) => (isActive ? activeStyles : null)}
-        >
+        <NavLink to="income" style={defineActiveLink}>
           Income
         </NavLink>
 
-        <NavLink
-          to="vans"
-          style={({ isActive }) => (isActive ? activeStyles : null)}
-        >
+        <NavLink to="vans" style={defineActiveLink}>
           Vans
         </NavLink>
 
-        <NavLink
-          to="reviews"
-          style={({ isActive }) => (isActive ? activeStyles : null)}
-        >
+        <NavLink to="reviews" style={defineActiveLink}>
           Reviews
         </NavLink>
       </nav>

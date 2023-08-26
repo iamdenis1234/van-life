@@ -7,7 +7,10 @@ import { Dashboard } from "./pages/host/Dashboard.jsx";
 import { Host } from "./pages/host/Host.jsx";
 import { Income } from "./pages/host/Income.jsx";
 import { Reviews } from "./pages/host/Reviews.jsx";
+import { Van as HostVan } from "./pages/host/Van.jsx";
 import { VanDetails as HostVanDetails } from "./pages/host/VanDetails.jsx";
+import { VanPhotos as HostVanPhotos } from "./pages/host/VanPhotos.jsx";
+import { VanPricing as HostVanPricing } from "./pages/host/VanPricing.jsx";
 import { Vans as HostVans } from "./pages/host/Vans.jsx";
 import { Root } from "./pages/root/Root.jsx";
 import { VanDetails } from "./pages/vans/VanDetails.jsx";
@@ -30,7 +33,11 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="income" element={<Income />} />
             <Route path="vans" element={<HostVans />} />
-            <Route path="vans/:id" element={<HostVanDetails />} />
+            <Route path="vans/:id" element={<HostVan />}>
+              <Route index element={<HostVanDetails />} />
+              <Route path="pricing" element={<HostVanPricing />} />
+              <Route path="photos" element={<HostVanPhotos />} />
+            </Route>
             <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>
