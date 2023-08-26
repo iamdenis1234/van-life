@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useParams } from "react-router-dom";
+import { defineActiveLinkStyles } from "../../utils/defineActiveLinkStyles.js";
 
 export { Van };
 
@@ -30,18 +31,6 @@ function Van() {
     };
   }, [id]);
 
-  // TODO extract activeStyles and defineActiveLink in project occurrences to utils
-  const activeStyles = {
-    fontWeight: "bold",
-    textDecoration: "underline",
-    color: "#161616",
-  };
-
-  // TODO rename defineActiveLink to defineActiveLinkStyles
-  function defineActiveLink({ isActive }) {
-    return isActive ? activeStyles : null;
-  }
-
   if (!van) {
     return <h1>Loading...</h1>;
   }
@@ -62,13 +51,13 @@ function Van() {
         </div>
 
         <nav className="host-van-detail-nav">
-          <NavLink to="." end style={defineActiveLink}>
+          <NavLink to="." end style={defineActiveLinkStyles}>
             Details
           </NavLink>
-          <NavLink to="pricing" style={defineActiveLink}>
+          <NavLink to="pricing" style={defineActiveLinkStyles}>
             Pricing
           </NavLink>
-          <NavLink to="photos" style={defineActiveLink}>
+          <NavLink to="photos" style={defineActiveLinkStyles}>
             Photos
           </NavLink>
         </nav>

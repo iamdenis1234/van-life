@@ -1,36 +1,27 @@
 import { NavLink, Outlet } from "react-router-dom";
+import { defineActiveLinkStyles } from "../../utils/defineActiveLinkStyles.js";
 
 export { Host };
 
 function Host() {
   console.log("Render Host");
 
-  const activeStyles = {
-    fontWeight: "bold",
-    textDecoration: "underline",
-    color: "#161616",
-  };
-
-  function defineActiveLink({ isActive }) {
-    return isActive ? activeStyles : null;
-  }
-
   return (
     <>
       <nav className="host-nav">
-        <NavLink to="." end style={defineActiveLink}>
+        <NavLink to="." end style={defineActiveLinkStyles}>
           Dashboard
         </NavLink>
 
-        <NavLink to="income" style={defineActiveLink}>
+        <NavLink to="income" style={defineActiveLinkStyles}>
           Income
         </NavLink>
 
-        <NavLink to="vans" style={defineActiveLink}>
+        <NavLink to="vans" style={defineActiveLinkStyles}>
           Vans
         </NavLink>
 
-        <NavLink to="reviews" style={defineActiveLink}>
+        <NavLink to="reviews" style={defineActiveLinkStyles}>
           Reviews
         </NavLink>
       </nav>
