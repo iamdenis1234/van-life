@@ -61,7 +61,7 @@ function Van() {
             Photos
           </NavLink>
         </nav>
-        <Outlet />
+        <Outlet context={{ van }} my_value="test" />
       </div>
     </section>
   );
