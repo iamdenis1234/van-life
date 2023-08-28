@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 export { VanDetails };
 
@@ -9,6 +9,9 @@ function VanDetails() {
 
   const [van, setVan] = useState(null);
   const { id } = useParams();
+  const { state } = useLocation();
+  const search = state?.search || "";
+  const type = state?.type || "all";
 
   useEffect(() => {
     let ignore = false;
@@ -33,6 +36,9 @@ function VanDetails() {
 
   return (
     <div className="van-detail-container">
+      <Link to={`..?${search}`} relative="path" className="back-button">
+        &larr; <span>Back to {type} vans</span>
+      </Link>
       {van ? (
         <div className="van-detail">
           <img src={van.imageUrl} />
