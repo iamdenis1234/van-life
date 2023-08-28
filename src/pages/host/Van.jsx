@@ -36,7 +36,13 @@ function Van() {
   }
   return (
     <section>
-      <Link to=".." relative="path" className="back-button">
+      {/*
+        "./" means current Route("vans/:id")
+        ".." means then go back one url segment(not Route) up relative to current
+          Route("vans/:id") which is going to be "vans/"
+        Doesn't work with relative="path" prop
+      */}
+      <Link to="./.." className="back-button">
         &larr; <span>Back to all vans</span>
       </Link>
 
