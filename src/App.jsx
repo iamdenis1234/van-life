@@ -1,4 +1,5 @@
 import "/server.js";
+import "normalize.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
 import { About } from "./pages/About.jsx";
