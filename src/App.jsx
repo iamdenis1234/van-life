@@ -13,6 +13,7 @@ import { VanDetails as HostVanDetails } from "./pages/host/VanDetails.jsx";
 import { VanPhotos as HostVanPhotos } from "./pages/host/VanPhotos.jsx";
 import { VanPricing as HostVanPricing } from "./pages/host/VanPricing.jsx";
 import { Vans as HostVans } from "./pages/host/Vans.jsx";
+import { NotFound } from "./pages/NotFound.jsx";
 import { Root } from "./pages/root/Root.jsx";
 import { VanDetails } from "./pages/vans/VanDetails.jsx";
 import { Vans } from "./pages/vans/Vans.jsx";
@@ -41,6 +42,7 @@ function App() {
             </Route>
             <Route path="reviews" element={<Reviews />} />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
