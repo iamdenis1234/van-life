@@ -1,34 +1,14 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useLoaderData, useSearchParams } from "react-router-dom";
 
 export { Vans };
 
 function Vans() {
   console.log("Render Vans");
-  const [vans, setVans] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const vans = useLoaderData();
+
   const typeFilter = searchParams.get("type");
   const filteredVans = getFilteredVans(typeFilter);
-
-  useEffect(() => {
-    let ignore = false;
-
-    async function getVans() {
-      console.log("loading vans");
-      const { data } = await axios("/api/vans");
-      if (!ignore) {
-        setVans(data.vans);
-      } else {
-        console.log("ignoring vans");
-      }
-    }
-
-    getVans();
-    return () => {
-      ignore = true;
-    };
-  }, []);
 
   function getFilteredVans(typeFilter) {
     return typeFilter
