@@ -26,7 +26,6 @@ function Vans() {
       } else {
         newParams.delete("type");
       }
-      console.log(newParams);
       return newParams;
     });
   }
