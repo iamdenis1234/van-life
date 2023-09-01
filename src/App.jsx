@@ -19,6 +19,7 @@ import { VanDetails as HostVanDetails } from "./pages/host/VanDetails.jsx";
 import { VanPhotos as HostVanPhotos } from "./pages/host/VanPhotos.jsx";
 import { VanPricing as HostVanPricing } from "./pages/host/VanPricing.jsx";
 import { Vans as HostVans } from "./pages/host/Vans.jsx";
+import { Login } from "./pages/Login.jsx";
 import { NotFound } from "./pages/NotFound.jsx";
 import { Root } from "./pages/root/Root.jsx";
 import { VanDetails } from "./pages/vans/VanDetails.jsx";
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<Root />} errorElement={<Error />}>
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
+      <Route path="login" element={<Login />} />
       <Route
         path="vans"
         element={<Vans />}
