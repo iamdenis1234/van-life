@@ -1,13 +1,15 @@
 import axios from "axios";
 
-export { getVans };
+export { getVans, getHostVans };
 
-async function getVans() {
-  const res = await axios("/api/vans", {
-    validateStatus: function (status) {
-      return status >= 200 && status < 300; // default
-    },
-  });
+async function getVans(id) {
+  const url = id ? `/api/vans/${id}` : "/api/vans";
+  const { data } = await axios(url);
+  return data.vans;
+}
 
-  return res.data.vans;
+async function getHostVans(id) {
+  const url = id ? `/api/host/vans/${id}` : "/api/host/vans";
+  const { data } = await axios(url);
+  return data.vans;
 }

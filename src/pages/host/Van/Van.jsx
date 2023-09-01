@@ -1,39 +1,13 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link, NavLink, Outlet, useParams } from "react-router-dom";
-import { defineActiveLinkStyles } from "../../utils/defineActiveLinkStyles.js";
+import { Link, NavLink, Outlet, useLoaderData } from "react-router-dom";
+import { defineActiveLinkStyles } from "../../../utils/defineActiveLinkStyles.js";
 
 export { Van };
 
 function Van() {
   console.log("Render HostVan");
 
-  const [van, setVan] = useState(null);
-  const { id } = useParams();
+  const van = useLoaderData();
 
-  useEffect(() => {
-    let ignore = false;
-
-    async function getVan() {
-      console.log(`loading host van by id: ${id}`);
-      const { data } = await axios(`/api/host/vans/${id}`);
-      if (!ignore) {
-        setVan(data.vans);
-      } else {
-        console.log(`ignoring host van ${id}`);
-      }
-    }
-
-    getVan();
-
-    return () => {
-      ignore = true;
-    };
-  }, [id]);
-
-  if (!van) {
-    return <h1>Loading...</h1>;
-  }
   return (
     <section>
       {/*
