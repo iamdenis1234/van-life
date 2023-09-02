@@ -1,7 +1,11 @@
+import { requireAuth } from "../../../utils/requireAuth.js";
+
 export { loader };
 
-function loader() {
-  console.log("Reviews loader");
+async function loader() {
+  console.log("start Reviews loader");
+  await requireAuth();
+  console.log("end Reviews loader");
 
   return null;
 }

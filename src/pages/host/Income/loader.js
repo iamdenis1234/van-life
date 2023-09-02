@@ -1,7 +1,11 @@
+import { requireAuth } from "../../../utils/requireAuth.js";
+
 export { loader };
 
-function loader() {
-  console.log("Income loader");
+async function loader() {
+  console.log("start Income loader");
+  await requireAuth();
+  console.log("end Income loader");
 
   return null;
 }
