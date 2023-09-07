@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { loginUser } from "../api.js";
 
 export { Login };
 
@@ -13,9 +14,11 @@ function Login() {
   const { hash } = useLocation();
   const message = hash === "#loginfirst" && "You must login first";
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    console.log(loginFormData);
+    console.log("login user");
+    const user = await loginUser(loginFormData);
+    console.log(user);
   }
 
   function handleChange(e) {

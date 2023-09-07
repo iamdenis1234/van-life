@@ -6,7 +6,7 @@ async function requireAuth() {
   console.log("requireAuth");
 
   // faking authentication
-  const isLoggedIn = true;
+  const isLoggedIn = false;
   if (!isLoggedIn) {
     const response = redirect("/login#loginfirst");
     // for compatibility with miragejs
