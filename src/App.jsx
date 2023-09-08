@@ -24,7 +24,8 @@ import { VanPhotos as HostVanPhotos } from "./pages/host/Van/VanPhotos.jsx";
 import { VanPricing as HostVanPricing } from "./pages/host/Van/VanPricing.jsx";
 import { loader as hostVansLoader } from "./pages/host/Vans/loader.js";
 import { Vans as HostVans } from "./pages/host/Vans/Vans.jsx";
-import { Login } from "./pages/Login.jsx";
+import { action as loginAction } from "./pages/login/action.js";
+import { Login } from "./pages/login/Login.jsx";
 import { NotFound } from "./pages/NotFound.jsx";
 import { Root } from "./pages/root/Root.jsx";
 import { loader as vanDetailsLoader } from "./pages/vans/VanDetails/loader.js";
@@ -39,7 +40,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<Root />} errorElement={<Error />}>
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
-      <Route path="login" element={<Login />} />
+      <Route path="login" element={<Login />} action={loginAction} />
       <Route
         path="vans"
         element={<Vans />}
