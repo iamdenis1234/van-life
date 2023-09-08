@@ -13,7 +13,7 @@ async function action({ request }) {
   console.log(user);
 
   localStorage.setItem("loggedin", true);
-  const response = redirect("/");
+  const response = redirect("/host");
   // for compatibility with miragejs
   // without this line it won't redirect
   response.body = null;
