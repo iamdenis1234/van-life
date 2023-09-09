@@ -13,6 +13,7 @@ async function action({ request }) {
     const user = await loginUser({ email, password });
     console.log(user);
   } catch (e) {
+    console.log("error in Login action");
     console.log(e);
     return new Error(e.response.data.message);
   }

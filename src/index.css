@@ -49,12 +49,16 @@ header a {
   text-decoration: none;
   color: #4d4d4d;
   font-weight: 600;
-  padding: 5px 20px;
+  padding: 5px 15px;
 }
 
 header a:hover {
   color: #161616;
   text-decoration: underline;
+}
+
+header button {
+  cursor: pointer;
 }
 
 header .login-icon {
@@ -533,6 +537,11 @@ i[class*="van-type-"] {
   margin-top: 22px;
   color: white;
   font-family: "Inter", sans-serif;
+}
+
+.login-form > button:disabled {
+  background-color: rgba(255, 140, 56, 0.5);
+  cursor: not-allowed;
 }
 
 .red {
