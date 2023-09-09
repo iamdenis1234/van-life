@@ -9,8 +9,13 @@ async function action({ request }) {
 
   const email = formData.get("email");
   const password = formData.get("password");
-  const user = await loginUser({ email, password });
-  console.log(user);
+  try {
+    const user = await loginUser({ email, password });
+    console.log(user);
+  } catch (e) {
+    console.log(e);
+    return new Error(e.response.data.message);
+  }
 
   localStorage.setItem("loggedin", true);
   const response = redirect("/host");
