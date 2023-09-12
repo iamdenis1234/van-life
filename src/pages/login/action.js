@@ -6,9 +6,11 @@ export { action };
 async function action({ request }) {
   console.log("start Login action");
   const formData = await request.formData();
-
   const email = formData.get("email");
   const password = formData.get("password");
+  const pathname =
+    new URL(request.url).searchParams.get("redirectTo") || "/host";
+
   try {
     const user = await loginUser({ email, password });
     console.log(user);
@@ -19,7 +21,7 @@ async function action({ request }) {
   }
 
   localStorage.setItem("loggedin", true);
-  const response = redirect("/host");
+  const response = redirect(pathname);
   // for compatibility with miragejs
   // without this line it won't redirect
   response.body = null;
