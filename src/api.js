@@ -11,8 +11,10 @@ async function getVans(id) {
 }
 
 async function getHostVans(id) {
+  console.log("start getting host vans");
   const url = id ? `/api/host/vans/${id}` : "/api/host/vans";
   const { data } = await axios(url);
+  console.log("end getting host vans");
   return data.vans;
 }
 

@@ -1,4 +1,5 @@
-import { Link, NavLink, Outlet, useLoaderData } from "react-router-dom";
+import { Suspense } from "react";
+import { Await, Link, NavLink, Outlet, useLoaderData } from "react-router-dom";
 import { defineActiveLinkStyles } from "../../../utils/defineActiveLinkStyles.js";
 
 export { Van };
@@ -6,20 +7,12 @@ export { Van };
 function Van() {
   console.log("Render HostVan");
 
-  const van = useLoaderData();
+  const { vanPromise } = useLoaderData();
 
-  return (
-    <section>
-      {/*
-        "./" means current Route("vans/:id")
-        ".." means then go back one url segment(not Route) up relative to current
-          Route("vans/:id") which is going to be "vans/"
-        Doesn't work with relative="path" prop
-      */}
-      <Link to="./.." className="back-button">
-        &larr; <span>Back to all vans</span>
-      </Link>
+  function renderVan(van) {
+    console.log("host renderVan function");
 
+    return (
       <div className="host-van-detail-layout-container">
         <div className="host-van-detail">
           <img src={van.imageUrl} />
@@ -41,8 +34,28 @@ function Van() {
             Photos
           </NavLink>
         </nav>
-        <Outlet context={{ van }} my_value="test" />
+        <Outlet context={{ van }} />
       </div>
+    );
+  }
+
+  // TODO: create Loading component for fallback UI
+
+  return (
+    <section>
+      {/*
+        "./" means current Route("vans/:id")
+        ".." means then go back one url segment(not Route) up relative to
+          the current Route("vans/:id") which is going to be "vans/"
+        Doesn't work with relative="path" prop
+      */}
+      <Link to="./.." className="back-button">
+        &larr; <span>Back to all vans</span>
+      </Link>
+
+      <Suspense fallback={<h2>Loading...</h2>}>
+        <Await resolve={vanPromise}>{renderVan}</Await>
+      </Suspense>
     </section>
   );
 }
