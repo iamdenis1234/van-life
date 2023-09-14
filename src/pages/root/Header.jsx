@@ -1,16 +1,11 @@
 import avatarIconUrl from "/assets/images/avatar-icon.png";
 import { Link, NavLink } from "react-router-dom";
+import { defineActiveLinkStyles } from "../../utils/defineActiveLinkStyles.js";
 
 export { Header };
 
 function Header() {
   console.log("Render Header");
-
-  const activeStyles = {
-    fontWeight: "bold",
-    textDecoration: "underline",
-    color: "#161616",
-  };
 
   return (
     <header>
@@ -18,22 +13,13 @@ function Header() {
         #VanLife
       </Link>
       <nav>
-        <NavLink
-          to="/host"
-          style={({ isActive }) => (isActive ? activeStyles : null)}
-        >
+        <NavLink to="/host" style={defineActiveLinkStyles}>
           Host
         </NavLink>
-        <NavLink
-          to="/about"
-          style={({ isActive }) => (isActive ? activeStyles : null)}
-        >
+        <NavLink to="/about" style={defineActiveLinkStyles}>
           About
         </NavLink>
-        <NavLink
-          to="/vans"
-          style={({ isActive }) => (isActive ? activeStyles : null)}
-        >
+        <NavLink to="/vans" style={defineActiveLinkStyles}>
           Vans
         </NavLink>
         <Link to="login" className="login-link">
