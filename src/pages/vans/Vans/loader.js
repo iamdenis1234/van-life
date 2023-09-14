@@ -1,11 +1,11 @@
+import { defer } from "react-router-dom";
 import { getVans } from "../../../api.js";
 
 export { loader };
 
-async function loader() {
+function loader() {
   console.log("start Vans loader");
-  const vans = await getVans();
+  const vansPromise = getVans();
   console.log("end Vans loader");
-
-  return vans;
+  return defer({ vansPromise });
 }
