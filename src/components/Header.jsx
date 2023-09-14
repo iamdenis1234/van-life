@@ -1,6 +1,6 @@
 import avatarIconUrl from "/assets/images/avatar-icon.png";
 import { Link, NavLink } from "react-router-dom";
-import { defineActiveLinkStyles } from "../../utils/defineActiveLinkStyles.js";
+import { defineActiveLinkStyles } from "../utils/defineActiveLinkStyles.js";
 
 export { Header };
 

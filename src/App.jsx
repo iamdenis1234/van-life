@@ -6,9 +6,9 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+import { Error } from "./components/Error.jsx";
 import "./index.css";
 import { About } from "./pages/About.jsx";
-import { Error } from "./pages/Error.jsx";
 import { Home } from "./pages/Home.jsx";
 import { Dashboard } from "./pages/host/Dashboard/Dashboard.jsx";
 import { loader as dashboardLoader } from "./pages/host/Dashboard/loader.js";
@@ -27,7 +27,7 @@ import { Vans as HostVans } from "./pages/host/Vans/Vans.jsx";
 import { action as loginAction } from "./pages/login/action.js";
 import { Login } from "./pages/login/Login.jsx";
 import { NotFound } from "./pages/NotFound.jsx";
-import { Root } from "./pages/root/Root.jsx";
+import { Root } from "./pages/Root.jsx";
 import { loader as vanDetailsLoader } from "./pages/vans/VanDetails/loader.js";
 import { VanDetails } from "./pages/vans/VanDetails/VanDetails.jsx";
 import { loader as vansLoader } from "./pages/vans/Vans/loader.js";
