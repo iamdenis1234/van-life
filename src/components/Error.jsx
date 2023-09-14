@@ -8,5 +8,10 @@ function Error() {
   const error = useRouteError();
   console.log(error);
 
-  return <h1>An error occurred: {error.message}</h1>;
+  return (
+    <>
+      <h1>An error occurred</h1>
+      <p>{error.message}</p>
+    </>
+  );
 }
