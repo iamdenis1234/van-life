@@ -26,12 +26,14 @@ function Login() {
           type="email"
           placeholder="Email address"
           autoComplete="username"
+          required
         />
         <input
           name="password"
           type="password"
           placeholder="Password"
           autoComplete="current-password"
+          required
         />
         <button disabled={isPending}>
           {isPending ? "Logging in..." : "Log in"}
