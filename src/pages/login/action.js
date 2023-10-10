@@ -1,30 +1,39 @@
 import { redirect } from "react-router-dom";
-import { loginUser } from "../../api.js";
+import { loginUser, logInWithGoogle } from "../../api.js";
 
 export { action };
 
 async function action({ request }) {
   console.log("start Login action");
   const formData = await request.formData();
-  const email = formData.get("email");
-  const password = formData.get("password");
-  const pathname =
-    new URL(request.url).searchParams.get("redirectTo") || "/host";
+  const provider = formData.get("provider");
 
   try {
-    const user = await loginUser({ email, password });
-    console.log(user);
+    if (provider === "emailAndPassword") {
+      await logInWithEmailAndPassword(formData);
+    } else if (provider === "google") {
+      await logInWithGoogle();
+    }
   } catch (e) {
     console.log("error in Login action");
     console.log(e);
-    return new Error(e.response.data.message);
+    return e;
   }
 
-  localStorage.setItem("loggedin", true);
+  const pathname =
+    new URL(request.url).searchParams.get("redirectTo") || "/host";
   const response = redirect(pathname);
   // for compatibility with miragejs
   // without this line it won't redirect
   response.body = null;
   console.log("end Login action");
   return response;
+}
+
+async function logInWithEmailAndPassword(formData) {
+  const email = formData.get("email");
+  const password = formData.get("password");
+
+  const user = await loginUser({ email, password });
+  console.log(user);
 }

@@ -1,4 +1,5 @@
 import { redirect } from "react-router-dom";
+import { isLoggedIn } from "../api.js";
 
 export { requireAuth };
 
@@ -11,8 +12,8 @@ async function requireAuth(request) {
   const pathname = new URL(request.url).pathname;
 
   // faking authentication
-  const isLoggedIn = localStorage.getItem("loggedin");
-  if (!isLoggedIn) {
+  // const isLoggedIn = auth.currentUser !== null;
+  if (!(await isLoggedIn())) {
     const response = redirect(`/login?redirectTo=${pathname}#loginfirst`);
     // for compatibility with miragejs
     // without this line it won't redirect
