@@ -17,7 +17,7 @@ function Login() {
 
   return (
     <div className="login-container">
-      <h1>Sign in to your account</h1>
+      <h1>Log in to your account</h1>
       {message && !isPending && <h3 className="red">{message}</h3>}
       {error && !isPending && <h3 className="red">{error.message}</h3>}
       <Form method="post" className="login-form" replace>
