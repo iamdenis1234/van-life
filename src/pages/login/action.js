@@ -1,23 +1,19 @@
 import { redirect } from "react-router-dom";
-import { loginUser, logInWithGoogle } from "../../api.js";
+import { isLoggedIn, loginUser, logInWithGoogle } from "../../api.js";
 
 export { action };
 
 async function action({ request }) {
   console.log("start Login action");
-  const formData = await request.formData();
-  const provider = formData.get("provider");
 
-  try {
-    if (provider === "emailAndPassword") {
-      await logInWithEmailAndPassword(formData);
-    } else if (provider === "google") {
-      await logInWithGoogle();
+  if (!(await isLoggedIn())) {
+    try {
+      await logIn(request);
+    } catch (e) {
+      console.log("error in Login action");
+      console.log(e);
+      return e;
     }
-  } catch (e) {
-    console.log("error in Login action");
-    console.log(e);
-    return e;
   }
 
   const pathname =
@@ -28,6 +24,17 @@ async function action({ request }) {
   response.body = null;
   console.log("end Login action");
   return response;
+}
+
+async function logIn(request) {
+  const formData = await request.formData();
+  const provider = formData.get("provider");
+
+  if (provider === "emailAndPassword") {
+    await logInWithEmailAndPassword(formData);
+  } else if (provider === "google") {
+    await logInWithGoogle();
+  }
 }
 
 async function logInWithEmailAndPassword(formData) {
