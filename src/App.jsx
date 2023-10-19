@@ -15,6 +15,7 @@ import { loader as dashboardLoader } from "./pages/host/Dashboard/loader.js";
 import { Host } from "./pages/host/Host.jsx";
 import { Income } from "./pages/host/Income/Income.jsx";
 import { loader as incomeLoader } from "./pages/host/Income/loader.js";
+import { action as logoutAction } from "./pages/host/logout/action.js";
 import { loader as reviewsLoader } from "./pages/host/Reviews/loader.js";
 import { Reviews } from "./pages/host/Reviews/Reviews.jsx";
 import { loader as hostVanLoader } from "./pages/host/Van/loader.js";
@@ -32,6 +33,7 @@ import { loader as vanDetailsLoader } from "./pages/vans/VanDetails/loader.js";
 import { VanDetails } from "./pages/vans/VanDetails/VanDetails.jsx";
 import { loader as vansLoader } from "./pages/vans/Vans/loader.js";
 import { Vans } from "./pages/vans/Vans/Vans.jsx";
+import { createRedirectTo } from "./utils/createRedirectTo.js";
 
 export { App };
 
@@ -73,6 +75,11 @@ const router = createBrowserRouter(
           <Route path="photos" element={<HostVanPhotos />} />
         </Route>
         <Route path="reviews" element={<Reviews />} loader={reviewsLoader} />
+        <Route
+          path="logout"
+          action={logoutAction}
+          loader={createRedirectTo("/")}
+        />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Route>,

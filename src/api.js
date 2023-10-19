@@ -5,6 +5,7 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged as onAuthStateChangedFirebase,
   signInWithPopup,
+  signOut,
 } from "firebase/auth";
 
 export {
@@ -14,7 +15,7 @@ export {
   logInWithGoogle,
   onAuthStateChanged,
   isLoggedIn,
-  auth,
+  logout,
 };
 
 const env = import.meta.env;
@@ -79,4 +80,8 @@ function onAuthStateChanged(callback) {
 async function isLoggedIn() {
   await auth.authStateReady();
   return auth.currentUser !== null;
+}
+
+async function logout() {
+  await signOut(auth);
 }
