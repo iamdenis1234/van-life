@@ -1,5 +1,4 @@
 import "/server.js";
-import "normalize.css";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -7,7 +6,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { Error } from "./components/Error.jsx";
-import "./index.css";
 import { About } from "./pages/About.jsx";
 import { Home } from "./pages/Home.jsx";
 import { Dashboard } from "./pages/host/Dashboard/Dashboard.jsx";
