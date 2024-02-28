@@ -1,7 +1,14 @@
+import { styled, Typography } from "@mui/material";
 import { Suspense } from "react";
 import { Await, Link, useLoaderData, useSearchParams } from "react-router-dom";
+import { CustomButton } from "../../../components/CustomButton.jsx";
+import { CustomContainer } from "../../../components/CustomContainer.jsx";
+import { section } from "../../../mixins.js";
 
 export { Vans };
+
+// TODO: fix the delay for changing the selected button filter, so that it
+//  doesn't depend on the time the filter is applied
 
 function Vans() {
   console.log("Render Vans");
@@ -22,6 +29,8 @@ function Vans() {
     });
   }
 
+  // TODO: move the function outside Vans, so there are no two return statements
+  //  inside Vans
   function renderVanElements(vans) {
     console.log("renderVans function");
 
@@ -36,13 +45,13 @@ function Vans() {
     }
 
     const vanElements = filteredVans.map((van) => (
-      <div key={van.id} className="van-tile">
+      <div key={van.id}>
         <Link
           to={van.id}
           state={{ search: searchParams.toString(), type: typeFilter }}
         >
           <img src={van.imageUrl} />
-          <div className="van-info">
+          <div>
             <h3>{van.name}</h3>
             <p>
               ${van.price}
@@ -56,51 +65,64 @@ function Vans() {
 
     return (
       <>
-        <div className="van-list-filter-buttons">
-          <button
-            className={`van-type simple ${
-              typeFilter === "simple" ? "selected" : ""
-            }`}
+        <FiltersContainer>
+          <CustomButton
+            size="small"
+            variant={typeFilter === "simple" ? "contained" : "outlined"}
             onClick={() => handleFilterChange("simple")}
           >
             simple
-          </button>
-          <button
-            className={`van-type rugged ${
-              typeFilter === "rugged" ? "selected" : ""
-            }`}
+          </CustomButton>
+          <CustomButton
+            size="small"
+            variant={typeFilter === "rugged" ? "contained" : "outlined"}
             onClick={() => handleFilterChange("rugged")}
           >
             rugged
-          </button>
-          <button
-            className={`van-type luxury ${
-              typeFilter === "luxury" ? "selected" : ""
-            }`}
+          </CustomButton>
+          <CustomButton
+            size="small"
+            variant={typeFilter === "luxury" ? "contained" : "outlined"}
             onClick={() => handleFilterChange("luxury")}
           >
             luxury
-          </button>
+          </CustomButton>
           {typeFilter ? (
-            <button
-              className="van-type clear-filters"
+            <CustomButton
+              color="inherit"
+              variant="text"
               onClick={() => handleFilterChange("")}
+              sx={{}}
             >
               clear
-            </button>
+            </CustomButton>
           ) : null}
-        </div>
-        <div className="van-list">{vanElements}</div>
+        </FiltersContainer>
+        <VansContainer>{vanElements}</VansContainer>
       </>
     );
   }
 
+  // TODO: maybe use MUI Skeleton component as a Suspense fallback
   return (
-    <div className="van-list-container">
-      <h1>Explore our van options</h1>
+    <Container>
+      <Typography variant="h1">Explore our van options</Typography>
       <Suspense fallback={<h2>Loading vans...</h2>}>
         <Await resolve={vansPromise}>{renderVanElements}</Await>
       </Suspense>
-    </div>
+    </Container>
   );
 }
+
+const Container = styled(CustomContainer)(section, {});
+
+const FiltersContainer = styled("div")(({ theme }) => ({
+  marginTop: theme.spacing(4),
+  display: "flex",
+  alignItems: "center",
+  columnGap: theme.spacing(3),
+}));
+
+const VansContainer = styled("div")(({ theme }) => ({
+  marginTop: theme.spacing(2),
+}));

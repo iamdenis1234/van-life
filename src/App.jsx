@@ -95,3 +95,6 @@ function App() {
 
   return <RouterProvider router={router} />;
 }
+
+// TODO: maybe show 404 page instead of redirecting to login page in cases where
+// an unauthenticated user tries to access private pages for some security reasons

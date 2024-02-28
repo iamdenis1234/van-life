@@ -3,6 +3,8 @@ import { Await, Link, useLoaderData, useLocation } from "react-router-dom";
 
 export { VanDetails };
 
+// TODO: add image gallery via https://github.com/xiaolin/react-image-gallery
+
 function VanDetails() {
   console.log("Render VanDetails");
 
@@ -30,6 +32,7 @@ function VanDetails() {
 
   return (
     <div className="van-detail-container">
+      {/*TODO: maybe add MUI Breadcrumbs instead of this back button*/}
       <Link to={`..?${search}`} relative="path" className="back-button">
         &larr; <span>Back to {type} vans</span>
       </Link>

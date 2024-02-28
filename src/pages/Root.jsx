@@ -1,6 +1,7 @@
+import { styled } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import { Footer } from "../components/Footer.jsx";
-import { Header } from "../components/Header.jsx";
+import { Header } from "../components/Header/Header.jsx";
 
 export { Root };
 
@@ -8,12 +9,16 @@ function Root() {
   console.log("Render Root");
 
   return (
-    <div className="site-wrapper">
+    <>
       <Header />
-      <main>
+      <Main>
         <Outlet />
-      </main>
+      </Main>
       <Footer />
-    </div>
+    </>
   );
 }
+
+const Main = styled("main")({
+  overflow: "hidden",
+});

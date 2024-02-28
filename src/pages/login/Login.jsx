@@ -1,14 +1,22 @@
+import { Alert, Divider, styled, SvgIcon, Typography } from "@mui/material";
 import {
   Form,
   useActionData,
   useLocation,
   useNavigation,
 } from "react-router-dom";
+import { CustomButton } from "../../components/CustomButton.jsx";
+import { CustomContainer } from "../../components/CustomContainer.jsx";
+import { CustomTextField } from "../../components/CustomTextField.jsx";
+import { section } from "../../mixins.js";
+import GoogleIcon from "./google.svg?react";
+import { PasswordTextField } from "./PasswordTextField.jsx";
 
 export { Login };
 
 function Login() {
   console.log("Render Login");
+
   const error = useActionData();
   const { formMethod } = useNavigation();
   const { hash } = useLocation();
@@ -18,41 +26,96 @@ function Login() {
   const isPending = formMethod === "post";
 
   return (
-    <div className="login-container">
-      <h1>Log in to your account</h1>
+    <Container>
+      <Title variant="h1">Log in to your account</Title>
+      {/*TODO: fix logic, so only one Alert is used*/}
       {isLoginFirst && !isPending && (
-        <h3 className="red">You must login first</h3>
+        <Alert severity="error">You must login first</Alert>
       )}
-      {error && !isPending && <h3 className="red">{error.message}</h3>}
-      <Form method="post" className="login-form" replace>
-        <input
+      {error && !isPending && <Alert severity="error">{error.message}</Alert>}
+      <EmailPasswordForm method="post" replace>
+        <CustomTextField
+          fullWidth
+          margin="dense"
+          id="email"
+          label="Email"
           name="email"
           type="email"
-          placeholder="Email address"
           autoComplete="username"
           required
         />
-        <input
+        <PasswordTextField
+          fullWidth
+          margin="dense"
+          id="password"
+          label="Password"
           name="password"
-          type="password"
-          placeholder="Password"
           autoComplete="current-password"
           required
         />
-        <button disabled={isPending} name="provider" value="emailAndPassword">
-          {isPending ? "Logging in..." : "Log in"}
-        </button>
-      </Form>
-      <Form method="post" className="login-with-google-form" replace>
-        <button
+        <LoginButton
           disabled={isPending}
+          fullWidth
+          size="large"
+          name="provider"
+          value="emailAndPassword"
+        >
+          {isPending ? "Logging in..." : "Log in"}
+        </LoginButton>
+      </EmailPasswordForm>
+      <LoginDivider>or</LoginDivider>
+      <GoogleForm method="post" replace>
+        <WithGoogleButton
+          size="large"
+          startIcon={
+            <StyledSvgIcon
+              component={GoogleIcon}
+              inheritViewBox
+              disabled={isPending}
+            />
+          }
+          disabled={isPending}
+          variant="outlined"
           name="provider"
           value="google"
-          className="login-with-google-btn"
         >
           Continue with Google
-        </button>
-      </Form>
-    </div>
+        </WithGoogleButton>
+      </GoogleForm>
+    </Container>
   );
 }
+
+const Title = styled(Typography)(({ theme }) => ({
+  marginBottom: theme.spacing(5),
+  textAlign: "center",
+}));
+
+const Container = styled(CustomContainer)(section, {});
+
+const LoginButton = styled(CustomButton)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+}));
+
+const LoginDivider = styled(Divider)(({ theme }) => ({
+  marginBlock: theme.spacing(3),
+}));
+
+const WithGoogleButton = styled(CustomButton)(({ theme }) => ({
+  color: theme.palette.text.primary,
+}));
+
+const GoogleForm = styled(Form)({
+  display: "flex",
+  justifyContent: "center",
+});
+
+const EmailPasswordForm = styled(Form)(({ theme }) => ({
+  marginTop: theme.spacing(1),
+}));
+
+const StyledSvgIcon = styled(SvgIcon, {
+  shouldForwardProp: (prop) => prop !== "disabled",
+})(({ disabled }) => ({
+  filter: disabled && "grayscale(100%)",
+}));

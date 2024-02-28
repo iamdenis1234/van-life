@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 
 export { About };
 
+// TODO: maybe redo about page with the description of the project or delete
+//  this page altogether
 function About() {
   console.log("Render About");
 
