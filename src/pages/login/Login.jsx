@@ -1,38 +1,26 @@
 import { Alert, Divider, styled, SvgIcon, Typography } from "@mui/material";
-import {
-  Form,
-  useActionData,
-  useLocation,
-  useNavigation,
-} from "react-router-dom";
+import { Form } from "react-router-dom";
 import { CustomButton } from "../../components/CustomButton.jsx";
 import { CustomContainer } from "../../components/CustomContainer.jsx";
 import { CustomTextField } from "../../components/CustomTextField.jsx";
 import { section } from "../../mixins.js";
 import GoogleIcon from "./google.svg?react";
 import { PasswordTextField } from "./PasswordTextField.jsx";
+import { useErrorMsg } from "./useErrorMsg.js";
+import { useIsPending } from "./useIsPending.js";
 
 export { Login };
 
 function Login() {
   console.log("Render Login");
 
-  const error = useActionData();
-  const { formMethod } = useNavigation();
-  const { hash } = useLocation();
-  const isLoginFirst = hash === "#loginfirst";
-  // check formMethod so that the state is true only when the form
-  // is being submitted, and not when simply navigating from this page to another
-  const isPending = formMethod === "post";
+  const isPending = useIsPending();
+  const errorMsg = useErrorMsg();
 
   return (
     <Container>
       <Title variant="h1">Log in to your account</Title>
-      {/*TODO: fix logic, so only one Alert is used*/}
-      {isLoginFirst && !isPending && (
-        <Alert severity="error">You must login first</Alert>
-      )}
-      {error && !isPending && <Alert severity="error">{error.message}</Alert>}
+      {errorMsg && <Alert severity="error">{errorMsg}</Alert>}
       <EmailPasswordForm method="post" replace>
         <CustomTextField
           fullWidth
@@ -66,7 +54,6 @@ function Login() {
       <LoginDivider>or</LoginDivider>
       <GoogleForm method="post" replace>
         <WithGoogleButton
-          size="large"
           startIcon={
             <StyledSvgIcon
               component={GoogleIcon}
@@ -74,6 +61,7 @@ function Login() {
               disabled={isPending}
             />
           }
+          size="large"
           disabled={isPending}
           variant="outlined"
           name="provider"
@@ -93,12 +81,16 @@ const Title = styled(Typography)(({ theme }) => ({
 
 const Container = styled(CustomContainer)(section, {});
 
-const LoginButton = styled(CustomButton)(({ theme }) => ({
-  marginTop: theme.spacing(2),
-}));
-
 const LoginDivider = styled(Divider)(({ theme }) => ({
   marginBlock: theme.spacing(3),
+}));
+
+const EmailPasswordForm = styled(Form)(({ theme }) => ({
+  marginTop: theme.spacing(1),
+}));
+
+const LoginButton = styled(CustomButton)(({ theme }) => ({
+  marginTop: theme.spacing(2),
 }));
 
 const WithGoogleButton = styled(CustomButton)(({ theme }) => ({
@@ -109,10 +101,6 @@ const GoogleForm = styled(Form)({
   display: "flex",
   justifyContent: "center",
 });
-
-const EmailPasswordForm = styled(Form)(({ theme }) => ({
-  marginTop: theme.spacing(1),
-}));
 
 const StyledSvgIcon = styled(SvgIcon, {
   shouldForwardProp: (prop) => prop !== "disabled",
