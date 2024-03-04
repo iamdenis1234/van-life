@@ -1,9 +1,9 @@
 import { styled, Typography } from "@mui/material";
 import { Suspense } from "react";
 import { Await, Link, useLoaderData, useSearchParams } from "react-router-dom";
-import { CustomButton } from "../../../components/CustomButton.jsx";
 import { CustomContainer } from "../../../components/CustomContainer.jsx";
 import { section } from "../../../mixins.js";
+import { FilterButton } from "./FilterButton.jsx";
 
 export { Vans };
 
@@ -66,36 +66,32 @@ function Vans() {
     return (
       <>
         <FiltersContainer>
-          <CustomButton
-            size="small"
-            variant={typeFilter === "simple" ? "contained" : "outlined"}
+          <FilterButton
+            isActive={typeFilter === "simple"}
             onClick={() => handleFilterChange("simple")}
           >
             simple
-          </CustomButton>
-          <CustomButton
-            size="small"
-            variant={typeFilter === "rugged" ? "contained" : "outlined"}
+          </FilterButton>
+          <FilterButton
+            isActive={typeFilter === "rugged"}
             onClick={() => handleFilterChange("rugged")}
           >
             rugged
-          </CustomButton>
-          <CustomButton
-            size="small"
-            variant={typeFilter === "luxury" ? "contained" : "outlined"}
+          </FilterButton>
+          <FilterButton
+            isActive={typeFilter === "luxury"}
             onClick={() => handleFilterChange("luxury")}
           >
             luxury
-          </CustomButton>
+          </FilterButton>
           {typeFilter ? (
-            <CustomButton
+            <FilterButton
               color="inherit"
               variant="text"
               onClick={() => handleFilterChange("")}
-              sx={{}}
             >
               clear
-            </CustomButton>
+            </FilterButton>
           ) : null}
         </FiltersContainer>
         <VansContainer>{vanElements}</VansContainer>
