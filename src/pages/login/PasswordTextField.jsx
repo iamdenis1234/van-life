@@ -9,8 +9,7 @@ function PasswordTextField(props) {
   const [showPassword, setShowPassword] = useState(false);
 
   function handleShowPassword() {
-    // TODO: should I use setShowPassword((show) => !show) instead?
-    setShowPassword(!showPassword);
+    setShowPassword((show) => !show);
   }
 
   function handleMouseDownPassword(event) {
