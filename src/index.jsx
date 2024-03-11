@@ -37,7 +37,6 @@ let theme = createTheme({
       main: colors.first,
     },
     background: {
-      main: colors.body,
       default: colors.body,
       paper: colors.body,
     },
