@@ -24,6 +24,8 @@ const FiltersContainer = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   columnGap: theme.spacing(3),
+  // to fix a little shift of filters when clear filter is visible
+  height: 37,
 }));
 
 const StyledClearFilter = styled(ClearFilter)({
