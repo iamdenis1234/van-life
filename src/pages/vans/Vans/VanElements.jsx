@@ -22,7 +22,13 @@ function VanElements(vans) {
       van={van}
       LinkProps={{
         to: van.id,
-        state: { searchParams: searchParams, type: currentTypeFilter },
+        state: {
+          // Can't use searchParams without toString() in google chrome:
+          //  URLSearchParams could not be cloned.
+          // Seems like it only accepts primitive values
+          searchParams: searchParams.toString(),
+          type: currentTypeFilter,
+        },
       }}
     />
   ));
