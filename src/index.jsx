@@ -20,9 +20,9 @@ const colors = {
   vanTypes: {
     // the default one
     // simple: "#e17654",
-    simple: "#b85b44",
-    rugged: "#115e59",
-    luxury: "#161616",
+    simple: "hsl(12,46%,49%)",
+    rugged: "hsl(176,69%,22%)",
+    luxury: "hsl(0,0%,9%)",
   },
 };
 
