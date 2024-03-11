@@ -22,7 +22,7 @@ function VanElements(vans) {
       van={van}
       LinkProps={{
         to: van.id,
-        state: { search: searchParams.toString(), type: currentTypeFilter },
+        state: { searchParams: searchParams, type: currentTypeFilter },
       }}
     />
   ));

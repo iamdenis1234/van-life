@@ -96,5 +96,11 @@ function App() {
   return <RouterProvider router={router} />;
 }
 
+// TODO: maybe make all styled components follow bem external geometry and positioning rules
+//  https://en.bem.info/methodology/css/#external-geometry-and-positioning
+
+// TODO: do not expose type of the component in its name, instead of
+//  FilterChip/ClearFilterButton use Filter/ClearFilter, etc.
+
 // TODO: maybe show 404 page instead of redirecting to login page in cases where
-// an unauthenticated user tries to access private pages for some security reasons
+//  an unauthenticated user tries to access private pages for security reasons

@@ -8,6 +8,7 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import "./base.css";
 import "./index.css";
+import { getCustomColor } from "./utils/getCustomColor.js";
 
 const colors = {
   // body: "hsl(33, 100%, 96%)",
@@ -16,6 +17,13 @@ const colors = {
   // TODO: consider using commented first color instead
   // first: "hsl(14,70%,61%)",
   textWhite: "hsl(0,0%,100%)",
+  vanTypes: {
+    // the default one
+    // simple: "#e17654",
+    simple: "#b85b44",
+    rugged: "#115e59",
+    luxury: "#161616",
+  },
 };
 
 const fontSizes = {
@@ -36,6 +44,9 @@ let theme = createTheme({
     text: {
       white: colors.textWhite,
     },
+    simple: getCustomColor(colors.vanTypes.simple),
+    rugged: getCustomColor(colors.vanTypes.rugged),
+    luxury: getCustomColor(colors.vanTypes.luxury),
   },
   typography: {
     fontSize: 14,
