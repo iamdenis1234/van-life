@@ -11,16 +11,7 @@ import { Home } from "./pages/Home.jsx";
 import { Dashboard } from "./pages/host/Dashboard/Dashboard.jsx";
 import { loader as dashboardLoader } from "./pages/host/Dashboard/loader.js";
 import { Host } from "./pages/host/Host.jsx";
-import { Income } from "./pages/host/Income/Income.jsx";
-import { loader as incomeLoader } from "./pages/host/Income/loader.js";
 import { action as logoutAction } from "./pages/host/logout/action.js";
-import { loader as reviewsLoader } from "./pages/host/Reviews/loader.js";
-import { Reviews } from "./pages/host/Reviews/Reviews.jsx";
-import { loader as hostVanLoader } from "./pages/host/Van/loader.js";
-import { Van as HostVan } from "./pages/host/Van/Van.jsx";
-import { VanDetails as HostVanDetails } from "./pages/host/Van/VanDetails.jsx";
-import { VanPhotos as HostVanPhotos } from "./pages/host/Van/VanPhotos.jsx";
-import { VanPricing as HostVanPricing } from "./pages/host/Van/VanPricing.jsx";
 import { loader as hostVansLoader } from "./pages/host/Vans/loader.js";
 import { Vans as HostVans } from "./pages/host/Vans/Vans.jsx";
 import { action as loginAction } from "./pages/login/action.js";
@@ -36,6 +27,7 @@ import { createRedirectTo } from "./utils/createRedirectTo.js";
 
 export { App };
 
+// TODO: consider deleting commented routes at all
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />} errorElement={<Error />}>
@@ -61,14 +53,14 @@ const router = createBrowserRouter(
       />
       <Route path="host" element={<Host />}>
         <Route index element={<Dashboard />} loader={dashboardLoader} />
-        <Route path="income" element={<Income />} loader={incomeLoader} />
+        {/*<Route path="income" element={<Income />} loader={incomeLoader} />*/}
         <Route
           path="vans"
           element={<HostVans />}
           errorElement={<Error />}
           loader={hostVansLoader}
         />
-        <Route
+        {/*<Route
           path="vans/:id"
           element={<HostVan />}
           errorElement={<Error />}
@@ -77,8 +69,8 @@ const router = createBrowserRouter(
           <Route index element={<HostVanDetails />} />
           <Route path="pricing" element={<HostVanPricing />} />
           <Route path="photos" element={<HostVanPhotos />} />
-        </Route>
-        <Route path="reviews" element={<Reviews />} loader={reviewsLoader} />
+        </Route>*/}
+        {/*<Route path="reviews" element={<Reviews />} loader={reviewsLoader} />*/}
         <Route
           path="logout"
           action={logoutAction}
