@@ -87,6 +87,3 @@ const Logo = styled(MuiLink)({
     width: 20,
   },
 });
-
-const color = alpha("hsl(0, 0%, 100%)", 0.5);
-console.log(color);
