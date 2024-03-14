@@ -26,9 +26,11 @@ const colors = {
   },
 };
 
+// TODO: consider using responsiveFontSizes() from MUI
 const fontSizes = {
   h1: 38,
   h2: 26,
+  h6: 17,
 };
 
 let theme = createTheme({
@@ -55,10 +57,26 @@ let theme = createTheme({
     },
     h2: {
       fontSize: fontSizes.h2,
-      fontWeight: 400,
+      fontWeight: 500,
+    },
+    h6: {
+      fontSize: fontSizes.h6,
+      fontWeight: 500,
     },
   },
 });
+
+// TODO: remove if it won't be used
+/*theme = createTheme(theme, {
+  palette: {
+    primaryDark: {
+      main: theme.palette.primary.dark,
+    },
+    textSecondary: {
+      main: theme.palette.text.secondary,
+    },
+  },
+});*/
 
 console.log(theme);
 

@@ -10,7 +10,7 @@ import { About } from "./pages/About.jsx";
 import { Home } from "./pages/Home.jsx";
 import { Dashboard } from "./pages/host/Dashboard/Dashboard.jsx";
 import { loader as dashboardLoader } from "./pages/host/Dashboard/loader.js";
-import { Host } from "./pages/host/Host.jsx";
+import { Host } from "./pages/host/Host/Host.jsx";
 import { action as logoutAction } from "./pages/host/logout/action.js";
 import { loader as hostVansLoader } from "./pages/host/Vans/loader.js";
 import { Vans as HostVans } from "./pages/host/Vans/Vans.jsx";
@@ -27,7 +27,7 @@ import { createRedirectTo } from "./utils/createRedirectTo.js";
 
 export { App };
 
-// TODO: consider deleting commented routes at all
+// TODO: consider deleting commented routes at all with corresponding files
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />} errorElement={<Error />}>
@@ -87,6 +87,11 @@ function App() {
 
   return <RouterProvider router={router} />;
 }
+
+// TODO: don't forget styling Not Found page
+
+// TODO: consider renaming some "Container" kind of components to something
+//  more meaningful
 
 // TODO: maybe make all styled components follow bem external geometry and positioning rules
 //  https://en.bem.info/methodology/css/#external-geometry-and-positioning
