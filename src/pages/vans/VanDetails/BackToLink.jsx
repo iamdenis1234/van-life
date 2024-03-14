@@ -18,7 +18,7 @@ function BackToLink() {
       relative="path"
       color="inherit"
     >
-      Back to {type} vans
+      Show {type} vans
     </StyledButton>
   );
 }
