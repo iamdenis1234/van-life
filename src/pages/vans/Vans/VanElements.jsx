@@ -1,5 +1,4 @@
 import { styled } from "@mui/material";
-import { useSearchParams } from "react-router-dom";
 import { useCurrentTypeFilter } from "./useCurrentTypeFilter.js";
 import { VanCard } from "./VanCard.jsx";
 
@@ -7,7 +6,6 @@ export { VanElements };
 
 function VanElements(vans) {
   console.log("render VanElements");
-  const [searchParams] = useSearchParams();
   const [currentTypeFilter] = useCurrentTypeFilter();
 
   const filteredVans = currentTypeFilter
@@ -17,20 +15,7 @@ function VanElements(vans) {
     : vans;
 
   const vanElements = filteredVans.map((van) => (
-    <VanCard
-      key={van.id}
-      van={van}
-      LinkProps={{
-        to: van.id,
-        state: {
-          // Can't use searchParams without toString() in google chrome:
-          //  URLSearchParams could not be cloned.
-          // Seems like it only accepts primitive values
-          searchParams: searchParams.toString(),
-          type: currentTypeFilter,
-        },
-      }}
-    />
+    <VanCard key={van.id} van={van} />
   ));
 
   return <VansContainer>{vanElements}</VansContainer>;

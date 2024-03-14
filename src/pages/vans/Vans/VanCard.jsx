@@ -5,15 +5,28 @@ import {
   CardMedia,
   styled,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { VanType } from "../VanType.jsx";
+import { useCurrentTypeFilter } from "./useCurrentTypeFilter.js";
 
 export { VanCard };
 
-function VanCard({ van, LinkProps }) {
+function VanCard({ van }) {
+  const [searchParams] = useSearchParams();
+  const [currentTypeFilter] = useCurrentTypeFilter();
+
   return (
     <Card>
-      <StyledLink {...LinkProps}>
+      <StyledLink
+        to={van.id}
+        state={{
+          // Can't use searchParams without toString() in google chrome:
+          //  URLSearchParams could not be cloned.
+          // Seems like it only accepts primitive values
+          searchParams: searchParams.toString(),
+          type: currentTypeFilter,
+        }}
+      >
         <CardMedia component="img" src={van.imageUrl} />
       </StyledLink>
       <CardHeader title={van.name} subheader={`$${van.price}/day`} />
