@@ -96,7 +96,7 @@ const MenuList = styled(List)(({ theme }) => ({
 }));
 
 const MenuListItemButton = styled(ListItemButton)(({ theme }) => ({
-  fontWeight: 600,
+  fontWeight: theme.typography.fontWeightBold,
 
   // 'active' class is added automatically to a router NavLink component
   // when it is active

@@ -12,8 +12,10 @@ function Vans() {
 
   return (
     <section>
-      <Title variant="h1">Your favorite vans</Title>
-      <Suspense fallback={<h2>Loading...</h2>}>
+      <Title variant="h3" component="h1">
+        Your favorite vans
+      </Title>
+      <Suspense fallback={<Typography>Loading...</Typography>}>
         <Await resolve={vansPromise}>{renderVanElements}</Await>
       </Suspense>
     </section>
@@ -25,6 +27,5 @@ function renderVanElements(vans) {
 }
 
 const Title = styled(Typography)(({ theme }) => ({
-  fontSize: 26,
   marginBottom: theme.spacing(2),
 }));

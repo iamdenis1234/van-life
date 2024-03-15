@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import { Suspense } from "react";
 import { Await, Link, NavLink, Outlet, useLoaderData } from "react-router-dom";
 import { defineActiveLinkStyles } from "../../../utils/defineActiveLinkStyles.js";
@@ -53,7 +54,7 @@ function Van() {
         &larr; <span>Back to all vans</span>
       </Link>
 
-      <Suspense fallback={<h2>Loading...</h2>}>
+      <Suspense fallback={<Typography>Loading...</Typography>}>
         <Await resolve={vanPromise}>{renderVan}</Await>
       </Suspense>
     </section>

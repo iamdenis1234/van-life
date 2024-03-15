@@ -24,8 +24,5 @@ const StyledCardMedia = styled(CardMedia)({
 });
 
 const StyledCardHeader = styled(CardHeader)({
-  "& .MuiCardHeader-title": {
-    fontSize: 20,
-  },
   flex: 2,
 });

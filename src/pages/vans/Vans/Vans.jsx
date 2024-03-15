@@ -19,7 +19,7 @@ function Vans() {
   return (
     <Container>
       <Typography variant="h1">Explore our van options</Typography>
-      <Suspense fallback={<h2>Loading vans...</h2>}>
+      <Suspense fallback={<Typography>Loading vans...</Typography>}>
         <FilterSection />
         <Await resolve={vansPromise}>{VanElements}</Await>
       </Suspense>

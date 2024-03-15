@@ -1,4 +1,9 @@
-import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import {
+  createTheme,
+  CssBaseline,
+  responsiveFontSizes,
+  ThemeProvider,
+} from "@mui/material";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { App } from "./App.jsx";
@@ -26,13 +31,6 @@ const colors = {
   },
 };
 
-// TODO: consider using responsiveFontSizes() from MUI
-const fontSizes = {
-  h1: 38,
-  h2: 26,
-  h6: 17,
-};
-
 let theme = createTheme({
   palette: {
     primary: {
@@ -49,34 +47,37 @@ let theme = createTheme({
     rugged: getCustomColor(colors.vanTypes.rugged),
     luxury: getCustomColor(colors.vanTypes.luxury),
   },
+});
+
+theme = responsiveFontSizes(theme);
+
+theme = createTheme(theme, {
   typography: {
-    fontSize: 14,
-    h1: {
-      fontSize: fontSizes.h1,
-      fontWeight: 500,
-    },
-    h2: {
-      fontSize: fontSizes.h2,
-      fontWeight: 500,
-    },
-    h6: {
-      fontSize: fontSizes.h6,
-      fontWeight: 500,
-    },
+    h1: theme.typography.h2,
+    h2: theme.typography.h3,
+    h3: theme.typography.h4,
+    h4: theme.typography.h5,
+    h5: theme.typography.h6,
+    h6: theme.typography.h6,
   },
 });
 
-// TODO: remove if it won't be used
-/*theme = createTheme(theme, {
-  palette: {
-    primaryDark: {
-      main: theme.palette.primary.dark,
+theme = createTheme(theme, {
+  typography: {
+    h1: {
+      fontWeight: 500,
     },
-    textSecondary: {
-      main: theme.palette.text.secondary,
+    h2: {
+      fontWeight: 500,
+    },
+    h3: {
+      fontWeight: 500,
+    },
+    h6: {
+      fontSize: "1rem",
     },
   },
-});*/
+});
 
 console.log(theme);
 

@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import { styled, Typography } from "@mui/material";
 import { Suspense } from "react";
 import { Await, useLoaderData } from "react-router-dom";
 import { CustomContainer } from "../../../components/CustomContainer.jsx";
@@ -8,6 +8,8 @@ import { VanCard } from "./VanCard.jsx";
 
 export { VanDetails };
 
+// TODO: maybe need to rename VanDetails folder and this components to be more
+//  consistent with the corresponding route
 function VanDetails() {
   console.log("Render VanDetails");
 
@@ -16,7 +18,7 @@ function VanDetails() {
   return (
     <Container>
       <BackToLink />
-      <Suspense fallback={<h2>Loading...</h2>}>
+      <Suspense fallback={<Typography>Loading...</Typography>}>
         <Await resolve={vanPromise}>{renderVanCard}</Await>
       </Suspense>
     </Container>
