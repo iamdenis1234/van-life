@@ -16,6 +16,10 @@ const StyledCard = styled(Card)({
 });
 
 const StyledCardMedia = styled(CardMedia)({
+  // To override mui's default width: 100%. There's inconsistency between
+  // firefox and chrome with mui's value.
+  // Either minWidth or width is suitable
+  minWidth: 0,
   flex: 1,
 });
 
