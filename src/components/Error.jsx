@@ -1,4 +1,8 @@
-import { useRouteError } from "react-router-dom";
+import { Alert, styled } from "@mui/material";
+import { Link, useRouteError } from "react-router-dom";
+import { section } from "../mixins.js";
+import { CustomButton } from "./CustomButton.jsx";
+import { CustomContainer } from "./CustomContainer.jsx";
 
 export { Error };
 
@@ -8,12 +12,26 @@ function Error() {
   const error = useRouteError();
   console.log(error);
 
-  // TODO: consider using some general error message instead of error.message
-  //  for a better UX
   return (
-    <>
-      <h1>An error occurred</h1>
-      <p>{error.message}</p>
-    </>
+    <Container>
+      <Alert
+        severity="error"
+        action={
+          <CustomButton
+            variant="text"
+            color="inherit"
+            component={Link}
+            to="."
+            reloadDocument
+          >
+            refresh page
+          </CustomButton>
+        }
+      >
+        Oops! unexpected error occurred
+      </Alert>
+    </Container>
   );
 }
+
+const Container = styled(CustomContainer)(section, {});
