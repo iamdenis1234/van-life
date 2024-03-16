@@ -31,11 +31,12 @@ export { App };
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />} errorElement={<Error />}>
-      <Route index element={<Home />} />
-      <Route path="about" element={<About />} />
+      <Route index element={<Home />} errorElement={<Error />} />
+      <Route path="about" element={<About />} errorElement={<Error />} />
       <Route
         path="login"
         element={<Login />}
+        errorElement={<Error />}
         action={loginAction}
         loader={loginLoader}
       />
@@ -51,8 +52,13 @@ const router = createBrowserRouter(
         errorElement={<Error />}
         loader={vanDetailsLoader}
       />
-      <Route path="host" element={<Host />}>
-        <Route index element={<Dashboard />} loader={dashboardLoader} />
+      <Route path="host" element={<Host />} errorElement={<Error />}>
+        <Route
+          index
+          element={<Dashboard />}
+          errorElement={<Error />}
+          loader={dashboardLoader}
+        />
         {/*<Route path="income" element={<Income />} loader={incomeLoader} />*/}
         <Route
           path="vans"
@@ -77,7 +83,7 @@ const router = createBrowserRouter(
           loader={createRedirectTo("/")}
         />
       </Route>
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<NotFound />} errorElement={<Error />} />
     </Route>,
   ),
 );
@@ -87,8 +93,6 @@ function App() {
 
   return <RouterProvider router={router} />;
 }
-
-// TODO: don't forget styling Not Found and Error pages
 
 // TODO: consider moving some routes to layout(Components) routes
 //  https://reactrouter.com/en/main/route/route#layout-routes
