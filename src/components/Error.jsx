@@ -8,6 +8,8 @@ function Error() {
   const error = useRouteError();
   console.log(error);
 
+  // TODO: consider using some general error message instead of error.message
+  //  for a better UX
   return (
     <>
       <h1>An error occurred</h1>

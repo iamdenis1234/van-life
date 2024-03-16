@@ -28,6 +28,7 @@ function Home() {
   );
 }
 
+// TODO: remove if no styles applied
 const HomeSection = styled("section")(section, ({ theme }) => ({
   // marginTop: theme.spacing(8),
 }));

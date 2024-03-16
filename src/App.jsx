@@ -88,7 +88,12 @@ function App() {
   return <RouterProvider router={router} />;
 }
 
-// TODO: don't forget styling Not Found page
+// TODO: don't forget styling Not Found and Error pages
+
+// TODO: consider moving some routes to layout(Components) routes
+//  https://reactrouter.com/en/main/route/route#layout-routes
+
+// TODO: maybe need to make a scroll up button
 
 // TODO: consider renaming some "Container" kind of components to something
 //  more meaningful
