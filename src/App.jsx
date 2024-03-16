@@ -94,10 +94,12 @@ function App() {
   return <RouterProvider router={router} />;
 }
 
-// TODO: consider moving some routes to layout(Components) routes
-//  https://reactrouter.com/en/main/route/route#layout-routes
+// TODO: don't forget styling Footer
 
 // TODO: maybe need to make a scroll up button
+
+// TODO: consider moving some routes to layout(Components) routes
+//  https://reactrouter.com/en/main/route/route#layout-routes
 
 // TODO: consider renaming some "Container" kind of components to something
 //  more meaningful
