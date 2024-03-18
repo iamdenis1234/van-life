@@ -10,9 +10,7 @@ function CustomButton(props) {
 }
 
 const Button = styled(MuiButton)(({ theme }) => ({
-  // color: theme.palette.text.white,
   textTransform: "none",
-  // fontWeight: 700,
   borderRadius: 10,
-  // padding: "1rem 2rem",
+  textAlign: "center",
 }));
