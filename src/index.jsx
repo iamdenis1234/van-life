@@ -1,18 +1,12 @@
-import {
-  createTheme,
-  CssBaseline,
-  responsiveFontSizes,
-  ThemeProvider,
-} from "@mui/material";
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { App } from "./App.jsx";
+import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import "./base.css";
 import "./index.css";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { App } from "./App.jsx";
 import { getCustomColor } from "./utils/getCustomColor.js";
 
 const colors = {
@@ -49,32 +43,49 @@ let theme = createTheme({
   },
 });
 
-theme = responsiveFontSizes(theme);
-
-theme = createTheme(theme, {
-  typography: {
-    h1: theme.typography.h2,
-    h2: theme.typography.h3,
-    h3: theme.typography.h4,
-    h4: theme.typography.h5,
-    h5: theme.typography.h6,
-    h6: theme.typography.h6,
-  },
-});
-
 theme = createTheme(theme, {
   typography: {
     h1: {
+      [theme.breakpoints.up("lg")]: {
+        fontSize: "3.125rem",
+      },
+      fontSize: "2.375rem",
       fontWeight: 500,
     },
     h2: {
+      [theme.breakpoints.up("lg")]: {
+        fontSize: "2.5707rem",
+      },
+      fontSize: "2rem",
       fontWeight: 500,
     },
     h3: {
+      [theme.breakpoints.up("lg")]: {
+        fontSize: "1.8219rem",
+      },
+      fontSize: "2.5625rem",
+      fontWeight: 500,
+    },
+    h4: {
+      [theme.breakpoints.up("lg")]: {
+        fontSize: "1.3118rem",
+      },
+      fontSize: "1.25rem",
+      fontWeight: 500,
+    },
+    h5: {
+      [theme.breakpoints.up("lg")]: {
+        fontSize: "1.25rem",
+      },
+      fontSize: "1.125rem",
       fontWeight: 500,
     },
     h6: {
+      [theme.breakpoints.up("lg")]: {
+        fontSize: "1.125rem",
+      },
       fontSize: "1rem",
+      fontWeight: 500,
     },
   },
 });
