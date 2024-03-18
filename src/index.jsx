@@ -63,7 +63,7 @@ theme = createTheme(theme, {
       [theme.breakpoints.up("lg")]: {
         fontSize: "1.8219rem",
       },
-      fontSize: "2.5625rem",
+      fontSize: "1.5625rem",
       fontWeight: 500,
     },
     h4: {
@@ -74,9 +74,6 @@ theme = createTheme(theme, {
       fontWeight: 500,
     },
     h5: {
-      [theme.breakpoints.up("lg")]: {
-        fontSize: "1.25rem",
-      },
       fontSize: "1.125rem",
       fontWeight: 500,
     },
