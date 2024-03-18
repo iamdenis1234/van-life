@@ -11,7 +11,7 @@ function Home() {
 
   return (
     <HomeSection>
-      <Container>
+      <CustomContainer>
         <Typography variant="h1">
           You got the travel plans, we got the travel vans.
         </Typography>
@@ -22,16 +22,13 @@ function Home() {
         <HomeButton component={Link} size="large" to="/vans">
           Explore Vans
         </HomeButton>
-      </Container>
+      </CustomContainer>
       <Img />
     </HomeSection>
   );
 }
 
-// TODO: remove if no styles applied
-const HomeSection = styled("section")(section, ({ theme }) => ({
-  // marginTop: theme.spacing(8),
-}));
+const HomeSection = styled("section")(section, {});
 
 const Description = styled(Typography)(({ theme }) => ({
   marginTop: theme.spacing(2),
@@ -42,13 +39,7 @@ const HomeButton = styled(CustomButton)(({ theme }) => ({
   marginTop: theme.spacing(5),
   paddingInline: theme.spacing(4),
   paddingBlock: theme.spacing(1.5),
-  // fontSize: 15,
 }));
-
-// TODO: remove it if no styles applied
-const Container = styled(CustomContainer)({
-  // textAlign: "center",
-});
 
 const Img = styled("div")({
   height: 350,
@@ -57,6 +48,7 @@ const Img = styled("div")({
   backgroundImage: "url(/assets/images/modest-explorer.jpg)",
   backgroundSize: "contain",
   backgroundRepeat: "no-repeat",
+  // TODO: maybe need absolute position
   position: "relative",
   top: -105,
   left: 54,
