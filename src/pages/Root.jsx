@@ -19,6 +19,8 @@ function Root() {
   );
 }
 
+// TODO: remove overflow: hidden and fix Home img overflow in a different way,
+//  so that other content could be visible when overflowed
 const Main = styled("main")({
   overflow: "hidden",
 });
