@@ -31,5 +31,10 @@ const Container = styled(CustomContainer)(section, ({ theme }) => ({
 
 // When editing VanCard, HMR does not work without this function wrapper
 function renderVanCard(van) {
-  return <VanCard van={van} />;
+  return <StyledVanCard van={van} />;
 }
+
+const StyledVanCard = styled(VanCard)({
+  maxWidth: 600,
+  marginInline: "auto",
+});

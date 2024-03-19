@@ -6,17 +6,20 @@ import {
   styled,
   Typography,
 } from "@mui/material";
+import { useBreakpointUp } from "../../../hooks/useBreakpointUp.js";
 import { VanType } from "../VanType.jsx";
 
 export { VanCard };
 
 // TODO: add image gallery via https://github.com/xiaolin/react-image-gallery
 
-function VanCard({ van }) {
+function VanCard({ van, className }) {
   console.log("Render Van");
 
+  const smBreakpointMatches = useBreakpointUp("sm");
+
   return (
-    <Card>
+    <Card elevation={0} className={className}>
       <CardMedia component="img" src={van.imageUrl} />
       <HeaderContainer>
         <StyledCardHeader
@@ -30,7 +33,9 @@ function VanCard({ van }) {
       </HeaderContainer>
       <CardContent>
         <Price variant="h4" component="h2">{`$${van.price}/day`}</Price>
-        <Typography variant="body2">{van.description}</Typography>
+        <Typography variant={smBreakpointMatches ? "body1" : "body2"}>
+          {van.description}
+        </Typography>
       </CardContent>
     </Card>
   );
@@ -43,10 +48,10 @@ const HeaderContainer = styled("div")(({ theme }) => ({
   padding: theme.spacing(2),
 }));
 
-const Price = styled(Typography)(({ theme }) => ({
-  marginBottom: theme.spacing(2),
-}));
-
 const StyledCardHeader = styled(CardHeader)({
   padding: 0,
 });
+
+const Price = styled(Typography)(({ theme }) => ({
+  marginBottom: theme.spacing(2),
+}));
