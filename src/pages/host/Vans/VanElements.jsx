@@ -17,11 +17,10 @@ function VanElements({ vans }) {
 }
 
 const Container = styled("div")(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  rowGap: theme.spacing(2),
+  gap: theme.spacing(2),
   marginBottom: theme.spacing(1),
-  width: 300,
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, min(300px, 100%))",
 }));
 
 const StyledLink = styled(Link)({
