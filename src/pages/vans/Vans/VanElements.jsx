@@ -26,7 +26,7 @@ const VansContainer = styled("div")(({ theme }) => ({
   // to make the last card's shadow visible
   marginBottom: theme.spacing(1),
   display: "grid",
-  gridTemplateColumns: 300,
+  gridTemplateColumns: "repeat(auto-fit, min(300px, 100%))",
   justifyContent: "center",
   gap: theme.spacing(3),
 }));
