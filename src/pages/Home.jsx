@@ -41,7 +41,7 @@ const HomeButton = styled(CustomButton)(({ theme }) => ({
   paddingBlock: theme.spacing(1.5),
 }));
 
-const Img = styled("div")({
+const Img = styled("div")(({ theme }) => ({
   height: 350,
   width: 420,
   boxShadow: "0 0 28px 29px white inset",
@@ -53,4 +53,10 @@ const Img = styled("div")({
   top: -105,
   left: 54,
   zIndex: -1,
-});
+
+  [theme.breakpoints.up("sm")]: {
+    height: 390,
+    width: 468,
+    left: 134,
+  },
+}));
