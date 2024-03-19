@@ -18,71 +18,83 @@ function Login() {
   const errorMsg = useErrorMsg();
 
   return (
-    <Container>
-      <Title variant="h1">Log in to your account</Title>
-      {errorMsg && <Alert severity="error">{errorMsg}</Alert>}
-      <EmailPasswordForm method="post" replace>
-        <CustomTextField
-          fullWidth
-          margin="dense"
-          id="email"
-          label="Email"
-          name="email"
-          type="email"
-          autoComplete="username"
-          required
-        />
-        <PasswordTextField
-          fullWidth
-          margin="dense"
-          id="password"
-          label="Password"
-          name="password"
-          autoComplete="current-password"
-          required
-        />
-        <LoginButton
-          disabled={isPending}
-          fullWidth
-          size="large"
-          name="provider"
-          value="emailAndPassword"
-        >
-          {isPending ? "Logging in..." : "Log in"}
-        </LoginButton>
-      </EmailPasswordForm>
-      <LoginDivider>or</LoginDivider>
-      <GoogleForm method="post" replace>
-        <WithGoogleButton
-          startIcon={
-            <StyledSvgIcon
-              component={GoogleIcon}
-              inheritViewBox
-              disabled={isPending}
-            />
-          }
-          size="large"
-          disabled={isPending}
-          variant="outlined"
-          name="provider"
-          value="google"
-        >
-          Continue with Google
-        </WithGoogleButton>
-      </GoogleForm>
-    </Container>
+    <CustomContainer>
+      <Section>
+        <Title variant="h1">Log in to your account</Title>
+        {errorMsg && <ErrorMsg severity="error">{errorMsg}</ErrorMsg>}
+        <EmailPasswordForm method="post" replace>
+          <CustomTextField
+            fullWidth
+            margin="dense"
+            id="email"
+            label="Email"
+            name="email"
+            type="email"
+            autoComplete="username"
+            required
+          />
+          <PasswordTextField
+            fullWidth
+            margin="dense"
+            id="password"
+            label="Password"
+            name="password"
+            autoComplete="current-password"
+            required
+          />
+          <LoginButton
+            disabled={isPending}
+            fullWidth
+            size="large"
+            name="provider"
+            value="emailAndPassword"
+          >
+            {isPending ? "Logging in..." : "Log in"}
+          </LoginButton>
+        </EmailPasswordForm>
+        <LoginDivider>or</LoginDivider>
+        <Form method="post" replace>
+          <WithGoogleButton
+            startIcon={
+              <StyledSvgIcon
+                component={GoogleIcon}
+                inheritViewBox
+                disabled={isPending}
+              />
+            }
+            size="large"
+            disabled={isPending}
+            variant="outlined"
+            name="provider"
+            value="google"
+          >
+            Continue with Google
+          </WithGoogleButton>
+        </Form>
+      </Section>
+    </CustomContainer>
   );
 }
 
+const Section = styled("section")(section, {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  maxWidth: 480,
+  marginInline: "auto",
+});
+
 const Title = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(5),
-  textAlign: "center",
 }));
 
-const Container = styled(CustomContainer)(section, {});
+const ErrorMsg = styled(Alert)({
+  width: "100%",
+});
 
 const LoginDivider = styled(Divider)(({ theme }) => ({
   marginBlock: theme.spacing(3),
+  width: "100%",
 }));
 
 const EmailPasswordForm = styled(Form)(({ theme }) => ({
@@ -96,11 +108,6 @@ const LoginButton = styled(CustomButton)(({ theme }) => ({
 const WithGoogleButton = styled(CustomButton)(({ theme }) => ({
   color: theme.palette.text.primary,
 }));
-
-const GoogleForm = styled(Form)({
-  display: "flex",
-  justifyContent: "center",
-});
 
 const StyledSvgIcon = styled(SvgIcon, {
   shouldForwardProp: (prop) => prop !== "disabled",
