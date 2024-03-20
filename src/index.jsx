@@ -41,6 +41,15 @@ let theme = createTheme({
     rugged: getCustomColor(colors.vanTypes.rugged),
     luxury: getCustomColor(colors.vanTypes.luxury),
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 576,
+      md: 768,
+      lg: 1150,
+      xl: 1536,
+    },
+  },
 });
 
 theme = createTheme(theme, {
