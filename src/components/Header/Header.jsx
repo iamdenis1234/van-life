@@ -1,6 +1,5 @@
 import { Menu as MenuIcon } from "@mui/icons-material";
 import {
-  alpha,
   AppBar,
   Box,
   IconButton,
@@ -70,9 +69,10 @@ const HeaderMenuButton = styled(IconButton)(({ theme }) => ({
 const HeaderAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== "isScrolled",
 })(({ isScrolled, theme }) => ({
+  // TODO: consider using theme's shadow token
   boxShadow: isScrolled && "0 2px 16px hsla(0, 0%, 0%, 0.1)",
-  backdropFilter: "blur(6px)",
-  backgroundColor: alpha(theme.palette.background.default, 0.8),
+  backdropFilter: theme.filters.blur,
+  backgroundColor: theme.palette.background.transparent,
 }));
 
 const HeaderToolbar = styled(Toolbar)({

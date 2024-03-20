@@ -1,6 +1,5 @@
 import { Close } from "@mui/icons-material";
 import {
-  alpha,
   css,
   Drawer,
   IconButton,
@@ -77,8 +76,8 @@ const RoadSign = styled("img")(decorImg, {
 const MenuDrawer = styled(Drawer)(({ theme }) => ({
   "& .MuiDrawer-paper": {
     overflow: "hidden",
-    backdropFilter: "blur(6px)",
-    backgroundColor: alpha(theme.palette.background.default, 0.8),
+    backdropFilter: theme.filters.blur,
+    backgroundColor: theme.palette.background.transparent,
   },
   "& .MuiBackdrop-root": {
     backgroundColor: "hsla(0,0%,0%,0.2)",

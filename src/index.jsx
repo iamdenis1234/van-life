@@ -1,4 +1,4 @@
-import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { alpha, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
@@ -41,6 +41,9 @@ let theme = createTheme({
     rugged: getCustomColor(colors.vanTypes.rugged),
     luxury: getCustomColor(colors.vanTypes.luxury),
   },
+  filters: {
+    blur: "blur(6px)",
+  },
   breakpoints: {
     values: {
       xs: 0,
@@ -53,6 +56,11 @@ let theme = createTheme({
 });
 
 theme = createTheme(theme, {
+  palette: {
+    background: {
+      transparent: alpha(theme.palette.background.default, 0.8),
+    },
+  },
   typography: {
     h1: {
       [theme.breakpoints.up("lg")]: {
