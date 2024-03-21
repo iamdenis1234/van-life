@@ -10,8 +10,8 @@ function Home() {
   console.log("Render Home");
 
   return (
-    <HomeSection>
-      <CustomContainer>
+    <Section>
+      <Container>
         <Typography variant="h1">
           You got the travel plans, we got the travel vans.
         </Typography>
@@ -22,13 +22,27 @@ function Home() {
         <HomeButton component={Link} size="large" to="/vans">
           Explore Vans
         </HomeButton>
-      </CustomContainer>
+      </Container>
       <Img />
-    </HomeSection>
+    </Section>
   );
 }
 
-const HomeSection = styled("section")(section, {});
+const Section = styled("section")(section, ({ theme }) => ({
+  [theme.breakpoints.up("md")]: {
+    display: "grid",
+    gridTemplateColumns: "1fr auto",
+    alignItems: "center",
+  },
+  maxWidth: theme.breakpoints.values.lg,
+  marginInline: "auto",
+}));
+
+const Container = styled(CustomContainer)(({ theme }) => ({
+  [theme.breakpoints.up("md")]: {
+    paddingRight: 0,
+  },
+}));
 
 const Description = styled(Typography)(({ theme }) => ({
   marginTop: theme.spacing(2),
@@ -48,7 +62,6 @@ const Img = styled("div")(({ theme }) => ({
   backgroundImage: "url(/assets/images/modest-explorer.jpg)",
   backgroundSize: "contain",
   backgroundRepeat: "no-repeat",
-  // TODO: maybe need absolute position
   position: "relative",
   top: -105,
   left: 54,
@@ -58,5 +71,9 @@ const Img = styled("div")(({ theme }) => ({
     height: 390,
     width: 468,
     left: 134,
+  },
+
+  [theme.breakpoints.up("md")]: {
+    position: "static",
   },
 }));
