@@ -41,6 +41,9 @@ let theme = createTheme({
     rugged: getCustomColor(colors.vanTypes.rugged),
     luxury: getCustomColor(colors.vanTypes.luxury),
   },
+  customShadows: {
+    header: "0 2px 16px hsla(0, 0%, 0%, 0.1)",
+  },
   filters: {
     blur: "blur(6px)",
   },

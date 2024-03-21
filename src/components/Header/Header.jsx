@@ -70,7 +70,7 @@ const HeaderAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== "isScrolled",
 })(({ isScrolled, theme }) => ({
   // TODO: consider using theme's shadow token
-  boxShadow: isScrolled && "0 2px 16px hsla(0, 0%, 0%, 0.1)",
+  boxShadow: isScrolled && theme.customShadows.header,
   backdropFilter: theme.filters.blur,
   backgroundColor: theme.palette.background.transparent,
 }));
