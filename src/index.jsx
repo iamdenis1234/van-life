@@ -3,6 +3,7 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
+import "@fontsource-variable/dancing-script";
 import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -37,6 +38,9 @@ let theme = createTheme({
     text: {
       white: colors.textWhite,
     },
+    logo: {
+      main: "hsl(25, 100%, 43%)",
+    },
     simple: getCustomColor(colors.vanTypes.simple),
     rugged: getCustomColor(colors.vanTypes.rugged),
     luxury: getCustomColor(colors.vanTypes.luxury),
@@ -46,6 +50,14 @@ let theme = createTheme({
   },
   filters: {
     blur: "blur(6px)",
+  },
+  typography: {
+    logo: {
+      fontFamily: "'Dancing Script Variable', cursive",
+      fontWeight: 700,
+      fontStyle: "normal",
+      fontSize: "2rem",
+    },
   },
   breakpoints: {
     values: {

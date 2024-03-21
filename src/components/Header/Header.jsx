@@ -2,7 +2,6 @@ import { Menu as MenuIcon } from "@mui/icons-material";
 import {
   AppBar,
   IconButton,
-  Link as MuiLink,
   styled,
   Toolbar,
   useScrollTrigger,
@@ -12,6 +11,7 @@ import { Link } from "react-router-dom";
 import { onAuthStateChanged } from "../../api.js";
 import { useBreakpointUp } from "../../hooks/useBreakpoint.js";
 import { CustomContainer } from "../CustomContainer.jsx";
+import { Logo } from "../Logo.jsx";
 import { MenuDrawer } from "./MenuDrawer.jsx";
 import { NavList } from "./NavList.jsx";
 
@@ -48,10 +48,7 @@ function Header() {
     >
       <CustomContainer>
         <HeaderToolbar component="nav" disableGutters>
-          <Logo component={Link} to="/" color="inherit" underline="none">
-            <img src="/assets/images/logo-primary-color-cut.png" alt="" />
-            VanLife
-          </Logo>
+          <StyledLogo component={Link} to="/" />
           {lgUpBreakpointMatches ? (
             <StyledNavList />
           ) : (
@@ -86,13 +83,8 @@ const HeaderToolbar = styled(Toolbar)({
   justifyContent: "space-between",
 });
 
-const Logo = styled(MuiLink)({
-  display: "flex",
-  gap: "4px",
-
-  "& img": {
-    width: 20,
-  },
+const StyledLogo = styled(Logo)({
+  textDecoration: "none",
 });
 
 const StyledNavList = styled(NavList)(({ theme }) => ({
