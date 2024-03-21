@@ -6,7 +6,7 @@ import {
   styled,
   Typography,
 } from "@mui/material";
-import { useBreakpointUp } from "../../../hooks/useBreakpointUp.js";
+import { useBreakpointUp } from "../../../hooks/useBreakpoint.js";
 import { VanType } from "../VanType.jsx";
 
 export { VanCard };

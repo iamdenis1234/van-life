@@ -1,7 +1,6 @@
 import { Menu as MenuIcon } from "@mui/icons-material";
 import {
   AppBar,
-  Box,
   IconButton,
   Link as MuiLink,
   styled,
@@ -11,14 +10,17 @@ import {
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { onAuthStateChanged } from "../../api.js";
+import { useBreakpointUp } from "../../hooks/useBreakpoint.js";
 import { CustomContainer } from "../CustomContainer.jsx";
-import { Menu } from "./Menu.jsx";
+import { MenuDrawer } from "./MenuDrawer.jsx";
+import { NavList } from "./NavList.jsx";
 
 export { Header };
 
 function Header() {
   console.log("Render Header");
 
+  const lgUpBreakpointMatches = useBreakpointUp("lg");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isScrolled = useScrollTrigger({
@@ -26,6 +28,7 @@ function Header() {
     threshold: 50,
   });
 
+  // TODO: maybe need to replace useEffect with loader/defer
   useEffect(() => {
     return onAuthStateChanged((user) => {
       setIsLoggedIn(user !== null);
@@ -36,7 +39,6 @@ function Header() {
     setIsMenuOpen(!isMenuOpen);
   }
 
-  // TODO: maybe refactor isScrolled and elevation props
   return (
     <HeaderAppBar
       position="sticky"
@@ -50,12 +52,18 @@ function Header() {
             <img src="/assets/images/logo-primary-color-cut.png" alt="" />
             VanLife
           </Logo>
-          <Box>
-            <HeaderMenuButton onClick={toggleMenu}>
-              <MenuIcon />
-            </HeaderMenuButton>
-            <Menu isOpen={isMenuOpen} onToggle={toggleMenu} />
-          </Box>
+          {lgUpBreakpointMatches ? (
+            <StyledNavList />
+          ) : (
+            <>
+              <HeaderMenuButton onClick={toggleMenu}>
+                <MenuIcon />
+              </HeaderMenuButton>
+              <MenuDrawer isOpen={isMenuOpen} onToggle={toggleMenu}>
+                <StyledNavList onToggle={toggleMenu} />
+              </MenuDrawer>
+            </>
+          )}
         </HeaderToolbar>
       </CustomContainer>
     </HeaderAppBar>
@@ -69,7 +77,6 @@ const HeaderMenuButton = styled(IconButton)(({ theme }) => ({
 const HeaderAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== "isScrolled",
 })(({ isScrolled, theme }) => ({
-  // TODO: consider using theme's shadow token
   boxShadow: isScrolled && theme.customShadows.header,
   backdropFilter: theme.filters.blur,
   backgroundColor: theme.palette.background.transparent,
@@ -87,3 +94,18 @@ const Logo = styled(MuiLink)({
     width: 20,
   },
 });
+
+const StyledNavList = styled(NavList)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  paddingBlock: theme.spacing(7),
+  gap: theme.spacing(1),
+
+  [theme.breakpoints.up("lg")]: {
+    flexDirection: "row",
+    paddingBlock: 0,
+    "& .MuiListItem-root:last-child": {
+      paddingRight: 0,
+    },
+  },
+}));
