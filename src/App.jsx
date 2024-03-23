@@ -68,8 +68,6 @@ function App() {
   return <RouterProvider router={router} />;
 }
 
-// TODO: don't forget styling Footer
-
 // TODO: maybe need to make a scroll up button
 
 // TODO: We recommend naming props from the component’s own point of view rather than the context in which it is being used.
@@ -77,9 +75,6 @@ function App() {
 
 // TODO: maybe remove some 'container' kind of components and apply
 //  their styles to direct children
-
-// TODO: consider moving some routes to layout(Components) routes
-//  https://reactrouter.com/en/main/route/route#layout-routes
 
 // TODO: consider renaming some "Container" kind of components to something
 //  more meaningful

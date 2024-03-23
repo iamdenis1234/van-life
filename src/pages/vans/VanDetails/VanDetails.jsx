@@ -8,8 +8,6 @@ import { VanCard } from "./VanCard.jsx";
 
 export { VanDetails };
 
-// TODO: maybe need to rename VanDetails folder and this components to be more
-//  consistent with the corresponding route
 function VanDetails() {
   console.log("Render VanDetails");
 
