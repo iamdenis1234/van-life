@@ -43,6 +43,7 @@ function Login() {
             required
           />
           <LoginButton
+            type="submit"
             disabled={isPending}
             fullWidth
             size="large"
@@ -55,6 +56,7 @@ function Login() {
         <LoginDivider>or</LoginDivider>
         <Form method="post" replace>
           <WithGoogleButton
+            type="submit"
             startIcon={
               <StyledSvgIcon
                 component={GoogleIcon}

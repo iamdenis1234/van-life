@@ -20,7 +20,7 @@ function Host() {
           <Link to="vans">Vans</Link>
         </LinkContainer>
         <Form method="post" action="logout" replace>
-          <CustomButton variant="text" color="inherit">
+          <CustomButton type="submit" variant="text" color="inherit">
             Logout
           </CustomButton>
         </Form>
