@@ -27,7 +27,6 @@ import { createRedirectTo } from "./utils/createRedirectTo.js";
 
 export { App };
 
-// TODO: consider deleting commented routes at all with corresponding files
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />} errorElement={<Error />}>
@@ -49,19 +48,7 @@ const router = createBrowserRouter(
         <Route path="host" element={<Host />}>
           <Route errorElement={<Error />}>
             <Route index element={<Dashboard />} loader={dashboardLoader} />
-            {/*<Route path="income" element={<Income />} loader={incomeLoader} />*/}
             <Route path="vans" element={<HostVans />} loader={hostVansLoader} />
-            {/*<Route
-          path="vans/:id"
-          element={<HostVan />}
-          errorElement={<Error />}
-          loader={hostVanLoader}
-        >
-          <Route index element={<HostVanDetails />} />
-          <Route path="pricing" element={<HostVanPricing />} />
-          <Route path="photos" element={<HostVanPhotos />} />
-        </Route>*/}
-            {/*<Route path="reviews" element={<Reviews />} loader={reviewsLoader} />*/}
             <Route
               path="logout"
               action={logoutAction}
