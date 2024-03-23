@@ -4,6 +4,7 @@ export { useCurrentTypeFilter };
 
 function useCurrentTypeFilter() {
   const [searchParams, setSearchParams] = useSearchParams();
+  // Robert Martin - Clean Code. Chapter 7. Don't return null. Special Case Object
   let currentTypeFilter = searchParams.get("type") ?? "";
 
   function setCurrentTypeFilter(newType) {
