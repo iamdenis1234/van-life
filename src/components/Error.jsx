@@ -1,4 +1,4 @@
-import { Alert } from "@mui/material";
+import { Alert, styled } from "@mui/material";
 import { Link, useRouteError } from "react-router-dom";
 import { CustomButton } from "./CustomButton.jsx";
 
@@ -11,7 +11,7 @@ function Error() {
   console.log(error);
 
   return (
-    <Alert
+    <StyledAlert
       severity="error"
       action={
         <CustomButton
@@ -26,6 +26,11 @@ function Error() {
       }
     >
       Oops! unexpected error occurred
-    </Alert>
+    </StyledAlert>
   );
 }
+
+const StyledAlert = styled(Alert)(({ theme }) => ({
+  maxWidth: theme.breakpoints.values.lg,
+  marginInline: "auto",
+}));
