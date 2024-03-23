@@ -3,26 +3,27 @@ import { NavLink } from "react-router-dom";
 
 export { NavList };
 
-function NavList({ onToggle = null, className }) {
+// TODO: consider moving it to Header as a variable
+function NavList({ onClick, className }) {
   return (
     <List className={className}>
       <ListItem>
-        <MenuListItemButton onClick={onToggle} to="/" component={NavLink}>
+        <MenuListItemButton onClick={onClick} to="/" component={NavLink}>
           Home
         </MenuListItemButton>
       </ListItem>
       <ListItem>
-        <MenuListItemButton onClick={onToggle} to="/host" component={NavLink}>
+        <MenuListItemButton onClick={onClick} to="/host" component={NavLink}>
           Host
         </MenuListItemButton>
       </ListItem>
       <ListItem>
-        <MenuListItemButton onClick={onToggle} to="/about" component={NavLink}>
+        <MenuListItemButton onClick={onClick} to="/about" component={NavLink}>
           About
         </MenuListItemButton>
       </ListItem>
       <ListItem>
-        <MenuListItemButton onClick={onToggle} to="/vans" component={NavLink}>
+        <MenuListItemButton onClick={onClick} to="/vans" component={NavLink}>
           Vans
         </MenuListItemButton>
       </ListItem>

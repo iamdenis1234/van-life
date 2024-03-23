@@ -57,7 +57,7 @@ function Header() {
                 <MenuIcon />
               </HeaderMenuButton>
               <MenuDrawer isOpen={isMenuOpen} onToggle={toggleMenu}>
-                <StyledNavList onToggle={toggleMenu} />
+                <StyledNavList onClick={toggleMenu} />
               </MenuDrawer>
             </>
           )}
