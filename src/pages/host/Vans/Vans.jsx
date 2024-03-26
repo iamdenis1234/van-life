@@ -10,6 +10,8 @@ function Vans() {
 
   const { vansPromise } = useLoaderData();
 
+  // TODO: handle when vans is an empty array, either with errorElement on Await,
+  //  or inside VanElements
   return (
     <section>
       <Title variant="h3" component="h1">

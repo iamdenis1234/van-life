@@ -6,6 +6,7 @@ import {
   styled,
   Typography,
 } from "@mui/material";
+import { useAsyncValue } from "react-router-dom";
 import { useBreakpointUp } from "../../../hooks/useBreakpoint.js";
 import { VanType } from "../VanType.jsx";
 
@@ -13,10 +14,11 @@ export { VanCard };
 
 // TODO: add image gallery via https://github.com/xiaolin/react-image-gallery
 
-function VanCard({ van, className }) {
+function VanCard({ className }) {
   console.log("Render Van");
 
   const smBreakpointMatches = useBreakpointUp("sm");
+  const van = useAsyncValue();
 
   return (
     <Card elevation={0} className={className}>

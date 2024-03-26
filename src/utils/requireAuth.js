@@ -11,15 +11,9 @@ async function requireAuth(request) {
   // "Anatomy of an Attack" section
   const pathname = new URL(request.url).pathname;
 
-  // faking authentication
-  // const isLoggedIn = auth.currentUser !== null;
   if (!(await isLoggedIn())) {
-    const response = redirect(`/login?redirectTo=${pathname}#loginfirst`);
-    // for compatibility with miragejs
-    // without this line it won't redirect
-    response.body = null;
     // throw instead of return, so we can write await requireAuth() in loaders
     // without a condition
-    throw response;
+    throw redirect(`/login?redirectTo=${pathname}#loginfirst`);
   }
 }

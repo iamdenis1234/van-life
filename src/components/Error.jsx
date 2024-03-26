@@ -18,7 +18,6 @@ function Error() {
           variant="text"
           color="inherit"
           component={Link}
-          to="."
           reloadDocument
         >
           refresh page

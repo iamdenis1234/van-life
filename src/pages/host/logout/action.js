@@ -3,13 +3,10 @@ import { logout } from "../../../api.js";
 
 export { action };
 
-async function action({ request }) {
+async function action() {
   console.log("start logout action");
   await logout();
   const response = redirect("/");
-  // for compatibility with miragejs
-  // without this line it won't redirect
-  response.body = null;
   console.log("end logout action");
   return response;
 }

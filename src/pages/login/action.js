@@ -1,46 +1,53 @@
 import { redirect } from "react-router-dom";
-import { isLoggedIn, loginUser, logInWithGoogle } from "../../api.js";
+import {
+  createNewUserInDb,
+  isNewUser,
+  logInWithEmailAndPassword as logInWithEmailAndPasswordApi,
+  logInWithGoogle,
+} from "../../api.js";
 
 export { action };
 
 async function action({ request }) {
   console.log("start Login action");
+  const formData = await request.formData();
 
-  if (!(await isLoggedIn())) {
-    try {
-      await logIn(request);
-    } catch (e) {
-      console.log("error in Login action");
-      console.log(e);
-      return e;
-    }
+  let userCred;
+  try {
+    userCred = await logIn(formData);
+  } catch (error) {
+    return error;
   }
 
-  const pathname =
-    new URL(request.url).searchParams.get("redirectTo") || "/host";
-  const response = redirect(pathname);
-  // for compatibility with miragejs
-  // without this line it won't redirect
-  response.body = null;
+  if (isNewUser(userCred)) {
+    await createNewUserInDb(userCred.user);
+  }
+
   console.log("end Login action");
-  return response;
+  return createRedirect(request);
 }
 
-async function logIn(request) {
-  const formData = await request.formData();
+async function logIn(formData) {
   const provider = formData.get("provider");
 
+  let userCred;
   if (provider === "emailAndPassword") {
-    await logInWithEmailAndPassword(formData);
-  } else if (provider === "google") {
-    await logInWithGoogle();
+    userCred = await logInWithEmailAndPassword(formData);
+  } else {
+    userCred = await logInWithGoogle();
   }
+  return userCred;
+}
+
+function createRedirect(request) {
+  const pathname =
+    new URL(request.url).searchParams.get("redirectTo") || "/host";
+  return redirect(pathname);
 }
 
 async function logInWithEmailAndPassword(formData) {
   const email = formData.get("email");
   const password = formData.get("password");
 
-  const user = await loginUser({ email, password });
-  console.log(user);
+  return await logInWithEmailAndPasswordApi(email, password);
 }

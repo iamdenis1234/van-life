@@ -1,4 +1,3 @@
-import "/server.js";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -68,7 +67,13 @@ function App() {
   return <RouterProvider router={router} />;
 }
 
+// TODO: add index type in firestore to speed up search
+
 // TODO: maybe need to make a scroll up button
+
+// TODO: if the hook is used in one component only, move it to the file where the component is
+
+// TODO: add the ability to delete the current user's account
 
 // TODO: We recommend naming props from the component’s own point of view rather than the context in which it is being used.
 //  https://legacy.reactjs.org/docs/components-and-props.html#:~:text=We%20recommend%20naming%20props%20from%20the%20component%E2%80%99s%20own%20point%20of%20view%20rather%20than%20the%20context%20in%20which%20it%20is%20being%20used.
