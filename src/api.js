@@ -57,6 +57,8 @@ async function getUserFavoriteVans() {
   console.log("start getting favorite vans");
   const userFavoriteIds = await getUserFavoriteIds();
   let favoriteVans = [];
+  // TODO: maybe throw when ids is empty as in getVanById and handle it
+  //  with errorElement on Await
   if (userFavoriteIds.length) {
     favoriteVans = await getUserFavoriteVansByIds(userFavoriteIds);
   }

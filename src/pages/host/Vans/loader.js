@@ -1,12 +1,10 @@
 import { defer } from "react-router-dom";
 import { getUserFavoriteVans } from "../../../api.js";
-import { requireAuth } from "../../../utils/requireAuth.js";
 
 export { loader };
 
-async function loader({ request }) {
+async function loader() {
   console.log("start Host Vans loader");
-  await requireAuth(request);
   const vansPromise = getUserFavoriteVans();
   console.log("end Host Vans loader");
 

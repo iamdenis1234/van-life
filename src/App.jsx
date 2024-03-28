@@ -8,7 +8,6 @@ import { Error } from "./components/Error.jsx";
 import { About } from "./pages/About.jsx";
 import { Home } from "./pages/Home.jsx";
 import { Dashboard } from "./pages/host/Dashboard/Dashboard.jsx";
-import { loader as dashboardLoader } from "./pages/host/Dashboard/loader.js";
 import { Host } from "./pages/host/Host/Host.jsx";
 import { action as logoutAction } from "./pages/host/logout/action.js";
 import { loader as hostVansLoader } from "./pages/host/Vans/loader.js";
@@ -23,6 +22,7 @@ import { VanDetails } from "./pages/vans/VanDetails/VanDetails.jsx";
 import { loader as vansLoader } from "./pages/vans/Vans/loader.js";
 import { Vans } from "./pages/vans/Vans/Vans.jsx";
 import { createRedirectTo } from "./utils/createRedirectTo.js";
+import { makeProtected } from "./utils/makeProtected.js";
 
 export { App };
 
@@ -46,11 +46,15 @@ const router = createBrowserRouter(
         />
         <Route path="host" element={<Host />}>
           <Route errorElement={<Error />}>
-            <Route index element={<Dashboard />} loader={dashboardLoader} />
-            <Route path="vans" element={<HostVans />} loader={hostVansLoader} />
+            <Route index element={<Dashboard />} loader={makeProtected()} />
+            <Route
+              path="vans"
+              element={<HostVans />}
+              loader={makeProtected(hostVansLoader)}
+            />
             <Route
               path="logout"
-              action={logoutAction}
+              action={makeProtected(logoutAction)}
               loader={createRedirectTo("/")}
             />
           </Route>
@@ -66,6 +70,11 @@ function App() {
 
   return <RouterProvider router={router} />;
 }
+
+// TODO: consider add ProtectedLayout and subscribe with onAuthStateChanged
+//  to redirect in multiple tabs when the user has logged out
+
+// TODO: consider this https://reactrouter.com/en/main/route/error-element#throwing-responses
 
 // TODO: add index type in firestore to speed up search
 
