@@ -20,6 +20,7 @@ import {
   setDoc,
   where,
 } from "firebase/firestore";
+import { CustomError } from "./utils/CustomError.js";
 
 export {
   getVans,
@@ -57,8 +58,6 @@ async function getUserFavoriteVans() {
   console.log("start getting favorite vans");
   const userFavoriteIds = await getUserFavoriteIds();
   let favoriteVans = [];
-  // TODO: maybe throw when ids is empty as in getVanById and handle it
-  //  with errorElement on Await
   if (userFavoriteIds.length) {
     favoriteVans = await getUserFavoriteVansByIds(userFavoriteIds);
   }
@@ -84,9 +83,9 @@ async function getVanById(id) {
   const q = query(vansCollectionRef, where("id", "==", id));
   const querySnapshot = await getDocs(q);
   if (querySnapshot.empty) {
-    const error = new Error(`Van with id '${id}' not found`);
-    console.log(error);
-    throw error;
+    throw new CustomError(`Van not found`, {
+      detailMessage: `Van with id "${id}" not found`,
+    });
   }
   console.log("end getting van by id");
   return querySnapshot.docs[0].data();
@@ -107,7 +106,7 @@ async function logInWithEmailAndPassword(email, password) {
     return userCred;
   } catch (e) {
     console.log(e);
-    throw new Error("No user with those credentials found!");
+    throw new CustomError("No user with those credentials found!");
   }
 }
 
@@ -118,7 +117,7 @@ async function logInWithGoogle() {
     console.log("end login with Google");
     return userCred;
   } catch (e) {
-    throw new Error(`Couldn't log in to Google. Try again later`);
+    throw new CustomError(`Couldn't log in to Google. Try again later`);
   }
 }
 

@@ -2,8 +2,8 @@ import { styled, Typography } from "@mui/material";
 import { Suspense } from "react";
 import { Await, useLoaderData } from "react-router-dom";
 import { CustomContainer } from "../../../components/CustomContainer.jsx";
+import { Error } from "../../../components/Error.jsx";
 import { section } from "../../../mixins.js";
-import { NotFound } from "../../NotFound.jsx";
 import { BackToLink } from "./BackToLink.jsx";
 import { VanCard } from "./VanCard.jsx";
 
@@ -18,7 +18,7 @@ function VanDetails() {
     <Container>
       <BackToLink />
       <Suspense fallback={<Typography>Loading...</Typography>}>
-        <Await resolve={vanPromise} errorElement={<NotFound />}>
+        <Await resolve={vanPromise} errorElement={<Error />}>
           <StyledVanCard />
         </Await>
       </Suspense>
