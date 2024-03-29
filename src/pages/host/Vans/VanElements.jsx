@@ -1,11 +1,17 @@
 import { styled } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useAsyncValue } from "react-router-dom";
+import { EmptyFavorites } from "./EmptyFavorites.jsx";
 import { VanCard } from "./VanCard.jsx";
 
 export { VanElements };
 
-function VanElements({ vans }) {
+function VanElements() {
   console.log("render host VanElements");
+  const vans = useAsyncValue();
+
+  if (!vans.length) {
+    return <EmptyFavorites />;
+  }
 
   const vansElements = vans.map((van) => (
     <StyledLink to={`/vans/${van.id}`} key={van.id}>

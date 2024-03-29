@@ -10,22 +10,18 @@ function Vans() {
 
   const { vansPromise } = useLoaderData();
 
-  // TODO: handle when vans is an empty array, either with errorElement on Await,
-  //  or inside VanElements
   return (
     <section>
       <Title variant="h3" component="h1">
         Your favorite vans
       </Title>
       <Suspense fallback={<Typography>Loading...</Typography>}>
-        <Await resolve={vansPromise}>{renderVanElements}</Await>
+        <Await resolve={vansPromise}>
+          <VanElements />
+        </Await>
       </Suspense>
     </section>
   );
-}
-
-function renderVanElements(vans) {
-  return <VanElements vans={vans} />;
 }
 
 const Title = styled(Typography)(({ theme }) => ({
