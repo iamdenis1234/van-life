@@ -150,9 +150,9 @@ function isNewUser(userCred) {
   return getAdditionalUserInfo(userCred).isNewUser;
 }
 
-async function createNewUserInDb(user) {
+async function createNewUserInDb(id) {
   console.log("start creating new user in firestore");
-  const newUserRef = doc(db, "users", user.uid);
+  const newUserRef = doc(db, "users", id);
   await setDoc(newUserRef, { favorites: [] });
   console.log("end creating new user in firestore");
 }

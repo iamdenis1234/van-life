@@ -20,7 +20,7 @@ async function action({ request }) {
   }
 
   if (isNewUser(userCred)) {
-    await createNewUserInDb(userCred.user);
+    await createNewUserInDb(userCred.user.uid);
   }
 
   console.log("end Login action");
