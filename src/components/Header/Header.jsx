@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { onAuthStateChanged } from "../../api.js";
+import { onAuthStateChanged } from "../../api/api.js";
 import { useBreakpointUp } from "../../hooks/useBreakpoint.js";
 import { CustomContainer } from "../CustomContainer.jsx";
 import { Logo } from "../Logo.jsx";

@@ -4,7 +4,7 @@ import {
   isNewUser,
   logInWithEmailAndPassword as logInWithEmailAndPasswordApi,
   logInWithGoogle,
-} from "../../api.js";
+} from "../../api/api.js";
 
 export { action };
 

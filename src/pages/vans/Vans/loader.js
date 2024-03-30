@@ -1,5 +1,5 @@
 import { defer } from "react-router-dom";
-import { getVans } from "../../../api.js";
+import { getVans } from "../../../api/getVans.js";
 
 export { loader };
 

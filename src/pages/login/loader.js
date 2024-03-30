@@ -1,5 +1,5 @@
 import { redirect } from "react-router-dom";
-import { isLoggedIn } from "../../api.js";
+import { isLoggedIn } from "../../api/api.js";
 
 export { loader };
 

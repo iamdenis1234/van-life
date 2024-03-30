@@ -11,21 +11,18 @@ import {
   signOut,
 } from "firebase/auth";
 import {
+  arrayRemove,
+  arrayUnion,
   collection,
   doc,
   getDoc,
-  getDocs,
   getFirestore,
-  query,
   setDoc,
-  where,
+  updateDoc,
 } from "firebase/firestore";
-import { CustomError } from "./utils/CustomError.js";
+import { CustomError } from "../utils/CustomError.js";
 
 export {
-  getVans,
-  getVanById,
-  getUserFavoriteVans,
   logInWithEmailAndPassword,
   logInWithGoogle,
   onAuthStateChanged,
@@ -33,6 +30,10 @@ export {
   logout,
   isNewUser,
   createNewUserInDb,
+  getUserFavoriteIds,
+  db,
+  auth,
+  vansCollectionRef,
 };
 
 const env = import.meta.env;
@@ -53,18 +54,6 @@ const googleAuthProvider = new GoogleAuthProvider();
 
 const vansCollectionRef = collection(db, "vans");
 
-async function getUserFavoriteVans() {
-  // TODO: sort elements by added time via timestamp
-  console.log("start getting favorite vans");
-  const userFavoriteIds = await getUserFavoriteIds();
-  let favoriteVans = [];
-  if (userFavoriteIds.length) {
-    favoriteVans = await getUserFavoriteVansByIds(userFavoriteIds);
-  }
-  console.log("end getting favorite vans");
-  return favoriteVans;
-}
-
 async function getUserFavoriteIds() {
   const userRef = doc(db, "users", auth.currentUser.uid);
   const userDocSnapshot = await getDoc(userRef);
@@ -72,30 +61,14 @@ async function getUserFavoriteIds() {
   return user.favorites;
 }
 
-async function getUserFavoriteVansByIds(ids) {
-  const q = query(vansCollectionRef, where("id", "in", ids));
-  const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map((van) => van.data());
+async function addToFavorites(id) {
+  const userRef = doc(db, "users", auth.currentUser.uid);
+  await updateDoc(userRef, { favorites: arrayUnion(id) });
 }
 
-async function getVanById(id) {
-  console.log("start getting van by id");
-  const q = query(vansCollectionRef, where("id", "==", id));
-  const querySnapshot = await getDocs(q);
-  if (querySnapshot.empty) {
-    throw new CustomError(`Van not found`, {
-      detailMessage: `Van with id "${id}" not found`,
-    });
-  }
-  console.log("end getting van by id");
-  return querySnapshot.docs[0].data();
-}
-
-async function getVans() {
-  console.log("start getting vans");
-  const querySnapshot = await getDocs(vansCollectionRef);
-  console.log("end getting vans");
-  return querySnapshot.docs.map((van) => van.data());
+async function removeFromFavorites(id) {
+  const userRef = doc(db, "users", auth.currentUser.uid);
+  await updateDoc(userRef, { favorites: arrayRemove(id) });
 }
 
 async function logInWithEmailAndPassword(email, password) {

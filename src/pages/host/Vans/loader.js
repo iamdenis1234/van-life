@@ -1,5 +1,5 @@
 import { defer } from "react-router-dom";
-import { getUserFavoriteVans } from "../../../api.js";
+import { getUserFavoriteVans } from "../../../api/getUserFavoriteVans.js";
 
 export { loader };
 
