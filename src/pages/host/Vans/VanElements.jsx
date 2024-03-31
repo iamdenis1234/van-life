@@ -1,5 +1,5 @@
 import { styled } from "@mui/material";
-import { Link, useAsyncValue } from "react-router-dom";
+import { useAsyncValue } from "react-router-dom";
 import { EmptyFavorites } from "./EmptyFavorites.jsx";
 import { VanCard } from "./VanCard.jsx";
 
@@ -13,11 +13,7 @@ function VanElements() {
     return <EmptyFavorites />;
   }
 
-  const vansElements = vans.map((van) => (
-    <StyledLink to={`/vans/${van.id}`} key={van.id}>
-      <VanCard van={van} />
-    </StyledLink>
-  ));
+  const vansElements = vans.map((van) => <VanCard key={van.id} van={van} />);
 
   return <Container>{vansElements}</Container>;
 }
@@ -27,8 +23,5 @@ const Container = styled("div")(({ theme }) => ({
   marginBottom: theme.spacing(1),
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, min(300px, 100%))",
+  gridAutoRows: 90,
 }));
-
-const StyledLink = styled(Link)({
-  textDecoration: "none",
-});

@@ -19,6 +19,7 @@ function Host() {
           </Link>
           <Link to="vans">Vans</Link>
         </LinkContainer>
+        {/*TODO: maybe use fetcher.Form instead*/}
         <Form method="post" action="logout" replace>
           <CustomButton type="submit" variant="text" color="inherit">
             Logout

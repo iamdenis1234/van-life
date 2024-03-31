@@ -10,6 +10,7 @@ import { Home } from "./pages/Home.jsx";
 import { Dashboard } from "./pages/host/Dashboard/Dashboard.jsx";
 import { Host } from "./pages/host/Host/Host.jsx";
 import { action as logoutAction } from "./pages/host/logout/action.js";
+import { action as hostVansAction } from "./pages/host/Vans/action.js";
 import { loader as hostVansLoader } from "./pages/host/Vans/loader.js";
 import { Vans as HostVans } from "./pages/host/Vans/Vans.jsx";
 import { action as loginAction } from "./pages/login/action.js";
@@ -17,6 +18,7 @@ import { loader as loginLoader } from "./pages/login/loader.js";
 import { Login } from "./pages/login/Login.jsx";
 import { NotFound } from "./pages/NotFound.jsx";
 import { Root } from "./pages/Root.jsx";
+import { action as vanDetailsAction } from "./pages/vans/VanDetails/action.js";
 import { loader as vanDetailsLoader } from "./pages/vans/VanDetails/loader.js";
 import { VanDetails } from "./pages/vans/VanDetails/VanDetails.jsx";
 import { loader as vansLoader } from "./pages/vans/Vans/loader.js";
@@ -43,6 +45,7 @@ const router = createBrowserRouter(
           path="vans/:id"
           element={<VanDetails />}
           loader={vanDetailsLoader}
+          action={makeProtected(vanDetailsAction)}
         />
         <Route path="host" element={<Host />}>
           <Route errorElement={<Error />}>
@@ -51,6 +54,7 @@ const router = createBrowserRouter(
               path="vans"
               element={<HostVans />}
               loader={makeProtected(hostVansLoader)}
+              action={makeProtected(hostVansAction)}
             />
             <Route
               path="logout"

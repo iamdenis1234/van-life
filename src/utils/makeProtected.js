@@ -24,6 +24,7 @@ async function requireAuth(request) {
     // TODO: consider deleting this comment
     // throw instead of return, so we can write await requireAuth() in loaders
     // without a condition
+    // TODO: consider using URL/URLSearchParams instead
     throw redirect(`/login?redirectTo=${pathname}#loginfirst`);
   }
 }

@@ -6,6 +6,7 @@ import {
   styled,
 } from "@mui/material";
 import { Link, useSearchParams } from "react-router-dom";
+import { FavoriteToggle } from "../VanDetails/FavoriteToggle.jsx";
 import { VanType } from "../VanType.jsx";
 import { useCurrentTypeFilter } from "./useCurrentTypeFilter.js";
 
@@ -29,7 +30,11 @@ function VanCard({ van }) {
       >
         <CardMedia component="img" src={van.imageUrl} />
       </StyledLink>
-      <CardHeader title={van.name} subheader={`$${van.price}/day`} />
+      <CardHeader
+        title={van.name}
+        subheader={`$${van.price}/day`}
+        action={van.favorite !== undefined && <FavoriteToggle van={van} />}
+      />
       <CardContent>
         <VanType type={van.type} size="small" />
       </CardContent>

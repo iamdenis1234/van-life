@@ -6,11 +6,21 @@ export { getVan };
 
 async function getVan(id) {
   console.log("start getting van by id");
-  const van = await getVanFromDB(id);
   if (await isLoggedIn()) {
-    van.favorite = await isIdInFavorites(van.id);
+    const van = await getVanWithFavorite(id);
+    console.log("end getting van by id");
+    return van;
   }
   console.log("end getting van by id");
+  return await getVanFromDB(id);
+}
+
+async function getVanWithFavorite(id) {
+  const [van, favorite] = await Promise.all([
+    getVanFromDB(id),
+    isIdInFavorites(id),
+  ]);
+  van.favorite = favorite;
   return van;
 }
 

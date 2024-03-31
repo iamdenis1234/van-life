@@ -31,6 +31,8 @@ export {
   isNewUser,
   createNewUserInDb,
   getUserFavoriteIds,
+  addToFavorites,
+  removeFromFavorites,
   db,
   auth,
   vansCollectionRef,
