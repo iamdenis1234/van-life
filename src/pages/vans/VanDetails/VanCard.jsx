@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useAsyncValue } from "react-router-dom";
+import { useIsLoggedIn } from "../../../context/IsLoggedInContext.js";
 import { useBreakpointUp } from "../../../hooks/useBreakpoint.js";
 import { VanType } from "../VanType.jsx";
 import { FavoriteToggle } from "./FavoriteToggle.jsx";
@@ -18,6 +19,7 @@ export { VanCard };
 function VanCard({ className }) {
   console.log("Render VanCard");
 
+  const isLoggedIn = useIsLoggedIn();
   const smBreakpointMatches = useBreakpointUp("sm");
   const van = useAsyncValue();
 
@@ -31,7 +33,7 @@ function VanCard({ className }) {
           </Typography>
         }
         subheader={<VanType type={van.type} />}
-        action={van.favorite !== undefined && <FavoriteToggle van={van} />}
+        action={isLoggedIn && <FavoriteToggle van={van} />}
       />
       <CardContent>
         <Price variant="h4" component="h2">{`$${van.price}/day`}</Price>

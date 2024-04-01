@@ -17,7 +17,8 @@ import { action as loginAction } from "./pages/login/action.js";
 import { loader as loginLoader } from "./pages/login/loader.js";
 import { Login } from "./pages/login/Login.jsx";
 import { NotFound } from "./pages/NotFound.jsx";
-import { Root } from "./pages/Root.jsx";
+import { loader as rootLoader } from "./pages/root/loader.js";
+import { Root } from "./pages/root/Root.jsx";
 import { action as vanDetailsAction } from "./pages/vans/VanDetails/action.js";
 import { loader as vanDetailsLoader } from "./pages/vans/VanDetails/loader.js";
 import { VanDetails } from "./pages/vans/VanDetails/VanDetails.jsx";
@@ -30,7 +31,12 @@ export { App };
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Root />} errorElement={<Error />}>
+    <Route
+      path="/"
+      element={<Root />}
+      errorElement={<Error />}
+      loader={rootLoader}
+    >
       <Route errorElement={<Error />}>
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />

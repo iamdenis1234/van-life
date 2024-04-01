@@ -6,6 +6,7 @@ import {
   styled,
 } from "@mui/material";
 import { Link, useSearchParams } from "react-router-dom";
+import { useIsLoggedIn } from "../../../context/IsLoggedInContext.js";
 import { FavoriteToggle } from "../VanDetails/FavoriteToggle.jsx";
 import { VanType } from "../VanType.jsx";
 import { useCurrentTypeFilter } from "./useCurrentTypeFilter.js";
@@ -13,6 +14,7 @@ import { useCurrentTypeFilter } from "./useCurrentTypeFilter.js";
 export { VanCard };
 
 function VanCard({ van }) {
+  const isLoggedIn = useIsLoggedIn();
   const [searchParams] = useSearchParams();
   const [currentTypeFilter] = useCurrentTypeFilter();
 
@@ -33,7 +35,7 @@ function VanCard({ van }) {
       <CardHeader
         title={van.name}
         subheader={`$${van.price}/day`}
-        action={van.favorite !== undefined && <FavoriteToggle van={van} />}
+        action={isLoggedIn && <FavoriteToggle van={van} />}
       />
       <CardContent>
         <VanType type={van.type} size="small" />
