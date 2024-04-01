@@ -9,14 +9,12 @@ import { Link, useSearchParams } from "react-router-dom";
 import { useIsLoggedIn } from "../../../context/IsLoggedInContext.js";
 import { FavoriteToggle } from "../VanDetails/FavoriteToggle.jsx";
 import { VanType } from "../VanType.jsx";
-import { useCurrentTypeFilter } from "./useCurrentTypeFilter.js";
 
 export { VanCard };
 
 function VanCard({ van }) {
   const isLoggedIn = useIsLoggedIn();
   const [searchParams] = useSearchParams();
-  const [currentTypeFilter] = useCurrentTypeFilter();
 
   return (
     <Card>
@@ -27,7 +25,6 @@ function VanCard({ van }) {
           //  URLSearchParams could not be cloned.
           // Seems like it only accepts primitive values
           searchParams: searchParams.toString(),
-          type: currentTypeFilter,
         }}
       >
         <CardMedia component="img" src={van.imageUrl} />

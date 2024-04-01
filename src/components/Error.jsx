@@ -10,7 +10,7 @@ function Error() {
 
   const error = useError();
   console.log(error);
-  console.log("detail message: " + error.data.detailMessage);
+  console.log("detail message: " + error.data?.detailMessage);
 
   if (isCustomError(error)) {
     return <Alert severity="info">{error.message}</Alert>;

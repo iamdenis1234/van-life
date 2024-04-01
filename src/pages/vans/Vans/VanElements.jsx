@@ -1,22 +1,14 @@
 import { styled } from "@mui/material";
-import { useCurrentTypeFilter } from "./useCurrentTypeFilter.js";
+import { useAsyncValue } from "react-router-dom";
 import { VanCard } from "./VanCard.jsx";
 
 export { VanElements };
 
-function VanElements(vans) {
+function VanElements() {
   console.log("render VanElements");
-  const [currentTypeFilter] = useCurrentTypeFilter();
+  const vans = useAsyncValue();
 
-  const filteredVans = currentTypeFilter
-    ? vans.filter(
-        (van) => currentTypeFilter.toLowerCase() === van.type.toLowerCase(),
-      )
-    : vans;
-
-  const vanElements = filteredVans.map((van) => (
-    <VanCard key={van.id} van={van} />
-  ));
+  const vanElements = vans.map((van) => <VanCard key={van.id} van={van} />);
 
   return <VansContainer>{vanElements}</VansContainer>;
 }

@@ -6,19 +6,19 @@ import { CustomButton } from "../../../components/CustomButton.jsx";
 export { BackToLink };
 
 function BackToLink() {
-  const link = useBackLink();
-  const type = useType();
+  const { state } = useLocation();
+  const searchParams = state?.searchParams || "";
 
   return (
     <StyledButton
       component={Link}
       startIcon={<ArrowBack />}
-      to={link}
+      to={`..?${searchParams}`}
       variant="text"
       relative="path"
       color="inherit"
     >
-      Show {type} vans
+      Show {searchParams ? "selected" : "all"} vans
     </StyledButton>
   );
 }
@@ -26,14 +26,3 @@ function BackToLink() {
 const StyledButton = styled(CustomButton)(({ theme }) => ({
   marginBottom: theme.spacing(3),
 }));
-
-function useBackLink() {
-  const { state } = useLocation();
-  const searchParams = state?.searchParams || "";
-  return `..?${searchParams}`;
-}
-
-function useType() {
-  const { state } = useLocation();
-  return state?.type || "all";
-}

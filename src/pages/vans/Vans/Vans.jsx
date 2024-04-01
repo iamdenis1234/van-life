@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { Await, useLoaderData } from "react-router-dom";
 import { CustomContainer } from "../../../components/CustomContainer.jsx";
 import { section } from "../../../mixins.js";
-import { FilterSection } from "./FilterSection.jsx";
+import { FilterAndSortSection } from "./FilterAndSortSection.jsx";
 import { VanElements } from "./VanElements.jsx";
 
 export { Vans };
@@ -15,13 +15,14 @@ function Vans() {
   console.log("Render Vans");
   const { vansPromise } = useLoaderData();
 
-  // TODO: maybe use MUI Skeleton component as a Suspense fallback
   return (
     <Container>
       <Typography variant="h1">Explore our van options</Typography>
       <Suspense fallback={<Typography>Loading vans...</Typography>}>
-        <FilterSection />
-        <Await resolve={vansPromise}>{VanElements}</Await>
+        <FilterAndSortSection />
+        <Await resolve={vansPromise}>
+          <VanElements />
+        </Await>
       </Suspense>
     </Container>
   );
