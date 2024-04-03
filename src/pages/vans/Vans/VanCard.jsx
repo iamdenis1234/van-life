@@ -27,7 +27,7 @@ function VanCard({ van }) {
           searchParams: searchParams.toString(),
         }}
       >
-        <CardMedia component="img" src={van.imageUrl} />
+        <StyledCardMedia component="img" src={van.imageUrl} />
       </StyledLink>
       <CardHeader
         title={van.name}
@@ -42,5 +42,10 @@ function VanCard({ van }) {
 }
 
 const StyledLink = styled(Link)({
+  display: "block",
   textDecoration: "none",
+});
+
+const StyledCardMedia = styled(CardMedia)({
+  height: 295,
 });
