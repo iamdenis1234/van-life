@@ -72,6 +72,9 @@ let theme = createTheme({
 
 theme = createTheme(theme, {
   palette: {
+    primaryDark: {
+      main: theme.palette.primary.dark,
+    },
     background: {
       transparent: alpha(theme.palette.background.default, 0.8),
     },

@@ -1,5 +1,5 @@
 import { defer } from "react-router-dom";
-import { getVans } from "../../../api/getVans.js";
+import { getVansData } from "../../../api/getVansData.js";
 
 export { loader };
 
@@ -8,7 +8,8 @@ async function loader({ request }) {
   const searchParams = new URL(request.url).searchParams;
   const types = searchParams.getAll("type");
   const order = searchParams.get("order");
-  const vansPromise = getVans({ types, order });
+  const page = searchParams.get("page");
+  const vansDataPromise = getVansData({ types, order, page });
   console.log("end Vans loader");
-  return defer({ vansPromise });
+  return defer({ vansDataPromise });
 }

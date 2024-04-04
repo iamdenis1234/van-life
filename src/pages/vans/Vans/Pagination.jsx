@@ -1,0 +1,57 @@
+import { Pagination as PaginationMui, styled } from "@mui/material";
+import { useAsyncValue, useSearchParams } from "react-router-dom";
+import { useCustomSubmit } from "../../../hooks/useCustomSubmit.js";
+import { useOptimisticSearchParams } from "./useOptimisticSearchParams.js";
+
+export { Pagination };
+
+function Pagination() {
+  const { totalPages } = useAsyncValue();
+  const submit = useCustomSubmit();
+  const [searchParams] = useSearchParams();
+  const page = usePage(totalPages);
+
+  function handlePageChange(event, value) {
+    if (!isSamePage(value)) {
+      const newSearchParams = new URLSearchParams(searchParams);
+      newSearchParams.set("page", value);
+      submit(newSearchParams);
+    }
+  }
+
+  function isSamePage(newPage) {
+    return newPage === page;
+  }
+
+  return (
+    <StyledPagination
+      count={totalPages}
+      color="primaryDark"
+      variant="outlined"
+      shape="rounded"
+      size="large"
+      page={page}
+      onChange={handlePageChange}
+    />
+  );
+}
+
+const StyledPagination = styled(PaginationMui)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "center",
+}));
+
+function usePage(totalPages) {
+  const searchParams = useOptimisticSearchParams();
+
+  function getValidPage(page) {
+    page = Number.parseInt(page) || 1;
+    return isInRange(page) ? page : 1;
+  }
+
+  function isInRange(page) {
+    return page > 0 && page <= totalPages;
+  }
+
+  return getValidPage(searchParams.get("page"));
+}

@@ -5,22 +5,25 @@ import {
   Select,
   styled,
 } from "@mui/material";
-import { useSearchParams, useSubmit } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { useCustomSubmit } from "../../../hooks/useCustomSubmit.js";
+import { deletePageFromSearchParams } from "./deletePageFromSearchParams.js";
 import { useOptimisticSearchParams } from "./useOptimisticSearchParams.js";
 
 export { SortOrder };
 
 function SortOrder() {
   const [searchParams] = useSearchParams();
-  const submit = useSubmit();
+  const submit = useCustomSubmit();
   const order = useSelectedOrder();
 
   function handleChange(event) {
     const { value } = event.target;
+    const newSearchParams = new URLSearchParams(searchParams);
     value === orderValues[0]
-      ? searchParams.delete("order")
-      : searchParams.set("order", value);
-    submit(searchParams);
+      ? newSearchParams.delete("order")
+      : newSearchParams.set("order", value);
+    submit(deletePageFromSearchParams(newSearchParams));
   }
 
   return (
@@ -48,11 +51,10 @@ const StyledFormControl = styled(FormControl)({
 
 function useSelectedOrder() {
   const searchParams = useOptimisticSearchParams();
-  return getOrderFromDefinedValues(searchParams);
+  return getOrderFromDefinedValues(searchParams.get("order"));
 }
 
-function getOrderFromDefinedValues(searchParams) {
-  let order = searchParams.get("order");
+function getOrderFromDefinedValues(order) {
   // User could change order param by hand making the Select empty
   // We're preventing this, making the UI more consistent
   if (!orderValues.includes(order)) {

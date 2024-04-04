@@ -6,7 +6,7 @@ export { VanElements };
 
 function VanElements() {
   console.log("render VanElements");
-  const vans = useAsyncValue();
+  const { vans } = useAsyncValue();
 
   const vanElements = vans.map((van) => <VanCard key={van.id} van={van} />);
 
@@ -14,7 +14,6 @@ function VanElements() {
 }
 
 const VansContainer = styled("div")(({ theme }) => ({
-  marginTop: theme.spacing(3),
   // to make the last card's shadow visible
   marginBottom: theme.spacing(1),
   display: "grid",

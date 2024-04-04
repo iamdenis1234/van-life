@@ -7,22 +7,16 @@ export { FilterAndSortSection };
 
 function FilterAndSortSection() {
   return (
-    <FiltersContainer>
-      <StyledForm>
-        <StyledFormGroup>
-          <Filter type="simple" />
-          <Filter type="rugged" />
-          <Filter type="luxury" />
-        </StyledFormGroup>
-        <SortOrder />
-      </StyledForm>
-    </FiltersContainer>
+    <StyledForm>
+      <StyledFormGroup>
+        <Filter type="simple" />
+        <Filter type="rugged" />
+        <Filter type="luxury" />
+      </StyledFormGroup>
+      <SortOrder />
+    </StyledForm>
   );
 }
-
-const FiltersContainer = styled("div")(({ theme }) => ({
-  marginTop: theme.spacing(4),
-}));
 
 const StyledForm = styled(Form)({
   display: "flex",
