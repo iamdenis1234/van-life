@@ -6,7 +6,6 @@ import {
   styled,
   Typography,
 } from "@mui/material";
-import { useAsyncValue } from "react-router-dom";
 import { useIsLoggedIn } from "../../../context/IsLoggedInContext.js";
 import { useBreakpointUp } from "../../../hooks/useBreakpoint.js";
 import { VanType } from "../VanType.jsx";
@@ -16,12 +15,11 @@ export { VanCard };
 
 // TODO: add image gallery via https://github.com/xiaolin/react-image-gallery
 
-function VanCard({ className }) {
+function VanCard({ className, van }) {
   console.log("Render VanCard");
 
   const isLoggedIn = useIsLoggedIn();
   const smBreakpointMatches = useBreakpointUp("sm");
-  const van = useAsyncValue();
 
   return (
     <Card elevation={0} className={className}>

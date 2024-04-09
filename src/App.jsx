@@ -1,3 +1,6 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import React from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -29,6 +32,15 @@ import { makeProtected } from "./utils/makeProtected.js";
 
 export { App };
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      // We use new built-in router error handling, which catches errors
+      throwOnError: true,
+    },
+  },
+});
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
@@ -46,12 +58,16 @@ const router = createBrowserRouter(
           action={loginAction}
           loader={loginLoader}
         />
-        <Route path="vans" element={<Vans />} loader={vansLoader} />
+        <Route
+          path="vans"
+          element={<Vans />}
+          loader={vansLoader(queryClient)}
+        />
         <Route
           path="vans/:id"
           element={<VanDetails />}
-          loader={vanDetailsLoader}
-          action={makeProtected(vanDetailsAction)}
+          loader={vanDetailsLoader(queryClient)}
+          action={makeProtected(vanDetailsAction(queryClient))}
         />
         <Route path="host" element={<Host />}>
           <Route errorElement={<Error />}>
@@ -59,8 +75,8 @@ const router = createBrowserRouter(
             <Route
               path="vans"
               element={<HostVans />}
-              loader={makeProtected(hostVansLoader)}
-              action={makeProtected(hostVansAction)}
+              loader={makeProtected(hostVansLoader(queryClient))}
+              action={makeProtected(hostVansAction(queryClient))}
             />
             <Route
               path="logout"
@@ -77,8 +93,12 @@ const router = createBrowserRouter(
 
 function App() {
   console.log("Render App");
-
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools />
+    </QueryClientProvider>
+  );
 }
 
 // TODO: consider add ProtectedLayout and subscribe with onAuthStateChanged

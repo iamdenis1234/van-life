@@ -1,13 +1,11 @@
 import { styled } from "@mui/material";
-import { useAsyncValue } from "react-router-dom";
 import { EmptyFavorites } from "./EmptyFavorites.jsx";
 import { VanCard } from "./VanCard.jsx";
 
 export { VanElements };
 
-function VanElements() {
+function VanElements({ vans }) {
   console.log("render host VanElements");
-  const vans = useAsyncValue();
 
   if (!vans.length) {
     return <EmptyFavorites />;

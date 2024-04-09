@@ -1,6 +1,6 @@
 import { styled, Typography } from "@mui/material";
-import { Suspense } from "react";
-import { Await, useLoaderData } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { favoriteVansQuery } from "./loader.js";
 import { VanElements } from "./VanElements.jsx";
 
 export { Vans };
@@ -8,18 +8,14 @@ export { Vans };
 function Vans() {
   console.log("Render host Vans");
 
-  const { vansPromise } = useLoaderData();
+  const { data: vans, isPending } = useQuery(favoriteVansQuery());
 
   return (
     <section>
       <Title variant="h3" component="h1">
         Your favorite vans
       </Title>
-      <Suspense fallback={<Typography>Loading...</Typography>}>
-        <Await resolve={vansPromise}>
-          <VanElements />
-        </Await>
-      </Suspense>
+      {isPending ? <p>Loading...</p> : <VanElements vans={vans} />}
     </section>
   );
 }

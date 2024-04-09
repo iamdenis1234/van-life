@@ -1,12 +1,10 @@
 import { styled } from "@mui/material";
-import { useAsyncValue } from "react-router-dom";
 import { VanCard } from "./VanCard.jsx";
 
 export { VanElements };
 
-function VanElements() {
+function VanElements({ vans }) {
   console.log("render VanElements");
-  const { vans } = useAsyncValue();
 
   const vanElements = vans.map((van) => <VanCard key={van.id} van={van} />);
 

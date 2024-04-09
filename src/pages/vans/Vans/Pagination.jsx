@@ -1,22 +1,26 @@
 import { Pagination as PaginationMui, styled } from "@mui/material";
-import { useAsyncValue, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useCustomSubmit } from "../../../hooks/useCustomSubmit.js";
 import { useOptimisticSearchParams } from "./useOptimisticSearchParams.js";
 
 export { Pagination };
 
-function Pagination() {
-  const { totalPages } = useAsyncValue();
+function Pagination({ totalPages }) {
   const submit = useCustomSubmit();
   const [searchParams] = useSearchParams();
   const page = usePage(totalPages);
 
   function handlePageChange(event, value) {
-    if (!isSamePage(value)) {
-      const newSearchParams = new URLSearchParams(searchParams);
-      newSearchParams.set("page", value);
-      submit(newSearchParams);
+    const page = value;
+    if (isSamePage(page)) {
+      return;
     }
+
+    const newSearchParams = new URLSearchParams(searchParams);
+    page === 1
+      ? newSearchParams.delete("page")
+      : newSearchParams.set("page", page);
+    submit(newSearchParams);
   }
 
   function isSamePage(newPage) {

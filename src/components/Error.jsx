@@ -1,5 +1,11 @@
+import { ArrowBack } from "@mui/icons-material";
 import { Alert, styled } from "@mui/material";
-import { Link, useAsyncError, useRouteError } from "react-router-dom";
+import {
+  Link,
+  useAsyncError,
+  useLocation,
+  useRouteError,
+} from "react-router-dom";
 import { isCustomError } from "../utils/CustomError.js";
 import { CustomButton } from "./CustomButton.jsx";
 
@@ -7,13 +13,30 @@ export { Error };
 
 function Error() {
   console.log("Render Error");
+  console.log(useLocation());
 
   const error = useError();
   console.log(error);
   console.log("detail message: " + error.data?.detailMessage);
 
+  const backHome = (
+    <CustomButton
+      component={Link}
+      startIcon={<ArrowBack />}
+      to="/"
+      variant="text"
+      color="inherit"
+    >
+      home
+    </CustomButton>
+  );
+
   if (isCustomError(error)) {
-    return <Alert severity="info">{error.message}</Alert>;
+    return (
+      <StyledAlert severity="info" action={backHome}>
+        {error.message}
+      </StyledAlert>
+    );
   }
 
   return (

@@ -4,7 +4,6 @@ import { getUserFavoriteIds, vansCollectionRef } from "./api.js";
 export { getUserFavoriteVans };
 
 async function getUserFavoriteVans() {
-  // TODO: sort elements by added time via timestamp
   console.log("start getting favorite vans");
   const userFavoriteIds = await getUserFavoriteIds();
   let favoriteVans = [];

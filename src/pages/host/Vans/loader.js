@@ -1,12 +1,17 @@
 import { defer } from "react-router-dom";
 import { getUserFavoriteVans } from "../../../api/getUserFavoriteVans.js";
 
-export { loader };
+export { loader, favoriteVansQuery };
 
-async function loader() {
-  console.log("start Host Vans loader");
-  const vansPromise = getUserFavoriteVans();
-  console.log("end Host Vans loader");
+function loader(queryClient) {
+  return () => {
+    console.log("start Host Vans loader");
+    const vansPromise = queryClient.ensureQueryData(favoriteVansQuery());
+    console.log("end Host Vans loader");
+    return defer({ vansPromise });
+  };
+}
 
-  return defer({ vansPromise });
+function favoriteVansQuery() {
+  return { queryKey: ["favorites"], queryFn: getUserFavoriteVans };
 }
