@@ -1,9 +1,17 @@
-import { getDocs, orderBy, query, where } from "firebase/firestore";
-import { getUserFavoriteIds, isLoggedIn, vansCollectionRef } from "./api.js";
+import {
+  algoliaDefault,
+  algoliaPriceAsc,
+  algoliaPriceDesc,
+  getUserFavoriteIds,
+  isLoggedIn,
+} from "./api.js";
 
 export { getVansData };
 
 const VANS_PER_PAGE = 6;
+const ALGOLIA_FIRST_PAGE = 0;
+const USER_FIRST_PAGE = 1;
+const ALGOLIA_PAGE_OFFSET = -1;
 
 async function getVansData(params) {
   if (await isLoggedIn()) {
@@ -23,60 +31,49 @@ async function getVansDataWithFavorite(params) {
   return vansData;
 }
 
-// Because there's no way to make full-fledged pagination with firestore,
-// we're simulating it with getVansByPage()
 async function getVansDataFromDB({ types, order, page }) {
-  const query = makeQuery({ types, order });
-  const querySnapshot = await getDocs(query);
-  const vans = querySnapshot.docs.map((van) => van.data());
-  const vansByPage = getVansByPage(vans, page);
-  return { vans: vansByPage, totalPages: getTotalPages(vans.length) };
+  const algoliaIndex = getAlgoliaIndex(order);
+  const searchOptions = getSearchOptions({ types, page });
+  const searchResponse = await algoliaIndex.search("", searchOptions);
+  console.log(searchResponse);
+  return {
+    vans: searchResponse.hits,
+    totalPages: getTotalPages(searchResponse),
+  };
 }
 
-function makeQuery({ types, order }) {
-  let q = query(vansCollectionRef);
-  q = getNewQueryWithTypes(q, types);
-  q = getNewQueryWithOrder(q, order);
-  return q;
-}
-
-function getNewQueryWithTypes(previousQuery, types) {
-  return types.length
-    ? query(previousQuery, where("type", "in", types))
-    : previousQuery;
-}
-
-function getNewQueryWithOrder(previousQuery, order) {
-  const priceOrder = getValidPriceOrder(order);
-  return priceOrder === "default"
-    ? previousQuery
-    : query(previousQuery, orderBy("price", priceOrder));
-}
-
-function getValidPriceOrder(order) {
+function getAlgoliaIndex(order) {
   return order === "lowPriceFirst"
-    ? "asc"
+    ? algoliaPriceAsc
     : order === "highPriceFirst"
-      ? "desc"
-      : "default";
+      ? algoliaPriceDesc
+      : algoliaDefault;
 }
 
-function getVansByPage(vans, page) {
-  page = getValidPage(page, vans.length);
-  const startIndex = (page - 1) * VANS_PER_PAGE;
-  const endIndex = startIndex + VANS_PER_PAGE;
-  return vans.slice(startIndex, endIndex);
+function getSearchOptions({ types, page }) {
+  const validPage = getValidPage(page);
+  const filters = getFilters(types);
+  return { page: validPage, hitsPerPage: VANS_PER_PAGE, filters };
 }
 
-function getValidPage(page, vansCount) {
-  page = Number.parseInt(page) || 1;
-  return isInRange(page, vansCount) ? page : 1;
+function getValidPage(page) {
+  const userPage = Number.parseInt(page) || USER_FIRST_PAGE;
+  const algoliaPage = userPage + ALGOLIA_PAGE_OFFSET;
+  return isInRange(algoliaPage) ? algoliaPage : ALGOLIA_FIRST_PAGE;
 }
 
-function isInRange(page, vansCount) {
-  return page > 0 && page <= getTotalPages(vansCount);
+function isInRange(page) {
+  return page >= ALGOLIA_FIRST_PAGE;
 }
 
-function getTotalPages(vansCount) {
-  return Math.ceil(vansCount / VANS_PER_PAGE);
+function getFilters(types) {
+  if (types.length === 0) {
+    return "";
+  }
+  const typeFilters = types.map((type) => `type:${type}`);
+  return typeFilters.join(" OR ");
+}
+
+function getTotalPages(searchResponse) {
+  return searchResponse.hits.length ? searchResponse.nbPages : 0;
 }

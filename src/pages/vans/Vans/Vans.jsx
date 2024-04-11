@@ -10,13 +10,13 @@ import { VanElements } from "./VanElements.jsx";
 
 export { Vans };
 
+// TODO: display message when vansData.vans is an empty array
+// TODO: maybe display total vans using algolia nbHist
 function Vans() {
   console.log("Render Vans");
   const [searchParams] = useSearchParams();
   const query = useQuery(vansQuery(searchParams));
   const { data: vansData, isPending } = query;
-
-  console.log(query);
 
   return (
     <Container>

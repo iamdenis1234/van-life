@@ -62,6 +62,7 @@ const router = createBrowserRouter(
           path="vans"
           element={<Vans />}
           loader={vansLoader(queryClient)}
+          shouldRevalidate={() => false}
         />
         <Route
           path="vans/:id"
@@ -77,6 +78,7 @@ const router = createBrowserRouter(
               element={<HostVans />}
               loader={makeProtected(hostVansLoader(queryClient))}
               action={makeProtected(hostVansAction(queryClient))}
+              shouldRevalidate={() => false}
             />
             <Route
               path="logout"

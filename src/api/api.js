@@ -1,3 +1,4 @@
+import algoliasearch from "algoliasearch/lite";
 import { initializeApp } from "firebase/app";
 import {
   deleteUser as deleteUserFirebase,
@@ -36,6 +37,9 @@ export {
   db,
   auth,
   vansCollectionRef,
+  algoliaDefault,
+  algoliaPriceDesc,
+  algoliaPriceAsc,
 };
 
 const env = import.meta.env;
@@ -53,6 +57,15 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 const googleAuthProvider = new GoogleAuthProvider();
+
+const algoliaClient = algoliasearch(
+  env.VITE_ALGOLIA_APP_ID,
+  env.VITE_ALGOLIA_API_KEY,
+);
+
+const algoliaDefault = algoliaClient.initIndex("vans");
+const algoliaPriceDesc = algoliaClient.initIndex("vans_price_desc");
+const algoliaPriceAsc = algoliaClient.initIndex("vans_price_asc");
 
 const vansCollectionRef = collection(db, "vans");
 

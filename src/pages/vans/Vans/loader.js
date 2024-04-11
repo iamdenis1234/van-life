@@ -1,5 +1,4 @@
 import { keepPreviousData } from "@tanstack/react-query";
-import { defer } from "react-router-dom";
 import { getVansData } from "../../../api/getVansData.js";
 
 export { loader, vansQuery };
@@ -8,11 +7,9 @@ function loader(queryClient) {
   return ({ request }) => {
     console.log("start Vans loader");
     const searchParams = new URL(request.url).searchParams;
-    const vansDataPromise = queryClient.ensureQueryData(
-      vansQuery(searchParams),
-    );
+    queryClient.ensureQueryData(vansQuery(searchParams));
     console.log("end Vans loader");
-    return defer({ vansDataPromise });
+    return null;
   };
 }
 
