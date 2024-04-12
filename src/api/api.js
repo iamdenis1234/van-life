@@ -40,6 +40,7 @@ export {
   algoliaDefault,
   algoliaPriceDesc,
   algoliaPriceAsc,
+  algoliaClient,
 };
 
 const env = import.meta.env;

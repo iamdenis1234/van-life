@@ -19,10 +19,12 @@ function vansQuery(searchParams) {
   types.sort();
   const order = searchParams.get("order");
   const page = searchParams.get("page");
+  const search = searchParams.get("search");
+  const params = { types, order, page, search };
   return {
-    queryKey: ["vans", { types, order, page }],
+    queryKey: ["vans", params],
     queryFn: () => {
-      return getVansData({ types, order, page });
+      return getVansData(params);
     },
     placeholderData: keepPreviousData,
   };

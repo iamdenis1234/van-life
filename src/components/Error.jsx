@@ -1,5 +1,4 @@
-import { ArrowBack } from "@mui/icons-material";
-import { Alert, styled } from "@mui/material";
+import { Alert } from "@mui/material";
 import {
   Link,
   useAsyncError,
@@ -7,7 +6,9 @@ import {
   useRouteError,
 } from "react-router-dom";
 import { isCustomError } from "../utils/CustomError.js";
+import { CustomInfoAlert } from "./CustomAlert.jsx";
 import { CustomButton } from "./CustomButton.jsx";
+import { CustomContainer } from "./CustomContainer.jsx";
 
 export { Error };
 
@@ -19,49 +20,33 @@ function Error() {
   console.log(error);
   console.log("detail message: " + error.data?.detailMessage);
 
-  const backHome = (
-    <CustomButton
-      component={Link}
-      startIcon={<ArrowBack />}
-      to="/"
-      variant="text"
-      color="inherit"
-    >
-      home
-    </CustomButton>
-  );
-
+  let displayedError;
   if (isCustomError(error)) {
-    return (
-      <StyledAlert severity="info" action={backHome}>
-        {error.message}
-      </StyledAlert>
+    displayedError = (
+      <CustomInfoAlert title={error.message} linkText="Back Home" linkTo="/" />
+    );
+  } else {
+    displayedError = (
+      <Alert
+        severity="error"
+        action={
+          <CustomButton
+            variant="text"
+            color="inherit"
+            component={Link}
+            reloadDocument
+          >
+            refresh page
+          </CustomButton>
+        }
+      >
+        Oops! unexpected error occurred
+      </Alert>
     );
   }
 
-  return (
-    <StyledAlert
-      severity="error"
-      action={
-        <CustomButton
-          variant="text"
-          color="inherit"
-          component={Link}
-          reloadDocument
-        >
-          refresh page
-        </CustomButton>
-      }
-    >
-      Oops! unexpected error occurred
-    </StyledAlert>
-  );
+  return <CustomContainer>{displayedError}</CustomContainer>;
 }
-
-const StyledAlert = styled(Alert)(({ theme }) => ({
-  maxWidth: theme.breakpoints.values.lg,
-  marginInline: "auto",
-}));
 
 function useError() {
   const routeError = useRouteError();

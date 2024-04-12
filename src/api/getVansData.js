@@ -1,10 +1,4 @@
-import {
-  algoliaDefault,
-  algoliaPriceAsc,
-  algoliaPriceDesc,
-  getUserFavoriteIds,
-  isLoggedIn,
-} from "./api.js";
+import { algoliaClient, getUserFavoriteIds, isLoggedIn } from "./api.js";
 
 export { getVansData };
 
@@ -31,29 +25,51 @@ async function getVansDataWithFavorite(params) {
   return vansData;
 }
 
-async function getVansDataFromDB({ types, order, page }) {
-  const algoliaIndex = getAlgoliaIndex(order);
-  const searchOptions = getSearchOptions({ types, page });
-  const searchResponse = await algoliaIndex.search("", searchOptions);
-  console.log(searchResponse);
+async function getVansDataFromDB(params) {
+  const vansQuery = getVansQuery(params);
+  const facetsQuery = getFacetsQuery(params.search);
+  const {
+    results: [vansResponse, facetsResponse],
+  } = await algoliaClient.multipleQueries([vansQuery, facetsQuery]);
+  console.log(vansResponse);
+  console.log(facetsResponse);
   return {
-    vans: searchResponse.hits,
-    totalPages: getTotalPages(searchResponse),
+    vans: vansResponse.hits,
+    types: getTypes(facetsResponse),
+    totalPages: getTotalPages(vansResponse),
   };
 }
 
-function getAlgoliaIndex(order) {
-  return order === "lowPriceFirst"
-    ? algoliaPriceAsc
-    : order === "highPriceFirst"
-      ? algoliaPriceDesc
-      : algoliaDefault;
+function getVansQuery({ search, types, order, page }) {
+  const indexName = getIndexName(order);
+  const validSearch = getValidSearch(search);
+  const filters = getFilters(types);
+  const validPage = getValidPage(page);
+  return {
+    indexName,
+    query: validSearch,
+    filters,
+    page: validPage,
+    hitsPerPage: VANS_PER_PAGE,
+  };
 }
 
-function getSearchOptions({ types, page }) {
-  const validPage = getValidPage(page);
-  const filters = getFilters(types);
-  return { page: validPage, hitsPerPage: VANS_PER_PAGE, filters };
+function getFacetsQuery(search) {
+  const validSearch = getValidSearch(search);
+  return {
+    indexName: "vans",
+    query: validSearch,
+    facets: ["type"],
+    hitsPerPage: 0,
+  };
+}
+
+function getIndexName(order) {
+  return order === "lowPriceFirst"
+    ? "vans_price_asc"
+    : order === "highPriceFirst"
+      ? "vans_price_desc"
+      : "vans";
 }
 
 function getValidPage(page) {
@@ -74,6 +90,18 @@ function getFilters(types) {
   return typeFilters.join(" OR ");
 }
 
+function getValidSearch(search) {
+  return search ?? "";
+}
+
 function getTotalPages(searchResponse) {
   return searchResponse.hits.length ? searchResponse.nbPages : 0;
+}
+
+function getTypes(searchResponse) {
+  const typeFacets = searchResponse.facets.type ?? [];
+  return Object.entries(typeFacets).map(([name, count]) => ({
+    name,
+    count,
+  }));
 }
