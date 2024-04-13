@@ -1,3 +1,4 @@
+import parse from "html-react-parser";
 import { algoliaClient, getUserFavoriteIds, isLoggedIn } from "./api.js";
 
 export { getVansData };
@@ -34,7 +35,7 @@ async function getVansDataFromDB(params) {
   console.log(vansResponse);
   console.log(facetsResponse);
   return {
-    vans: vansResponse.hits,
+    vans: getVans(vansResponse),
     types: getTypes(facetsResponse),
     totalPages: getTotalPages(vansResponse),
   };
@@ -51,6 +52,7 @@ function getVansQuery({ search, types, order, page }) {
     filters,
     page: validPage,
     hitsPerPage: VANS_PER_PAGE,
+    attributesToHighlight: ["name", "price"],
   };
 }
 
@@ -61,6 +63,29 @@ function getFacetsQuery(search) {
     query: validSearch,
     facets: ["type"],
     hitsPerPage: 0,
+  };
+}
+
+function getVans(searchResponse) {
+  return searchResponse.hits.map((vanHit) => getParsedVan(vanHit));
+}
+
+function getParsedVan(vanHit) {
+  const { description, id, imageUrl, name, price, type, _highlightResult } =
+    vanHit;
+  const highlightReactComponents = {
+    name: parse(_highlightResult.name.value),
+    price: parse(_highlightResult.price.value),
+  };
+  console.log(highlightReactComponents);
+  return {
+    name,
+    id,
+    type,
+    price,
+    imageUrl,
+    description,
+    highlightReactComponents,
   };
 }
 

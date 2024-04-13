@@ -1,4 +1,5 @@
 import {
+  alpha,
   Card,
   CardContent,
   CardHeader,
@@ -15,6 +16,8 @@ export { VanCard };
 function VanCard({ van }) {
   const isLoggedIn = useIsLoggedIn();
   const [searchParams] = useSearchParams();
+  const name = <Highlight>{van.highlightReactComponents.name}</Highlight>;
+  const price = <Highlight>{van.highlightReactComponents.price}</Highlight>;
 
   return (
     <Card>
@@ -30,8 +33,8 @@ function VanCard({ van }) {
         <StyledCardMedia component="img" src={van.imageUrl} />
       </StyledLink>
       <CardHeader
-        title={van.name}
-        subheader={`$${van.price}/day`}
+        title={name}
+        subheader={<>${price}/day</>}
         action={isLoggedIn && <FavoriteToggle van={van} />}
       />
       <CardContent>
@@ -49,3 +52,10 @@ const StyledLink = styled(Link)({
 const StyledCardMedia = styled(CardMedia)({
   height: 295,
 });
+
+const Highlight = styled("span")(({ theme }) => ({
+  "& > em": {
+    backgroundColor: alpha(theme.palette.primary.main, 0.5),
+    fontStyle: "normal",
+  },
+}));
