@@ -44,6 +44,9 @@ let theme = createTheme({
   filters: {
     blur: "blur(6px)",
   },
+  shape: {
+    borderRadius: 10,
+  },
   typography: {
     logo: {
       fontFamily: "'Dancing Script Variable', cursive",

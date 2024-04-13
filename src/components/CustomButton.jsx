@@ -8,6 +8,5 @@ function CustomButton(props) {
 
 const Button = styled(MuiButton)(({ theme }) => ({
   textTransform: "none",
-  borderRadius: 10,
   textAlign: "center",
 }));
