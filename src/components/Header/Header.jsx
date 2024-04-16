@@ -14,6 +14,7 @@ import { CustomContainer } from "../CustomContainer.jsx";
 import { Logo } from "../Logo.jsx";
 import { MenuDrawer } from "./MenuDrawer.jsx";
 import { NavList } from "./NavList.jsx";
+import { Search } from "./Search/Search.jsx";
 
 export { Header };
 
@@ -49,18 +50,21 @@ function Header() {
       <CustomContainer>
         <HeaderToolbar component="nav" disableGutters>
           <StyledLogo component={Link} to="/" />
-          {lgUpBreakpointMatches ? (
-            <StyledNavList />
-          ) : (
-            <>
-              <HeaderMenuButton onClick={toggleMenu}>
-                <MenuIcon />
-              </HeaderMenuButton>
-              <MenuDrawer isOpen={isMenuOpen} onToggle={toggleMenu}>
-                <StyledNavList onClick={toggleMenu} />
-              </MenuDrawer>
-            </>
-          )}
+          <NavSearchContainer>
+            <Search />
+            {lgUpBreakpointMatches ? (
+              <StyledNavList />
+            ) : (
+              <>
+                <HeaderMenuButton onClick={toggleMenu}>
+                  <MenuIcon />
+                </HeaderMenuButton>
+                <MenuDrawer isOpen={isMenuOpen} onToggle={toggleMenu}>
+                  <StyledNavList onClick={toggleMenu} />
+                </MenuDrawer>
+              </>
+            )}
+          </NavSearchContainer>
         </HeaderToolbar>
       </CustomContainer>
     </HeaderAppBar>
@@ -100,4 +104,10 @@ const StyledNavList = styled(NavList)(({ theme }) => ({
       paddingRight: 0,
     },
   },
+}));
+
+const NavSearchContainer = styled("div")(({ theme }) => ({
+  display: "flex",
+  columnGap: theme.spacing(4),
+  alignItems: "center",
 }));

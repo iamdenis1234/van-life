@@ -1,5 +1,5 @@
-import parse from "html-react-parser";
 import { algoliaClient, getUserFavoriteIds, isLoggedIn } from "./api.js";
+import { getParsedVan } from "./utils.js";
 
 export { getVansData };
 
@@ -68,25 +68,6 @@ function getFacetsQuery(search) {
 
 function getVans(searchResponse) {
   return searchResponse.hits.map((vanHit) => getParsedVan(vanHit));
-}
-
-function getParsedVan(vanHit) {
-  const { description, id, imageUrl, name, price, type, _highlightResult } =
-    vanHit;
-  const highlightReactComponents = {
-    name: parse(_highlightResult.name.value),
-    price: parse(_highlightResult.price.value),
-  };
-  console.log(highlightReactComponents);
-  return {
-    name,
-    id,
-    type,
-    price,
-    imageUrl,
-    description,
-    highlightReactComponents,
-  };
 }
 
 function getIndexName(order) {

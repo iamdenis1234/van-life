@@ -1,5 +1,4 @@
 import {
-  alpha,
   Card,
   CardContent,
   CardHeader,
@@ -7,6 +6,7 @@ import {
   styled,
 } from "@mui/material";
 import { Link, useSearchParams } from "react-router-dom";
+import { Highlight } from "../../../components/Highlight.jsx";
 import { useIsLoggedIn } from "../../../context/IsLoggedInContext.js";
 import { FavoriteToggle } from "../VanDetails/FavoriteToggle.jsx";
 import { VanType } from "../VanType.jsx";
@@ -16,8 +16,8 @@ export { VanCard };
 function VanCard({ van }) {
   const isLoggedIn = useIsLoggedIn();
   const [searchParams] = useSearchParams();
-  const name = <Highlight>{van.highlightReactComponents.name}</Highlight>;
-  const price = <Highlight>{van.highlightReactComponents.price}</Highlight>;
+  const name = <Highlight>{van.highlightedReactElements.name}</Highlight>;
+  const price = <Highlight>{van.highlightedReactElements.price}</Highlight>;
 
   return (
     <Card>
@@ -52,10 +52,3 @@ const StyledLink = styled(Link)({
 const StyledCardMedia = styled(CardMedia)({
   height: 295,
 });
-
-const Highlight = styled("span")(({ theme }) => ({
-  "& > em": {
-    backgroundColor: alpha(theme.palette.primary.main, 0.5),
-    fontStyle: "normal",
-  },
-}));

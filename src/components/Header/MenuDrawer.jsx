@@ -12,7 +12,7 @@ function MenuDrawer({ isOpen, onToggle, children }) {
       disableScrollLock={true}
     >
       <CloseButton onClick={onToggle}>
-        <Close fontSize="small" />
+        <Close />
       </CloseButton>
       {children}
       <RoadSign src="/assets/images/road_sign1.gif" alt="road sign" />
