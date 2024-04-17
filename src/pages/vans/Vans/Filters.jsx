@@ -4,9 +4,7 @@ import { Filter } from "./Filter.jsx";
 export { Filters };
 
 function Filters({ types }) {
-  const filters = types.map((type) => (
-    <Filter key={type.name} type={type.name} count={type.count} />
-  ));
+  const filters = types.map((type) => <Filter key={type.name} type={type} />);
 
   return <StyledFormGroup>{filters}</StyledFormGroup>;
 }

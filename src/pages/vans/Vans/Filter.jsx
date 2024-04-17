@@ -10,9 +10,11 @@ function Filter({ type }) {
   const [searchParams] = useSearchParams();
   const submit = useCustomSubmit();
   const selectedTypes = useSelectedTypes();
+  const name = type.name;
+  const count = type.count;
 
   function isChecked() {
-    return selectedTypes.includes(type);
+    return selectedTypes.includes(name);
   }
 
   // Although we could use declarative form submission with these Checkboxes
@@ -33,14 +35,18 @@ function Filter({ type }) {
     <FormControlLabel
       control={
         <Checkbox
-          color={type}
+          color={name}
           name="type"
-          value={type}
+          value={name}
           checked={isChecked()}
           onChange={handleChange}
         />
       }
-      label={<StyledLabel color={type}>{type}</StyledLabel>}
+      label={
+        <StyledLabel color={name}>
+          {name} ({count})
+        </StyledLabel>
+      }
     />
   );
 }
