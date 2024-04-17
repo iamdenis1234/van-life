@@ -20,6 +20,7 @@ function SearchInput({ value, onChange, onClear }) {
       <StyledInputBase
         onChange={onChange}
         placeholder="Search..."
+        inputProps={{ "aria-label": "search" }}
         value={value}
         inputRef={ref}
       />
