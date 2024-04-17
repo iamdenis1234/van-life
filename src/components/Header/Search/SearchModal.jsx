@@ -40,7 +40,7 @@ function SearchModal({ open, onClose }) {
   }
 
   return (
-    <Modal open={open} onClose={onClose} disableScrollLock={true}>
+    <StyledModal open={open} onClose={onClose}>
       <Container>
         <CloseButton onClick={onClose} color="inherit">
           <Close />
@@ -59,9 +59,13 @@ function SearchModal({ open, onClose }) {
         <Divider />
         <VansSectionContainer>{renderVansSection()}</VansSectionContainer>
       </Container>
-    </Modal>
+    </StyledModal>
   );
 }
+
+const StyledModal = styled(Modal)({
+  overflow: "auto",
+});
 
 const CloseButton = styled(IconButton)(({ theme }) => ({
   position: "absolute",
@@ -75,6 +79,7 @@ const Container = styled("div")(({ theme }) => ({
   position: "relative",
   backgroundColor: theme.palette.background.default,
   height: "100%",
+  overflow: "auto",
   [theme.breakpoints.up("md")]: {
     height: "auto",
     width: 600,
