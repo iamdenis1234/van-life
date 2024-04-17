@@ -13,7 +13,7 @@ export { VanCard };
 
 function VanCard({ van }) {
   const fetcher = useFetcher();
-  const deleting = fetcher.state !== "idle";
+  const deleting = fetcher.data === "deleted" || fetcher.state !== "idle";
 
   // Optimistic UI
   if (deleting) {
