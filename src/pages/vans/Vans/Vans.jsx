@@ -3,16 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import { CustomContainer } from "../../../components/CustomContainer.jsx";
 import { section } from "../../../mixins.js";
-import { Filters } from "./Filters.jsx";
 import { vansQuery } from "./loader.js";
 import { NoVansFound } from "./NoVansFound.jsx";
-import { Pagination } from "./Pagination.jsx";
-import { SortOrder } from "./SortOrder.jsx";
-import { VanElements } from "./VanElements.jsx";
+import { VansContent } from "./VansContent.jsx";
 
 export { Vans };
 
-// TODO: maybe display total vans using algolia nbHist
 function Vans() {
   console.log("Render Vans");
   const [searchParams] = useSearchParams();
@@ -25,16 +21,7 @@ function Vans() {
     }
 
     if (vansData.vans.length) {
-      return (
-        <>
-          <FiltersAndSortContainer>
-            <Filters types={vansData.types} />
-            <SortOrder />
-          </FiltersAndSortContainer>
-          <VanElements vans={vansData.vans} />
-          <Pagination totalPages={vansData.totalPages} />
-        </>
-      );
+      return <VansContent vansData={vansData} />;
     }
 
     return <NoVansFound />;
@@ -53,9 +40,3 @@ const Container = styled(CustomContainer)(section, ({ theme }) => ({
   flexDirection: "column",
   rowGap: theme.spacing(4),
 }));
-
-const FiltersAndSortContainer = styled("div")({
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "space-between",
-});

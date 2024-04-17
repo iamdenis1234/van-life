@@ -37,6 +37,7 @@ async function getVansDataFromDB(params) {
   return {
     vans: getVans(vansResponse),
     types: getTypes(facetsResponse),
+    totalVans: facetsResponse.nbHits,
     totalPages: getTotalPages(vansResponse),
   };
 }
