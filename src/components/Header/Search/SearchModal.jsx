@@ -40,7 +40,7 @@ function SearchModal({ open, onClose }) {
   }
 
   return (
-    <Modal open={open} onClose={onClose}>
+    <Modal open={open} onClose={onClose} disableScrollLock={true}>
       <Container>
         <CloseButton onClick={onClose} color="inherit">
           <Close />
