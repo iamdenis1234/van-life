@@ -45,9 +45,6 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
     backdropFilter: theme.filters.blur,
     backgroundColor: theme.palette.background.transparent,
   },
-  "& .MuiBackdrop-root": {
-    backgroundColor: "hsla(0,0%,0%,0.2)",
-  },
 }));
 
 const CloseButton = styled(IconButton)(({ theme }) => ({

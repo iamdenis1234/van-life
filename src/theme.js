@@ -64,6 +64,18 @@ let theme = createTheme({
       xl: 1536,
     },
   },
+  components: {
+    MuiBackdrop: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "hsla(0,0%,0%,0.2)",
+        },
+        invisible: {
+          backgroundColor: "transparent",
+        },
+      },
+    },
+  },
 });
 
 theme = createTheme(theme, {
