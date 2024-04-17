@@ -32,7 +32,7 @@ function VanCard({ van }) {
       </fetcher.Form>
       <StyledLink to={`/vans/${van.id}`}>
         <StyledCardMedia component="img" src={van.imageUrl} />
-        <StyledCardHeader title={van.name} subheader={`$${van.price}/day`} />
+        <CardHeader title={van.name} subheader={`$${van.price}/day`} />
       </StyledLink>
     </StyledCard>
   );
@@ -59,13 +59,6 @@ const StyledLink = styled(Link)({
 });
 
 const StyledCardMedia = styled(CardMedia)({
-  // To override mui's default width: 100%. There's inconsistency between
-  // firefox and chrome with mui's value.
-  // Either minWidth or width is suitable
-  minWidth: 0,
-  flex: 1,
-});
-
-const StyledCardHeader = styled(CardHeader)({
-  flex: 2,
+  width: 90,
+  height: 90,
 });

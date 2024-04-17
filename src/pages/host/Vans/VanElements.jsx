@@ -16,5 +16,4 @@ const Container = styled("div")(({ theme }) => ({
   marginBottom: theme.spacing(1),
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, min(300px, 100%))",
-  gridAutoRows: 90,
 }));

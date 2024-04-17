@@ -50,5 +50,5 @@ const StyledLink = styled(Link)({
 });
 
 const StyledCardMedia = styled(CardMedia)({
-  height: 295,
+  height: 300,
 });
