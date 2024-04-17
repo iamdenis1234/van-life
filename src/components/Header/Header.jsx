@@ -1,4 +1,4 @@
-import { Menu as MenuIcon } from "@mui/icons-material";
+import { Menu as MenuIcon, Person } from "@mui/icons-material";
 import {
   AppBar,
   IconButton,
@@ -6,13 +6,13 @@ import {
   Toolbar,
   useScrollTrigger,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { onAuthStateChanged } from "../../api/api.js";
 import { useBreakpointUp } from "../../hooks/useBreakpoint.js";
 import { CustomContainer } from "../CustomContainer.jsx";
 import { Logo } from "../Logo.jsx";
 import { MenuDrawer } from "./MenuDrawer.jsx";
+import { NavItem } from "./NavItem.jsx";
 import { NavList } from "./NavList.jsx";
 import { Search } from "./Search/Search.jsx";
 
@@ -21,20 +21,12 @@ export { Header };
 function Header() {
   console.log("Render Header");
 
-  const lgUpBreakpointMatches = useBreakpointUp("lg");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const mdUpBreakpointMatches = useBreakpointUp("md");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isScrolled = useScrollTrigger({
     disableHysteresis: true,
     threshold: 50,
   });
-
-  // TODO: maybe need to replace useEffect with loader/defer
-  useEffect(() => {
-    return onAuthStateChanged((user) => {
-      setIsLoggedIn(user !== null);
-    });
-  }, []);
 
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
@@ -52,7 +44,12 @@ function Header() {
           <StyledLogo component={Link} to="/" />
           <NavSearchContainer>
             <Search />
-            {lgUpBreakpointMatches ? (
+            <NavItem to="/host">
+              <IconButton color="inherit">
+                <Person />
+              </IconButton>
+            </NavItem>
+            {mdUpBreakpointMatches ? (
               <StyledNavList />
             ) : (
               <>
@@ -97,10 +94,10 @@ const StyledNavList = styled(NavList)(({ theme }) => ({
   paddingBlock: theme.spacing(7),
   gap: theme.spacing(1),
 
-  [theme.breakpoints.up("lg")]: {
+  [theme.breakpoints.up("md")]: {
     flexDirection: "row",
     paddingBlock: 0,
-    "& .MuiListItem-root:last-child": {
+    ".MuiListItem-root:last-child": {
       paddingRight: 0,
     },
   },
@@ -108,6 +105,6 @@ const StyledNavList = styled(NavList)(({ theme }) => ({
 
 const NavSearchContainer = styled("div")(({ theme }) => ({
   display: "flex",
-  columnGap: theme.spacing(4),
+  columnGap: theme.spacing(3),
   alignItems: "center",
 }));
