@@ -72,8 +72,16 @@ const CloseButton = styled(IconButton)(({ theme }) => ({
 }));
 
 const Container = styled("div")(({ theme }) => ({
+  position: "relative",
   backgroundColor: theme.palette.background.default,
   height: "100%",
+  [theme.breakpoints.up("md")]: {
+    height: "auto",
+    width: 600,
+    marginTop: 70,
+    marginInline: "auto",
+    borderRadius: theme.shape.borderRadius,
+  },
   paddingBlock: theme.spacing(2),
 }));
 
@@ -90,6 +98,8 @@ const VansSectionContainer = styled(Section)(({ theme }) => ({
   flexDirection: "column",
   rowGap: theme.spacing(2),
   marginTop: theme.spacing(4),
+  maxWidth: 450,
+  marginInline: "auto",
 }));
 
 const NotFound = styled(Typography)(({ theme }) => ({
