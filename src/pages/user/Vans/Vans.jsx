@@ -7,7 +7,7 @@ import { VanElements } from "./VanElements.jsx";
 export { Vans };
 
 function Vans() {
-  console.log("Render host Vans");
+  console.log("Render user Vans");
 
   const { data: vans, isPending } = useQuery(favoriteVansQuery());
 

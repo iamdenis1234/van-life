@@ -5,10 +5,10 @@ import { CustomContainer } from "../../../components/CustomContainer.jsx";
 import { section } from "../../../mixins.js";
 import { Link } from "./Link.jsx";
 
-export { Host };
+export { User };
 
-function Host() {
-  console.log("Render Host");
+function User() {
+  console.log("Render User");
 
   return (
     <Container>

@@ -4,7 +4,7 @@ import { VanCard } from "./VanCard.jsx";
 export { VanElements };
 
 function VanElements({ vans }) {
-  console.log("render host VanElements");
+  console.log("render user VanElements");
 
   const vansElements = vans.map((van) => <VanCard key={van.id} van={van} />);
 

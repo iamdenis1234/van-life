@@ -44,7 +44,7 @@ function Header() {
           <StyledLogo component={Link} to="/" />
           <NavSearchContainer>
             <Search />
-            <NavItem to="/host">
+            <NavItem to="/user">
               <IconButton color="inherit">
                 <Person />
               </IconButton>

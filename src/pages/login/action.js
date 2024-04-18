@@ -41,7 +41,7 @@ async function logIn(formData) {
 
 function createRedirect(request) {
   const pathname =
-    new URL(request.url).searchParams.get("redirectTo") || "/host";
+    new URL(request.url).searchParams.get("redirectTo") || "/user";
   return redirect(pathname);
 }
 

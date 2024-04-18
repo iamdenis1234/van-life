@@ -10,18 +10,18 @@ import {
 import { Error } from "./components/Error.jsx";
 import { About } from "./pages/About.jsx";
 import { Home } from "./pages/Home.jsx";
-import { Dashboard } from "./pages/host/Dashboard/Dashboard.jsx";
-import { Host } from "./pages/host/Host/Host.jsx";
-import { action as logoutAction } from "./pages/host/logout/action.js";
-import { action as hostVansAction } from "./pages/host/Vans/action.js";
-import { loader as hostVansLoader } from "./pages/host/Vans/loader.js";
-import { Vans as HostVans } from "./pages/host/Vans/Vans.jsx";
 import { action as loginAction } from "./pages/login/action.js";
 import { loader as loginLoader } from "./pages/login/loader.js";
 import { Login } from "./pages/login/Login.jsx";
 import { NotFound } from "./pages/NotFound.jsx";
 import { loader as rootLoader } from "./pages/root/loader.js";
 import { Root } from "./pages/root/Root.jsx";
+import { Dashboard } from "./pages/user/Dashboard/Dashboard.jsx";
+import { action as logoutAction } from "./pages/user/logout/action.js";
+import { User } from "./pages/user/User/User.jsx";
+import { action as userVansAction } from "./pages/user/Vans/action.js";
+import { loader as userVansLoader } from "./pages/user/Vans/loader.js";
+import { Vans as UserVans } from "./pages/user/Vans/Vans.jsx";
 import { action as vanDetailsAction } from "./pages/vans/VanDetails/action.js";
 import { loader as vanDetailsLoader } from "./pages/vans/VanDetails/loader.js";
 import { VanDetails } from "./pages/vans/VanDetails/VanDetails.jsx";
@@ -35,7 +35,7 @@ export { App };
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      // We use new built-in router error handling, which catches errors
+      // We use new built-in router error handling, which catches errors itself
       throwOnError: true,
     },
   },
@@ -70,14 +70,14 @@ const router = createBrowserRouter(
           loader={vanDetailsLoader(queryClient)}
           action={makeProtected(vanDetailsAction(queryClient))}
         />
-        <Route path="host" element={<Host />}>
+        <Route path="user" element={<User />}>
           <Route errorElement={<Error />}>
             <Route index element={<Dashboard />} loader={makeProtected()} />
             <Route
               path="vans"
-              element={<HostVans />}
-              loader={makeProtected(hostVansLoader(queryClient))}
-              action={makeProtected(hostVansAction(queryClient))}
+              element={<UserVans />}
+              loader={makeProtected(userVansLoader(queryClient))}
+              action={makeProtected(userVansAction(queryClient))}
               shouldRevalidate={() => false}
             />
             <Route

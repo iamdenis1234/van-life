@@ -6,7 +6,7 @@ export { loader };
 async function loader() {
   console.log("start Login loader");
   if (await isLoggedIn()) {
-    const response = redirect("/host");
+    const response = redirect("/user");
     console.log("end Login loader");
     return response;
   }
