@@ -11,6 +11,7 @@ function SearchModal({ open, onClose }) {
   console.log("Render SearchModal");
   const [searchInput, setSearchInput] = useState("");
   const { debouncedSearch, status, result } = useVansSearch();
+  const showVansContent = searchInput && status === "success";
 
   function handleChangeInput(event) {
     const value = event.target.value;
@@ -21,22 +22,6 @@ function SearchModal({ open, onClose }) {
   function handleClearInput() {
     setSearchInput("");
     debouncedSearch("");
-  }
-
-  function renderVansSection() {
-    if (!searchInput) {
-      return null;
-    }
-
-    if (status === "success") {
-      return (
-        <VansContent onClick={onClose} result={result} search={searchInput} />
-      );
-    }
-
-    if (status === "empty") {
-      return <NotFound>No vans found</NotFound>;
-    }
   }
 
   return (
@@ -57,7 +42,15 @@ function SearchModal({ open, onClose }) {
           />
         </Section>
         <Divider />
-        <VansSectionContainer>{renderVansSection()}</VansSectionContainer>
+        <VansSectionContainer>
+          {showVansContent && (
+            <VansContent
+              onClick={onClose}
+              result={result}
+              search={searchInput}
+            />
+          )}
+        </VansSectionContainer>
       </Container>
     </StyledModal>
   );
@@ -105,9 +98,4 @@ const VansSectionContainer = styled(Section)(({ theme }) => ({
   marginTop: theme.spacing(4),
   maxWidth: 450,
   marginInline: "auto",
-}));
-
-const NotFound = styled(Typography)(({ theme }) => ({
-  textAlign: "center",
-  color: theme.palette.text.secondary,
 }));

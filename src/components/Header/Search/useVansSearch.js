@@ -18,11 +18,7 @@ function useVansSearch() {
       return "idle";
     }
 
-    if (query.data.vans.length) {
-      return "success";
-    }
-
-    return "empty";
+    return "success";
   }
 
   return { debouncedSearch, status: getStatus(), result: query.data };
