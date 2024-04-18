@@ -4,9 +4,9 @@ import { EmptyFavorites } from "./EmptyFavorites.jsx";
 import { favoriteVansQuery } from "./loader.js";
 import { VanElements } from "./VanElements.jsx";
 
-export { Vans };
+export { Favorites };
 
-function Vans() {
+function Favorites() {
   console.log("Render user Vans");
 
   const { data: vans, isPending } = useQuery(favoriteVansQuery());

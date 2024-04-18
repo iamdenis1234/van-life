@@ -17,11 +17,11 @@ import { NotFound } from "./pages/NotFound.jsx";
 import { loader as rootLoader } from "./pages/root/loader.js";
 import { Root } from "./pages/root/Root.jsx";
 import { Dashboard } from "./pages/user/Dashboard/Dashboard.jsx";
+import { action as favoritesAction } from "./pages/user/Favorites/action.js";
+import { Favorites } from "./pages/user/Favorites/Favorites.jsx";
+import { loader as favoritesLoader } from "./pages/user/Favorites/loader.js";
 import { action as logoutAction } from "./pages/user/logout/action.js";
 import { User } from "./pages/user/User/User.jsx";
-import { action as userVansAction } from "./pages/user/Vans/action.js";
-import { loader as userVansLoader } from "./pages/user/Vans/loader.js";
-import { Vans as UserVans } from "./pages/user/Vans/Vans.jsx";
 import { action as vanDetailsAction } from "./pages/vans/VanDetails/action.js";
 import { loader as vanDetailsLoader } from "./pages/vans/VanDetails/loader.js";
 import { VanDetails } from "./pages/vans/VanDetails/VanDetails.jsx";
@@ -74,10 +74,10 @@ const router = createBrowserRouter(
           <Route errorElement={<Error />}>
             <Route index element={<Dashboard />} loader={makeProtected()} />
             <Route
-              path="vans"
-              element={<UserVans />}
-              loader={makeProtected(userVansLoader(queryClient))}
-              action={makeProtected(userVansAction(queryClient))}
+              path="favorites"
+              element={<Favorites />}
+              loader={makeProtected(favoritesLoader(queryClient))}
+              action={makeProtected(favoritesAction(queryClient))}
               shouldRevalidate={() => false}
             />
             <Route

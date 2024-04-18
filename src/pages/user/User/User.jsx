@@ -17,7 +17,7 @@ function User() {
           <Link to="." end>
             Dashboard
           </Link>
-          <Link to="vans">Vans</Link>
+          <Link to="favorites">Favorites</Link>
         </LinkContainer>
         {/*TODO: maybe use fetcher.Form instead*/}
         <Form method="post" action="logout" replace>
