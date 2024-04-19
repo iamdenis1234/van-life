@@ -14,12 +14,11 @@ function User() {
       <Navigation>
         <LinkContainer>
           <Link to="." end>
-            Dashboard
+            Profile
           </Link>
           <Link to="favorites">Favorites</Link>
         </LinkContainer>
-        {/*TODO: maybe use fetcher.Form instead*/}
-        <Form method="post" action="logout" replace>
+        <Form method="post" action="logout">
           <CustomButton type="submit" variant="text" color="inherit">
             Logout
           </CustomButton>

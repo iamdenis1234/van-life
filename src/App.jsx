@@ -16,11 +16,11 @@ import { Login } from "./pages/login/Login.jsx";
 import { NotFound } from "./pages/NotFound.jsx";
 import { loader as rootLoader } from "./pages/root/loader.js";
 import { Root } from "./pages/root/Root.jsx";
-import { Dashboard } from "./pages/user/Dashboard/Dashboard.jsx";
 import { action as favoritesAction } from "./pages/user/Favorites/action.js";
 import { Favorites } from "./pages/user/Favorites/Favorites.jsx";
 import { loader as favoritesLoader } from "./pages/user/Favorites/loader.js";
 import { action as logoutAction } from "./pages/user/logout/action.js";
+import { Profile } from "./pages/user/Profile/Profile.jsx";
 import { User } from "./pages/user/User/User.jsx";
 import { action as vanDetailsAction } from "./pages/vans/VanDetails/action.js";
 import { loader as vanDetailsLoader } from "./pages/vans/VanDetails/loader.js";
@@ -72,7 +72,7 @@ const router = createBrowserRouter(
         />
         <Route path="user" element={<User />}>
           <Route errorElement={<Error />}>
-            <Route index element={<Dashboard />} loader={makeProtected()} />
+            <Route index element={<Profile />} loader={makeProtected()} />
             <Route
               path="favorites"
               element={<Favorites />}
