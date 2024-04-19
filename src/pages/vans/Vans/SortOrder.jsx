@@ -8,7 +8,6 @@ import {
 import { useSearchParams } from "react-router-dom";
 import { useCustomSubmit } from "../../../hooks/useCustomSubmit.js";
 import { deletePageFromSearchParams } from "./deletePageFromSearchParams.js";
-import { useOptimisticSearchParams } from "./useOptimisticSearchParams.js";
 
 export { SortOrder };
 
@@ -50,7 +49,7 @@ const StyledFormControl = styled(FormControl)({
 });
 
 function useSelectedOrder() {
-  const searchParams = useOptimisticSearchParams();
+  const [searchParams] = useSearchParams();
   return getOrderFromDefinedValues(searchParams.get("order"));
 }
 

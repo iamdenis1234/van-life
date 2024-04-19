@@ -2,14 +2,13 @@ import { Checkbox, FormControlLabel, styled, Typography } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import { useCustomSubmit } from "../../../hooks/useCustomSubmit.js";
 import { deletePageFromSearchParams } from "./deletePageFromSearchParams.js";
-import { useOptimisticSearchParams } from "./useOptimisticSearchParams.js";
 
 export { Filter };
 
 function Filter({ type }) {
   const [searchParams] = useSearchParams();
   const submit = useCustomSubmit();
-  const selectedTypes = useSelectedTypes();
+  const selectedTypes = searchParams.getAll("type");
   const name = type.name;
   const count = type.count;
 
@@ -56,8 +55,3 @@ const StyledLabel = styled(Typography, {
 })(({ color, theme }) => ({
   color: theme.palette[color].main,
 }));
-
-function useSelectedTypes() {
-  const searchParams = useOptimisticSearchParams();
-  return searchParams.getAll("type");
-}

@@ -1,7 +1,6 @@
 import { Pagination as PaginationMui, styled } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import { useCustomSubmit } from "../../../hooks/useCustomSubmit.js";
-import { useOptimisticSearchParams } from "./useOptimisticSearchParams.js";
 
 export { Pagination };
 
@@ -46,7 +45,7 @@ const StyledPagination = styled(PaginationMui)(({ theme }) => ({
 }));
 
 function usePage(totalPages) {
-  const searchParams = useOptimisticSearchParams();
+  const [searchParams] = useSearchParams();
 
   function getValidPage(page) {
     page = Number.parseInt(page) || 1;
