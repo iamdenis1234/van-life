@@ -2,7 +2,6 @@ import { styled, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import { CustomContainer } from "../../../components/CustomContainer.jsx";
-import { section } from "../../../mixins.js";
 import { vansQuery } from "./loader.js";
 import { NoVansFound } from "./NoVansFound.jsx";
 import { VansContent } from "./VansContent.jsx";
@@ -35,7 +34,7 @@ function Vans() {
   );
 }
 
-const Container = styled(CustomContainer)(section, ({ theme }) => ({
+const Container = styled(CustomContainer)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   rowGap: theme.spacing(4),

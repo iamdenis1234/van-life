@@ -2,7 +2,6 @@ import { styled, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { CustomButton } from "../components/CustomButton.jsx";
 import { CustomContainer } from "../components/CustomContainer.jsx";
-import { section } from "../mixins.js";
 
 export { Home };
 
@@ -28,7 +27,7 @@ function Home() {
   );
 }
 
-const Section = styled("section")(section, ({ theme }) => ({
+const Section = styled("section")(({ theme }) => ({
   [theme.breakpoints.up("md")]: {
     display: "grid",
     gridTemplateColumns: "1fr auto",

@@ -1,5 +1,3 @@
-// TODO: maybe need to move this file to another folder
-
 import { css } from "@mui/material";
 
 export { section };

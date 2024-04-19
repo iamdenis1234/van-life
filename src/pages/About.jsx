@@ -2,7 +2,6 @@ import { alpha, styled, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { CustomButton } from "../components/CustomButton.jsx";
 import { CustomContainer } from "../components/CustomContainer.jsx";
-import { section } from "../mixins.js";
 
 export { About };
 
@@ -10,7 +9,7 @@ function About() {
   console.log("Render About");
 
   return (
-    <Container>
+    <CustomContainer>
       <Img
         src="/assets/images/about.jpg"
         width="1150"
@@ -44,11 +43,9 @@ function About() {
           </Button>
         </ExploreContainer>
       </Content>
-    </Container>
+    </CustomContainer>
   );
 }
-
-const Container = styled(CustomContainer)(section, {});
 
 const Content = styled("div")(({ theme }) => ({
   marginTop: theme.spacing(2),

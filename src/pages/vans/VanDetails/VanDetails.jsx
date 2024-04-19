@@ -2,7 +2,6 @@ import { styled, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { CustomContainer } from "../../../components/CustomContainer.jsx";
-import { section } from "../../../mixins.js";
 import { BackToLink } from "./BackToLink.jsx";
 import { vanQuery } from "./loader.js";
 import { VanCard } from "./VanCard.jsx";
@@ -27,7 +26,7 @@ function VanDetails() {
   );
 }
 
-const Container = styled(CustomContainer)(section, ({ theme }) => ({
+const Container = styled(CustomContainer)(({ theme }) => ({
   marginBottom: theme.spacing(1),
 }));
 

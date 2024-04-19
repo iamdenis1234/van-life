@@ -2,7 +2,6 @@ import { styled, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { CustomButton } from "../components/CustomButton.jsx";
 import { CustomContainer } from "../components/CustomContainer.jsx";
-import { section } from "../mixins.js";
 
 export { NotFound };
 
@@ -21,7 +20,7 @@ function NotFound() {
   );
 }
 
-const Container = styled(CustomContainer)(section, {
+const Container = styled(CustomContainer)({
   textAlign: "center",
 });
 

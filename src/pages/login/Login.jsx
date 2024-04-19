@@ -3,7 +3,6 @@ import { Form } from "react-router-dom";
 import { CustomButton } from "../../components/CustomButton.jsx";
 import { CustomContainer } from "../../components/CustomContainer.jsx";
 import { CustomTextField } from "../../components/CustomTextField.jsx";
-import { section } from "../../mixins.js";
 import GoogleIcon from "./google.svg?react";
 import { PasswordTextField } from "./PasswordTextField.jsx";
 import { useErrorMsg } from "./useErrorMsg.js";
@@ -78,7 +77,7 @@ function Login() {
   );
 }
 
-const Section = styled("section")(section, {
+const Section = styled("section")({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",

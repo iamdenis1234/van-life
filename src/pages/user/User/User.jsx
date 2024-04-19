@@ -2,7 +2,6 @@ import { styled } from "@mui/material";
 import { Form, Outlet } from "react-router-dom";
 import { CustomButton } from "../../../components/CustomButton.jsx";
 import { CustomContainer } from "../../../components/CustomContainer.jsx";
-import { section } from "../../../mixins.js";
 import { Link } from "./Link.jsx";
 
 export { User };
@@ -11,7 +10,7 @@ function User() {
   console.log("Render User");
 
   return (
-    <Container>
+    <CustomContainer>
       <Navigation>
         <LinkContainer>
           <Link to="." end>
@@ -27,11 +26,9 @@ function User() {
         </Form>
       </Navigation>
       <Outlet />
-    </Container>
+    </CustomContainer>
   );
 }
-
-const Container = styled(CustomContainer)(section, {});
 
 const LinkContainer = styled("div")(({ theme }) => ({
   display: "flex",
