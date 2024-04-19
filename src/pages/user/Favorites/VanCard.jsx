@@ -6,35 +6,47 @@ import {
   IconButton,
   styled,
   Tooltip,
+  Zoom,
 } from "@mui/material";
+import { useState } from "react";
 import { Link, useFetcher } from "react-router-dom";
 
 export { VanCard };
 
 function VanCard({ van }) {
   const fetcher = useFetcher();
-  const deleting = fetcher.data === "deleted" || fetcher.state !== "idle";
+  // for optimistic UI
+  const deleting = fetcher.state !== "idle";
+  const [animationEnd, setAnimationEnd] = useState(false);
 
-  // Optimistic UI
-  if (deleting) {
+  if (animationEnd) {
     return null;
   }
 
   return (
-    <StyledCard>
-      <fetcher.Form method="post">
-        <Tooltip title="Remove from Favorites">
-          <StyledIconButton type="submit">
-            <StyledClear />
-          </StyledIconButton>
-        </Tooltip>
-        <input type="text" name="id" value={van.id} hidden readOnly />
-      </fetcher.Form>
-      <StyledLink to={`/vans/${van.id}`}>
-        <StyledCardMedia component="img" src={van.imageUrl} />
-        <CardHeader title={van.name} subheader={`$${van.price}/day`} />
-      </StyledLink>
-    </StyledCard>
+    <Zoom
+      in={!deleting}
+      onExited={() => {
+        setAnimationEnd(true);
+      }}
+      appear={false}
+      timeout={300}
+    >
+      <StyledCard>
+        <fetcher.Form method="post">
+          <Tooltip title="Remove from Favorites">
+            <StyledIconButton type="submit">
+              <StyledClear />
+            </StyledIconButton>
+          </Tooltip>
+          <input type="text" name="id" value={van.id} hidden readOnly />
+        </fetcher.Form>
+        <StyledLink to={`/vans/${van.id}`}>
+          <StyledCardMedia component="img" src={van.imageUrl} />
+          <CardHeader title={van.name} subheader={`$${van.price}/day`} />
+        </StyledLink>
+      </StyledCard>
+    </Zoom>
   );
 }
 
