@@ -88,6 +88,7 @@ const Section = styled("section")(section, {
 
 const Title = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(5),
+  textAlign: "center",
 }));
 
 const ErrorMsg = styled(Alert)({
