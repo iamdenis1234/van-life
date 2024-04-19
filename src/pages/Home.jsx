@@ -36,6 +36,7 @@ const Section = styled("section")(section, ({ theme }) => ({
   },
   maxWidth: theme.breakpoints.values.lg,
   marginInline: "auto",
+  overflow: "hidden",
 }));
 
 const Container = styled(CustomContainer)(({ theme }) => ({
