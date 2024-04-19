@@ -24,6 +24,8 @@ function Root() {
 
 // TODO: remove overflow: hidden and fix Home img overflow in a different way,
 //  so that other content could be visible when overflowed
+// TODO: maybe make Main as a CustomContainer with section, then remove
+//  all CustomContainers and sections elsewhere
 const Main = styled("main")({
   overflow: "hidden",
 });

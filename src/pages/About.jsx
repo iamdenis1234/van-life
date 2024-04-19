@@ -1,48 +1,77 @@
-import { Alert, styled } from "@mui/material";
+import { alpha, styled, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import { CustomButton } from "../components/CustomButton.jsx";
 import { CustomContainer } from "../components/CustomContainer.jsx";
 import { section } from "../mixins.js";
 
 export { About };
 
-// TODO: maybe redo about page with the description of the project or delete
-//  this page altogether
 function About() {
   console.log("Render About");
 
-  /*
-    return (
-      <div className="about-page-container">
-        <img src="/assets/images/about-hero.png" className="about-hero-image" />
-        <div className="about-page-content">
-          <h1>Don’t squeeze in a sedan when you could relax in a van.</h1>
-          <p>
+  return (
+    <Container>
+      <Img
+        src="/assets/images/about.jpg"
+        width="1150"
+        height="400"
+        alt="about"
+      />
+      <Content>
+        <Typography variant="h1">
+          Don’t squeeze in a sedan when you could relax in a van.
+        </Typography>
+        <div>
+          <Typography>
             Our mission is to enliven your road trip with the perfect travel van
             rental. Our vans are recertified before each trip to ensure your
             travel plans can go off without a hitch. (Hitch costs extra 😉)
-          </p>
-          <p>
+          </Typography>
+          <Typography>
             Our team is full of vanlife enthusiasts who know firsthand the magic
             of touring the world on 4 wheels.
-          </p>
+          </Typography>
         </div>
-        <div className="about-page-cta">
-          <h2>
+        <ExploreContainer>
+          <Typography variant="h3" component="p">
             Your destination is waiting.
-            <br />
+          </Typography>
+          <VanReadySubtitle variant="h3" component="p">
             Your van is ready.
-          </h2>
-          <Link className="link-button" to="/vans">
+          </VanReadySubtitle>
+          <Button color="luxury" size="large" component={Link} to="/vans">
             Explore our vans
-          </Link>
-        </div>
-      </div>
-    );
-  */
-  return (
-    <Container>
-      <Alert severity="info">Page Under Development</Alert>
+          </Button>
+        </ExploreContainer>
+      </Content>
     </Container>
   );
 }
 
 const Container = styled(CustomContainer)(section, {});
+
+const Content = styled("div")(({ theme }) => ({
+  marginTop: theme.spacing(2),
+  display: "flex",
+  flexDirection: "column",
+  rowGap: theme.spacing(3),
+}));
+
+const Img = styled("img")(({ theme }) => ({
+  borderRadius: theme.shape.borderRadius,
+  objectFit: "cover",
+}));
+
+const ExploreContainer = styled("div")(({ theme }) => ({
+  backgroundColor: alpha(theme.palette.primary.light, 0.8),
+  padding: theme.spacing(2, 4),
+  borderRadius: theme.shape.borderRadius,
+}));
+
+const VanReadySubtitle = styled(Typography)(({ theme }) => ({
+  marginTop: theme.spacing(1),
+}));
+
+const Button = styled(CustomButton)(({ theme }) => ({
+  marginTop: theme.spacing(4),
+}));
