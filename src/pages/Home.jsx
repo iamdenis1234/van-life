@@ -46,7 +46,6 @@ const Container = styled(CustomContainer)(({ theme }) => ({
 
 const Description = styled(Typography)(({ theme }) => ({
   marginTop: theme.spacing(2),
-  color: theme.palette.text.secondary,
 }));
 
 const HomeButton = styled(CustomButton)(({ theme }) => ({
