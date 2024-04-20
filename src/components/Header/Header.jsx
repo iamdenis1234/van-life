@@ -20,8 +20,6 @@ import { Search } from "./Search/Search.jsx";
 export { Header };
 
 function Header() {
-  console.log("Render Header");
-
   const mdUpBreakpointMatches = useBreakpointUp("md");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isScrolled = useScrollTrigger({

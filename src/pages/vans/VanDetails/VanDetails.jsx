@@ -9,7 +9,6 @@ import { VanCard } from "./VanCard.jsx";
 export { VanDetails };
 
 function VanDetails() {
-  console.log("Render VanDetails");
   const params = useParams();
 
   const { data: van, isPending } = useQuery(vanQuery(params.id));

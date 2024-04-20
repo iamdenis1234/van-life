@@ -11,8 +11,6 @@ import { useIsPending } from "./useIsPending.js";
 export { Login };
 
 function Login() {
-  console.log("Render Login");
-
   const isPending = useIsPending();
   const errorMsg = useErrorMsg();
 

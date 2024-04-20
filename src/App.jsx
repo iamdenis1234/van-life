@@ -100,7 +100,6 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  console.log("Render App");
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
@@ -109,16 +108,7 @@ function App() {
   );
 }
 
-// TODO: consider add ProtectedLayout and subscribe with onAuthStateChanged
-//  to redirect in multiple tabs when the user has logged out
-
 // TODO: consider this https://reactrouter.com/en/main/route/error-element#throwing-responses
-
-// TODO: add index type in firestore to speed up search
-
-// TODO: maybe need to make a scroll up button
-
-// TODO: if the hook is used in one component only, move it to the file where the component is
 
 // TODO: add the ability to delete the current user's account
 
@@ -136,6 +126,3 @@ function App() {
 
 // TODO: do not expose type of the component in its name, instead of
 //  FilterChip/ClearFilterButton use Filter/ClearFilter, etc.
-
-// TODO: maybe show 404 page instead of redirecting to login page in cases where
-//  an unauthenticated user tries to access private pages for security reasons

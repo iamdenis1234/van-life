@@ -4,15 +4,10 @@ import { getCustomColor } from "./utils/getCustomColor.js";
 export { theme };
 
 const colors = {
-  // body: "hsl(33, 100%, 96%)",
   body: "hsl(0, 0%, 100%)",
   first: "hsl(25, 100%, 61%)",
-  // TODO: consider using commented first color instead
-  // first: "hsl(14,70%,61%)",
   textWhite: "hsl(0,0%,100%)",
   vanTypes: {
-    // the default one
-    // simple: "#e17654",
     simple: "hsl(12,46%,49%)",
     rugged: "hsl(176,69%,22%)",
     luxury: "hsl(0,0%,9%)",

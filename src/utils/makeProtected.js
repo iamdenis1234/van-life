@@ -5,7 +5,6 @@ export { makeProtected };
 
 function makeProtected(callback = null) {
   return async (obj) => {
-    console.log("makeProtected");
     await requireAuth(obj.request);
     // in case for protected routes without explicit loaders
     return callback ? await callback(obj) : null;
@@ -13,7 +12,6 @@ function makeProtected(callback = null) {
 }
 
 async function requireAuth(request) {
-  console.log("requireAuth");
   // TODO: fix open redirect vulnerability
   // Great example of how this could be exploited
   // https://www.stackhawk.com/blog/nodejs-open-redirect-guide-examples-and-prevention/

@@ -6,8 +6,6 @@ import { CustomContainer } from "../components/CustomContainer.jsx";
 export { Home };
 
 function Home() {
-  console.log("Render Home");
-
   return (
     <Section>
       <Container>

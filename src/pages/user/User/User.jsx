@@ -7,8 +7,6 @@ import { Link } from "./Link.jsx";
 export { User };
 
 function User() {
-  console.log("Render User");
-
   return (
     <CustomContainer>
       <Navigation>

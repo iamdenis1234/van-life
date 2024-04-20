@@ -1,10 +1,5 @@
 import { Alert } from "@mui/material";
-import {
-  Link,
-  useAsyncError,
-  useLocation,
-  useRouteError,
-} from "react-router-dom";
+import { Link, useAsyncError, useRouteError } from "react-router-dom";
 import { isCustomError } from "../utils/CustomError.js";
 import { CustomInfoAlert } from "./CustomAlert.jsx";
 import { CustomButton } from "./CustomButton.jsx";
@@ -13,9 +8,6 @@ import { CustomContainer } from "./CustomContainer.jsx";
 export { Error };
 
 function Error() {
-  console.log("Render Error");
-  console.log(useLocation());
-
   const error = useError();
   console.log(error);
   console.log("detail message: " + error.data?.detailMessage);

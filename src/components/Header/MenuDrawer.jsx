@@ -3,6 +3,7 @@ import { css, Drawer, IconButton, styled } from "@mui/material";
 
 export { MenuDrawer };
 
+// TODO: maybe remove background images altogether
 function MenuDrawer({ isOpen, onToggle, children }) {
   return (
     <StyledDrawer

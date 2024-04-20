@@ -2,6 +2,7 @@ import parse from "html-react-parser";
 
 export { getParsedVan };
 
+// TODO: maybe rename to something more meaningful
 function getParsedVan(vanHit) {
   const { description, id, imageUrl, name, price, type, _highlightResult } =
     vanHit;

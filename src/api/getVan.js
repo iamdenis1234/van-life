@@ -5,13 +5,9 @@ import { getUserFavoriteIds, isLoggedIn, vansCollectionRef } from "./api.js";
 export { getVan };
 
 async function getVan(id) {
-  console.log("start getting van by id");
   if (await isLoggedIn()) {
-    const van = await getVanWithFavorite(id);
-    console.log("end getting van by id");
-    return van;
+    return await getVanWithFavorite(id);
   }
-  console.log("end getting van by id");
   return await getVanFromDB(id);
 }
 

@@ -39,10 +39,10 @@ function Pagination({ totalPages }) {
   );
 }
 
-const StyledPagination = styled(PaginationMui)(({ theme }) => ({
+const StyledPagination = styled(PaginationMui)({
   display: "flex",
   justifyContent: "center",
-}));
+});
 
 function usePage(totalPages) {
   const [searchParams] = useSearchParams();

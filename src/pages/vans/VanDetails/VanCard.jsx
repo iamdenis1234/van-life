@@ -14,8 +14,6 @@ import { FavoriteToggle } from "./FavoriteToggle.jsx";
 export { VanCard };
 
 function VanCard({ className, van }) {
-  console.log("Render VanCard");
-
   const isLoggedIn = useIsLoggedIn();
   const smBreakpointMatches = useBreakpointUp("sm");
 

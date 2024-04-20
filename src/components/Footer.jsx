@@ -3,9 +3,6 @@ import { styled, Typography } from "@mui/material";
 export { Footer };
 
 function Footer() {
-  console.log("Render Footer");
-
-  // TODO: add a link to the github project with a github icon
   return (
     <StyledFooter>
       <Content>

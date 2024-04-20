@@ -6,8 +6,6 @@ import { CustomContainer } from "../components/CustomContainer.jsx";
 export { NotFound };
 
 function NotFound() {
-  console.log("Render NotFound");
-
   return (
     <Container>
       <Title variant="h2" component="h1">

@@ -4,11 +4,8 @@ import { isLoggedIn } from "../../api/api.js";
 export { loader };
 
 async function loader() {
-  console.log("start Login loader");
   if (await isLoggedIn()) {
-    const response = redirect("/user");
-    console.log("end Login loader");
-    return response;
+    return redirect("/user");
   }
   return null;
 }

@@ -8,7 +8,6 @@ import { VansContent } from "./VansContent.jsx";
 export { SearchModal };
 
 function SearchModal({ open, onClose }) {
-  console.log("Render SearchModal");
   const [searchInput, setSearchInput] = useState("");
   const { debouncedSearch, status, result } = useVansSearch();
   const showVansContent = searchInput && status === "success";

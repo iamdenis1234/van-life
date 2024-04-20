@@ -4,9 +4,7 @@ export { loader, favoriteVansQuery };
 
 function loader(queryClient) {
   return () => {
-    console.log("start user Vans loader");
     queryClient.ensureQueryData(favoriteVansQuery());
-    console.log("end user Vans loader");
     return null;
   };
 }

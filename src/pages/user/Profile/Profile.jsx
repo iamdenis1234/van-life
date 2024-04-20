@@ -5,7 +5,6 @@ import { userInfoQuery } from "./loader.js";
 export { Profile };
 
 function Profile() {
-  console.log("Render Profile");
   const { data, status } = useQuery(userInfoQuery());
   const isSuccess = status === "success";
 

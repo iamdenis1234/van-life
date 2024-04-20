@@ -1,9 +1,7 @@
-import { Container as MuiContainer, styled } from "@mui/material";
+import { Container as MuiContainer } from "@mui/material";
 
 export { CustomContainer };
 
 function CustomContainer(props) {
-  return <Container maxWidth="lg" {...props} />;
+  return <MuiContainer maxWidth="lg" {...props} />;
 }
-
-const Container = styled(MuiContainer)(({ theme }) => ({}));

@@ -4,9 +4,6 @@ import { logout } from "../../../api/api.js";
 export { action };
 
 async function action() {
-  console.log("start logout action");
   await logout();
-  const response = redirect("/");
-  console.log("end logout action");
-  return response;
+  return redirect("/");
 }

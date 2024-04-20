@@ -9,7 +9,6 @@ function VansContent({ result, onClick, search }) {
   const moreThanOneVan = result.totalHits > 1;
   const showAllLink = getShowAllLink(search);
   const empty = result.vans.length === 0;
-  console.log(result);
 
   function renderContent() {
     if (empty) {

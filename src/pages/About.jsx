@@ -6,8 +6,6 @@ import { CustomContainer } from "../components/CustomContainer.jsx";
 export { About };
 
 function About() {
-  console.log("Render About");
-
   return (
     <CustomContainer>
       <Img

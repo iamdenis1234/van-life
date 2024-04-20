@@ -4,13 +4,11 @@ export { action };
 
 function action(queryClient) {
   return async ({ request, params }) => {
-    console.log("start favorite action");
     const id = params.id;
     const formData = await request.formData();
     const isFavorite = formData.get("favorite") === "true";
     isFavorite ? await addToFavorites(id) : await removeFromFavorites(id);
     await invalidateQueries({ queryClient, id });
-    console.log("end favorite action");
     return null;
   };
 }

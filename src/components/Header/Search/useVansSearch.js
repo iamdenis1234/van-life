@@ -8,7 +8,6 @@ export { useVansSearch };
 const WAIT_BEFORE_SEARCH_IN_MS = 300;
 
 function useVansSearch() {
-  console.log("render useVansSearch");
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(setSearch, WAIT_BEFORE_SEARCH_IN_MS);
   const query = useQuery(vansSearchQuery(search));

@@ -9,7 +9,6 @@ import { VansContent } from "./VansContent.jsx";
 export { Vans };
 
 function Vans() {
-  console.log("Render Vans");
   const [searchParams] = useSearchParams();
   const query = useQuery(vansQuery(searchParams));
   const { data: vansData, isPending } = query;

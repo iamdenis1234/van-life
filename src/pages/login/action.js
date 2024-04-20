@@ -9,7 +9,6 @@ import {
 export { action };
 
 async function action({ request }) {
-  console.log("start Login action");
   const formData = await request.formData();
 
   let userCred;
@@ -23,7 +22,6 @@ async function action({ request }) {
     await createNewUserInDb(userCred.user.uid);
   }
 
-  console.log("end Login action");
   return createRedirect(request);
 }
 

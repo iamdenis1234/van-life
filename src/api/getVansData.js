@@ -32,8 +32,6 @@ async function getVansDataFromDB(params) {
   const {
     results: [vansResponse, facetsResponse],
   } = await algoliaClient.multipleQueries([vansQuery, facetsQuery]);
-  console.log(vansResponse);
-  console.log(facetsResponse);
   return {
     vans: getVans(vansResponse),
     types: getTypes(facetsResponse),

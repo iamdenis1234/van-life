@@ -8,8 +8,6 @@ import { section } from "../../mixins.js";
 export { Root };
 
 function Root() {
-  console.log("Render Root");
-
   const isLoggedIn = useLoaderData();
 
   return (

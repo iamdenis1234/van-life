@@ -4,9 +4,7 @@ export { loader, userInfoQuery };
 
 function loader(queryClient) {
   return () => {
-    console.log("start Profile loader");
     queryClient.ensureQueryData(userInfoQuery());
-    console.log("end Profile loader");
     return null;
   };
 }

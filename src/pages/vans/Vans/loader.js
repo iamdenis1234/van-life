@@ -5,10 +5,8 @@ export { loader, vansQuery };
 
 function loader(queryClient) {
   return ({ request }) => {
-    console.log("start Vans loader");
     const searchParams = new URL(request.url).searchParams;
     queryClient.ensureQueryData(vansQuery(searchParams));
-    console.log("end Vans loader");
     return null;
   };
 }

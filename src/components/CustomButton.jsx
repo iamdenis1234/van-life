@@ -6,7 +6,7 @@ function CustomButton(props) {
   return <Button variant="contained" {...props} />;
 }
 
-const Button = styled(MuiButton)(({ theme }) => ({
+const Button = styled(MuiButton)({
   textTransform: "none",
   textAlign: "center",
-}));
+});

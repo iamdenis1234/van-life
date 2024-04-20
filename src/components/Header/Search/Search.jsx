@@ -6,7 +6,6 @@ import { SearchModal } from "./SearchModal.jsx";
 export { Search };
 
 function Search() {
-  console.log("Render Search");
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
