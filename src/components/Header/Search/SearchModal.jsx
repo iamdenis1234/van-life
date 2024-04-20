@@ -1,26 +1,27 @@
 import { Close } from "@mui/icons-material";
 import { Divider, IconButton, Modal, styled, Typography } from "@mui/material";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { getLimitedVansSearchResult } from "../../../api/getLimitedVansSearchResult.js";
+import { useDebounce } from "../../../hooks/useDebounce.js";
 import { SearchInput } from "./SearchInput.jsx";
-import { useVansSearch } from "./useVansSearch.js";
 import { VansContent } from "./VansContent.jsx";
 
 export { SearchModal };
 
 function SearchModal({ open, onClose }) {
   const [searchInput, setSearchInput] = useState("");
-  const { debouncedSearch, status, result } = useVansSearch();
-  const showVansContent = searchInput && status === "success";
+  const { search, status, data } = useVansSearch();
 
   function handleChangeInput(event) {
     const value = event.target.value;
     setSearchInput(value);
-    debouncedSearch(value);
+    search(value);
   }
 
   function handleClearInput() {
     setSearchInput("");
-    debouncedSearch("");
+    search("");
   }
 
   return (
@@ -42,12 +43,8 @@ function SearchModal({ open, onClose }) {
         </Section>
         <Divider />
         <VansSectionContainer>
-          {showVansContent && (
-            <VansContent
-              onClick={onClose}
-              result={result}
-              search={searchInput}
-            />
+          {status === "success" && (
+            <VansContent onClick={onClose} data={data} search={searchInput} />
           )}
         </VansSectionContainer>
       </Container>
@@ -98,3 +95,22 @@ const VansSectionContainer = styled(Section)(({ theme }) => ({
   maxWidth: 450,
   marginInline: "auto",
 }));
+
+const WAIT_BEFORE_SEARCH_IN_MS = 300;
+
+function useVansSearch() {
+  const [search, setSearch] = useState("");
+  const debouncedSearch = useDebounce(setSearch, WAIT_BEFORE_SEARCH_IN_MS);
+  const query = useQuery({
+    queryKey: ["search", search],
+    queryFn: async () =>
+      search ? await getLimitedVansSearchResult(search) : null,
+    placeholderData: keepPreviousData,
+  });
+
+  return {
+    search: debouncedSearch,
+    status: query.data ? "success" : "idle",
+    data: query.data,
+  };
+}

@@ -5,17 +5,17 @@ import { VanCard } from "./VanCard.jsx";
 
 export { VansContent };
 
-function VansContent({ result, onClick, search }) {
-  const moreThanOneVan = result.totalHits > 1;
+function VansContent({ data, onClick, search }) {
+  const moreThanOneVan = data.totalHits > 1;
   const showAllLink = getShowAllLink(search);
-  const empty = result.vans.length === 0;
+  const empty = data.vans.length === 0;
 
   function renderContent() {
     if (empty) {
       return <NotFound>No vans found</NotFound>;
     }
 
-    const vanCards = result.vans.map((van) => (
+    const vanCards = data.vans.map((van) => (
       <VanCard key={van.id} van={van} onClick={onClick} />
     ));
 
@@ -30,7 +30,7 @@ function VansContent({ result, onClick, search }) {
             to={showAllLink}
             onClick={onClick}
           >
-            Show all {result.totalHits} vans
+            Show all {data.totalHits} vans
           </CustomButton>
         )}
       </>
