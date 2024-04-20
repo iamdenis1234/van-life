@@ -1,9 +1,10 @@
-import { Menu as MenuIcon, Person } from "@mui/icons-material";
+import { GitHub, Menu as MenuIcon, Person } from "@mui/icons-material";
 import {
   AppBar,
   IconButton,
   styled,
   Toolbar,
+  Tooltip,
   useScrollTrigger,
 } from "@mui/material";
 import { useState } from "react";
@@ -43,11 +44,23 @@ function Header() {
         <HeaderToolbar component="nav" disableGutters>
           <StyledLogo component={Link} to="/" />
           <NavSearchContainer>
+            <Tooltip title="Project repository">
+              <IconButton
+                color="inherit"
+                component="a"
+                href="https://github.com/iamdenis1234/van-life"
+                target="_blank"
+              >
+                <GitHub />
+              </IconButton>
+            </Tooltip>
             <Search />
             <NavItem to="/user">
-              <IconButton color="inherit">
-                <Person />
-              </IconButton>
+              <Tooltip title="Your profile">
+                <IconButton color="inherit">
+                  <Person />
+                </IconButton>
+              </Tooltip>
             </NavItem>
             {mdUpBreakpointMatches ? (
               <StyledNavList />
@@ -107,4 +120,7 @@ const NavSearchContainer = styled("div")(({ theme }) => ({
   display: "flex",
   columnGap: theme.spacing(3),
   alignItems: "center",
+  "@media (max-width: 450px)": {
+    columnGap: theme.spacing(1),
+  },
 }));

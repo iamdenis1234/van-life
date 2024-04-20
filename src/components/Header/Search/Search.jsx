@@ -1,5 +1,5 @@
 import { Search as SearchIcon } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
 import { useState } from "react";
 import { SearchModal } from "./SearchModal.jsx";
 
@@ -11,9 +11,11 @@ function Search() {
 
   return (
     <>
-      <IconButton onClick={() => setModalOpen(true)} color="inherit">
-        <SearchIcon />
-      </IconButton>
+      <Tooltip title="Search vans">
+        <IconButton onClick={() => setModalOpen(true)} color="inherit">
+          <SearchIcon />
+        </IconButton>
+      </Tooltip>
       <SearchModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </>
   );
