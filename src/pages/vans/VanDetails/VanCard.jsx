@@ -13,8 +13,6 @@ import { FavoriteToggle } from "./FavoriteToggle.jsx";
 
 export { VanCard };
 
-// TODO: add image gallery via https://github.com/xiaolin/react-image-gallery
-
 function VanCard({ className, van }) {
   console.log("Render VanCard");
 
@@ -23,14 +21,14 @@ function VanCard({ className, van }) {
 
   return (
     <Card elevation={0} className={className}>
-      <CardMedia component="img" src={van.imageUrl} />
+      <StyledCardMedia component="img" src={van.imageUrl} />
       <CardHeader
         title={
           <Typography variant="h2" component="h1">
             {van.name}
           </Typography>
         }
-        subheader={<VanType type={van.type} />}
+        subheader={<StyledVanType type={van.type} />}
         action={isLoggedIn && <FavoriteToggle van={van} />}
       />
       <CardContent>
@@ -45,4 +43,20 @@ function VanCard({ className, van }) {
 
 const Price = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(2),
+}));
+
+const StyledVanType = styled(VanType)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+}));
+
+const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
+  height: 350,
+  width: "auto",
+  [theme.breakpoints.up("sm")]: {
+    height: 500,
+  },
+  [theme.breakpoints.up("md")]: {
+    height: 600,
+  },
+  marginInline: "auto",
 }));
