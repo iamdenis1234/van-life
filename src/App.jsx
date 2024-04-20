@@ -20,6 +20,7 @@ import { action as favoritesAction } from "./pages/user/Favorites/action.js";
 import { Favorites } from "./pages/user/Favorites/Favorites.jsx";
 import { loader as favoritesLoader } from "./pages/user/Favorites/loader.js";
 import { action as logoutAction } from "./pages/user/logout/action.js";
+import { loader as profileLoader } from "./pages/user/Profile/loader.js";
 import { Profile } from "./pages/user/Profile/Profile.jsx";
 import { User } from "./pages/user/User/User.jsx";
 import { action as vanDetailsAction } from "./pages/vans/VanDetails/action.js";
@@ -72,7 +73,12 @@ const router = createBrowserRouter(
         />
         <Route path="user" element={<User />}>
           <Route errorElement={<Error />}>
-            <Route index element={<Profile />} loader={makeProtected()} />
+            <Route
+              index
+              element={<Profile />}
+              loader={makeProtected(profileLoader(queryClient))}
+              shouldRevalidate={() => false}
+            />
             <Route
               path="favorites"
               element={<Favorites />}
