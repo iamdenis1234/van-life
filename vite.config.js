@@ -38,6 +38,7 @@ export default defineConfig(({ mode }) => {
         },
       }),
     ],
+    // remove console.logs/debug from production build
     esbuild: {
       drop: mode === "production" ? ["console", "debugger"] : [],
     },
