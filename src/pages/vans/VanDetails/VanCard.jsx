@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useIsLoggedIn } from "../../../context/IsLoggedInContext.js";
-import { useBreakpointUp } from "../../../hooks/useBreakpoint.js";
+import { useBreakpointUp } from "../../../hooks/useBreakpointUp.js";
 import { VanType } from "../VanType.jsx";
 import { FavoriteToggle } from "./FavoriteToggle.jsx";
 

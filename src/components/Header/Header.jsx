@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useBreakpointUp } from "../../hooks/useBreakpoint.js";
+import { useBreakpointUp } from "../../hooks/useBreakpointUp.js";
 import { CustomContainer } from "../CustomContainer.jsx";
 import { Logo } from "../Logo.jsx";
 import { MenuDrawer } from "./MenuDrawer.jsx";
