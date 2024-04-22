@@ -3,7 +3,6 @@ import { css, Drawer, IconButton, styled } from "@mui/material";
 
 export { MenuDrawer };
 
-// TODO: maybe remove background images altogether
 function MenuDrawer({ isOpen, onToggle, children }) {
   return (
     <StyledDrawer
@@ -11,6 +10,11 @@ function MenuDrawer({ isOpen, onToggle, children }) {
       open={isOpen}
       onClose={onToggle}
       disableScrollLock={true}
+      slotProps={{
+        backdrop: {
+          invisible: true,
+        },
+      }}
     >
       <CloseButton onClick={onToggle}>
         <Close />

@@ -6,21 +6,21 @@ export { NavList };
 function NavList({ onClick, className }) {
   return (
     <List className={className}>
-      <StyledListItem>
-        <NavItem to="/" onClick={onClick}>
+      <NavItem to="/" onClick={onClick}>
+        <StyledListItem>
           <StyledListItemButton>Home</StyledListItemButton>
-        </NavItem>
-      </StyledListItem>
-      <StyledListItem>
-        <NavItem to="/about" onClick={onClick}>
+        </StyledListItem>
+      </NavItem>
+      <NavItem to="/about" onClick={onClick}>
+        <StyledListItem>
           <StyledListItemButton>About</StyledListItemButton>
-        </NavItem>
-      </StyledListItem>
-      <StyledListItem>
-        <NavItem to="/vans" onClick={onClick}>
+        </StyledListItem>
+      </NavItem>
+      <NavItem to="/vans" onClick={onClick}>
+        <StyledListItem>
           <StyledListItemButton>Vans</StyledListItemButton>
-        </NavItem>
-      </StyledListItem>
+        </StyledListItem>
+      </NavItem>
     </List>
   );
 }
@@ -31,4 +31,5 @@ const StyledListItemButton = styled(ListItemButton)({
 
 const StyledListItem = styled(ListItem)({
   justifyContent: "center",
+  padding: 0,
 });

@@ -103,14 +103,13 @@ const StyledNavList = styled(NavList)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   paddingBlock: theme.spacing(7),
-  gap: theme.spacing(1),
+  rowGap: theme.spacing(3),
 
   [theme.breakpoints.up("md")]: {
     flexDirection: "row",
     paddingBlock: 0,
-    ".MuiListItem-root:last-child": {
-      paddingRight: 0,
-    },
+    marginLeft: theme.spacing(2),
+    columnGap: theme.spacing(5),
   },
 }));
 
@@ -118,7 +117,7 @@ const NavSearchContainer = styled("div")(({ theme }) => ({
   display: "flex",
   columnGap: theme.spacing(3),
   alignItems: "center",
-  "@media (max-width: 390px)": {
+  "@media (max-width: 410px)": {
     columnGap: theme.spacing(1),
   },
 }));
