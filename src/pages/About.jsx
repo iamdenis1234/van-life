@@ -9,7 +9,7 @@ function About() {
   return (
     <CustomContainer>
       <Img
-        src="/assets/images/about.jpg"
+        src="/assets/images/about.webp"
         width="1150"
         height="400"
         alt="about"

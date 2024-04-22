@@ -56,7 +56,7 @@ const Img = styled("div")(({ theme }) => ({
   height: 350,
   width: 420,
   boxShadow: "0 0 28px 29px white inset",
-  backgroundImage: "url(/assets/images/modest-explorer.jpg)",
+  backgroundImage: "url(/assets/images/modest-explorer.webp)",
   backgroundSize: "contain",
   backgroundRepeat: "no-repeat",
   position: "relative",
