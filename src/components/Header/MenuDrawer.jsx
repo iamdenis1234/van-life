@@ -1,5 +1,5 @@
 import { Close } from "@mui/icons-material";
-import { css, Drawer, IconButton, styled } from "@mui/material";
+import { Drawer, IconButton, styled } from "@mui/material";
 
 export { MenuDrawer };
 
@@ -20,29 +20,11 @@ function MenuDrawer({ isOpen, onToggle, children }) {
         <Close />
       </CloseButton>
       {children}
-      <RoadSign src="/assets/images/road_sign1.gif" alt="road sign" />
-      <BirdsOnTree
-        src="/assets/images/birds_on_tree_without_sun.png"
-        alt="birds on tree"
-      />
+      <RoadSign src="/assets/images/road_sign.webp" alt="road sign" />
+      <BirdsOnTree src="/assets/images/birds.webp" alt="birds on tree" />
     </StyledDrawer>
   );
 }
-
-const decorImg = css({
-  position: "absolute",
-  zIndex: -1,
-});
-
-const BirdsOnTree = styled("img")(decorImg, {
-  width: 100,
-});
-
-const RoadSign = styled("img")(decorImg, {
-  width: 102,
-  bottom: -6,
-  right: 5,
-});
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
   "& .MuiDrawer-paper": {
@@ -59,3 +41,20 @@ const CloseButton = styled(IconButton)(({ theme }) => ({
   zIndex: 1,
   color: theme.palette.text.primary,
 }));
+
+const DecorImg = styled("img")({
+  position: "absolute",
+  zIndex: -1,
+});
+
+const BirdsOnTree = styled(DecorImg)({
+  width: 123,
+  filter: "contrast(0.7)",
+  top: 16,
+});
+
+const RoadSign = styled(DecorImg)({
+  width: 121,
+  bottom: -23,
+  right: 5,
+});
