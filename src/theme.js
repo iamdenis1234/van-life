@@ -44,9 +44,7 @@ let theme = createTheme({
   },
   typography: {
     logo: {
-      fontFamily: "'Dancing Script Variable', cursive",
-      fontWeight: 700,
-      fontStyle: "normal",
+      fontFamily: "'Dancing Script', cursive",
       fontSize: "2rem",
     },
   },
