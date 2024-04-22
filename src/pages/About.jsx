@@ -12,7 +12,7 @@ function About() {
         src="/assets/images/about.webp"
         width="1150"
         height="400"
-        alt="about"
+        alt="about image"
       />
       <Content>
         <Typography variant="h1">

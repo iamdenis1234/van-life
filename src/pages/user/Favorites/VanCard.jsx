@@ -42,7 +42,7 @@ function VanCard({ van }) {
           <input type="text" name="id" value={van.id} hidden readOnly />
         </fetcher.Form>
         <StyledLink to={`/vans/${van.id}`}>
-          <StyledCardMedia component="img" src={van.imageUrl} />
+          <StyledCardMedia component="img" src={van.imageUrl} alt={van.name} />
           <CardHeader title={van.name} subheader={`$${van.price}/day`} />
         </StyledLink>
       </StyledCard>

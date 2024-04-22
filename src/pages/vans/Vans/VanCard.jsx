@@ -30,7 +30,7 @@ function VanCard({ van }) {
           searchParams: searchParams.toString(),
         }}
       >
-        <StyledCardMedia component="img" src={van.imageUrl} />
+        <StyledCardMedia component="img" src={van.imageUrl} alt={van.name} />
       </StyledLink>
       <CardHeader
         title={name}

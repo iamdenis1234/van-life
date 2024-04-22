@@ -19,7 +19,7 @@ function VanCard({ className, van }) {
 
   return (
     <Card elevation={0} className={className}>
-      <StyledCardMedia component="img" src={van.imageUrl} />
+      <StyledCardMedia component="img" src={van.imageUrl} alt={van.name} />
       <CardHeader
         title={
           <Typography variant="h2" component="h1">

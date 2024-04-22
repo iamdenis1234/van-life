@@ -11,7 +11,7 @@ function VanCard({ van, onClick }) {
 
   return (
     <StyledCard component={Link} to={`/vans/${van.id}`} onClick={onClick}>
-      <StyledCardMedia component="img" src={van.imageUrl} />
+      <StyledCardMedia component="img" src={van.imageUrl} alt={van.name} />
       <StyledCardHeader
         title={name}
         subheader={<>${price}/day</>}
