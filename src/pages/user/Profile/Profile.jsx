@@ -1,15 +1,17 @@
 import { styled, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
+import { CustomProgress } from "../../../components/CustomProgress.jsx";
 import { userInfoQuery } from "./loader.js";
 
 export { Profile };
 
 function Profile() {
-  const { data, status } = useQuery(userInfoQuery());
+  const { data, status, isPending } = useQuery(userInfoQuery());
   const isSuccess = status === "success";
 
   return (
     <>
+      {isPending && <CustomProgress />}
       {isSuccess && (
         <>
           <Typography variant="h3" component="h1">
