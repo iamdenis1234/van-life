@@ -1,5 +1,6 @@
 import { styled, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
+import { CustomProgress } from "../../../components/CustomProgress.jsx";
 import { EmptyFavorites } from "./EmptyFavorites.jsx";
 import { favoriteVansQuery } from "./loader.js";
 import { VanElements } from "./VanElements.jsx";
@@ -11,7 +12,7 @@ function Favorites() {
 
   function renderContent() {
     if (isPending) {
-      return <Typography>Loading...</Typography>;
+      return <CustomProgress title="loading favorites" />;
     }
 
     if (vans.length) {

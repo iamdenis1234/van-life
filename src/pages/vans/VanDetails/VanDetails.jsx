@@ -1,7 +1,8 @@
-import { styled, Typography } from "@mui/material";
+import { styled } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { CustomContainer } from "../../../components/CustomContainer.jsx";
+import { CustomProgress } from "../../../components/CustomProgress.jsx";
 import { BackToLink } from "./BackToLink.jsx";
 import { vanQuery } from "./loader.js";
 import { VanCard } from "./VanCard.jsx";
@@ -17,7 +18,7 @@ function VanDetails() {
     <Container>
       <BackToLink />
       {isPending ? (
-        <Typography>Loading...</Typography>
+        <CustomProgress title="loading van" />
       ) : (
         <StyledVanCard van={van} />
       )}
