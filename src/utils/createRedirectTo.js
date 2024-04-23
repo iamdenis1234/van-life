@@ -1,9 +1,9 @@
-import { redirect } from "react-router-dom";
+import { protectedRedirect } from "./protectedRedirect.js";
 
 export { createRedirectTo };
 
 function createRedirectTo(path) {
   return () => {
-    return redirect(path);
+    return protectedRedirect(path);
   };
 }

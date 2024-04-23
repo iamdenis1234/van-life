@@ -1,5 +1,5 @@
-import { redirect } from "react-router-dom";
 import { isLoggedIn } from "../api/api.js";
+import { protectedRedirect } from "./protectedRedirect.js";
 
 export { makeProtected };
 
@@ -12,17 +12,11 @@ function makeProtected(callback = null) {
 }
 
 async function requireAuth(request) {
-  // TODO: fix open redirect vulnerability
-  // Great example of how this could be exploited
-  // https://www.stackhawk.com/blog/nodejs-open-redirect-guide-examples-and-prevention/
-  // "Anatomy of an Attack" section
   const pathname = new URL(request.url).pathname;
 
   if (!(await isLoggedIn())) {
-    // TODO: consider deleting this comment
     // throw instead of return, so we can write await requireAuth() in loaders
     // without a condition
-    // TODO: consider using URL/URLSearchParams instead
-    throw redirect(`/login?redirectTo=${pathname}#loginfirst`);
+    throw protectedRedirect(`/login?redirectTo=${pathname}#loginfirst`);
   }
 }

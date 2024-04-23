@@ -1,10 +1,10 @@
-import { redirect } from "react-router-dom";
 import {
   createNewUserInDb,
   isNewUser,
   logInWithEmailAndPassword as logInWithEmailAndPasswordApi,
   logInWithGoogle,
 } from "../../api/api.js";
+import { protectedRedirect } from "../../utils/protectedRedirect.js";
 
 export { action };
 
@@ -40,7 +40,7 @@ async function logIn(formData) {
 function createRedirect(request) {
   const pathname =
     new URL(request.url).searchParams.get("redirectTo") || "/user";
-  return redirect(pathname);
+  return protectedRedirect(pathname);
 }
 
 async function logInWithEmailAndPassword(formData) {
