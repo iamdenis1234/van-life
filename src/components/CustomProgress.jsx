@@ -1,16 +1,12 @@
-import { styled } from "@mui/material";
+import Ellipsis from "/public/assets/images/Ellipsis-1s-200px.svg?react";
+import { styled, SvgIcon } from "@mui/material";
 
 export { CustomProgress };
 
-function CustomProgress({ size = 60, title = "loading" }) {
+function CustomProgress({ size = 60 }) {
   return (
-    <Container>
-      <img
-        src="/assets/images/Ellipsis-1s-200px.svg"
-        alt={title}
-        width={size}
-        height={size}
-      />
+    <Container sx={{ fontSize: size }} role="progressbar">
+      <SvgIcon component={Ellipsis} inheritViewBox fontSize="inherit" />
     </Container>
   );
 }

@@ -16,7 +16,7 @@ function Vans() {
 
   function renderContent() {
     if (isPending) {
-      return <CustomProgress title="loading vans" />;
+      return <CustomProgress />;
     }
 
     if (vansData.vans.length) {

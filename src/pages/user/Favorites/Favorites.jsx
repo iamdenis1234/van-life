@@ -12,7 +12,7 @@ function Favorites() {
 
   function renderContent() {
     if (isPending) {
-      return <CustomProgress title="loading favorites" />;
+      return <CustomProgress />;
     }
 
     if (vans.length) {

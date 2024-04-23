@@ -17,11 +17,7 @@ function VanDetails() {
   return (
     <Container>
       <BackToLink />
-      {isPending ? (
-        <CustomProgress title="loading van" />
-      ) : (
-        <StyledVanCard van={van} />
-      )}
+      {isPending ? <CustomProgress /> : <StyledVanCard van={van} />}
     </Container>
   );
 }
