@@ -5,18 +5,18 @@ import { useState } from "react";
 import { getLimitedVansSearchResult } from "../../../api/getLimitedVansSearchResult.js";
 import { useDebounce } from "../../../hooks/useDebounce.js";
 import { SearchInput } from "./SearchInput.jsx";
-import { VansContent } from "./VansContent.jsx";
+import { SearchResult } from "./SearchResult.jsx";
 
 export { SearchModal };
 
 function SearchModal({ open, onClose }) {
   const [searchInput, setSearchInput] = useState("");
-  const { search, status, data } = useVansSearch();
+  const { search, debouncedSearch, status, result } = useVansSearch();
 
   function handleChangeInput(event) {
     const value = event.target.value;
     setSearchInput(value);
-    search(value);
+    debouncedSearch(value);
   }
 
   function handleClearInput() {
@@ -42,11 +42,15 @@ function SearchModal({ open, onClose }) {
           />
         </Section>
         <Divider />
-        <VansSectionContainer>
+        <SearchResultContainer>
           {status === "success" && (
-            <VansContent onClick={onClose} data={data} search={searchInput} />
+            <SearchResult
+              onClick={onClose}
+              result={result}
+              search={searchInput}
+            />
           )}
-        </VansSectionContainer>
+        </SearchResultContainer>
       </Container>
     </StyledModal>
   );
@@ -87,7 +91,7 @@ const Description = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const VansSectionContainer = styled(Section)(({ theme }) => ({
+const SearchResultContainer = styled(Section)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   rowGap: theme.spacing(2),
@@ -109,8 +113,9 @@ function useVansSearch() {
   });
 
   return {
-    search: debouncedSearch,
+    search: setSearch,
+    debouncedSearch,
     status: query.data ? "success" : "idle",
-    data: query.data,
+    result: query.data,
   };
 }
