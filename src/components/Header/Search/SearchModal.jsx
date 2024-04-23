@@ -11,7 +11,8 @@ export { SearchModal };
 
 function SearchModal({ open, onClose }) {
   const [searchInput, setSearchInput] = useState("");
-  const { search, debouncedSearch, status, result } = useVansSearch();
+  const { search, debouncedSearch, isFetching, status, result } =
+    useVansSearch();
 
   function handleChangeInput(event) {
     const value = event.target.value;
@@ -36,6 +37,7 @@ function SearchModal({ open, onClose }) {
         <Divider />
         <Section>
           <SearchInput
+            isFetching={isFetching}
             value={searchInput}
             onChange={handleChangeInput}
             onClear={handleClearInput}
@@ -115,6 +117,7 @@ function useVansSearch() {
   return {
     search: setSearch,
     debouncedSearch,
+    isFetching: query.isFetching,
     status: query.data ? "success" : "idle",
     result: query.data,
   };

@@ -1,11 +1,11 @@
 import { Search as SearchIcon } from "@mui/icons-material";
-import { InputBase, styled } from "@mui/material";
+import { CircularProgress, InputBase, styled } from "@mui/material";
 import { useEffect, useRef } from "react";
 import { CustomButton } from "../../CustomButton.jsx";
 
 export { SearchInput };
 
-function SearchInput({ value, onChange, onClear }) {
+function SearchInput({ value, isFetching, onChange, onClear }) {
   const ref = useRef();
 
   useEffect(() => {
@@ -24,6 +24,9 @@ function SearchInput({ value, onChange, onClear }) {
         value={value}
         inputRef={ref}
       />
+      <ProgressContainer>
+        {isFetching && <CircularProgress size="inherit" color="inherit" />}
+      </ProgressContainer>
       <CustomButton
         color="inherit"
         size="small"
@@ -52,3 +55,11 @@ const IconContainer = styled("div")(({ theme }) => ({
   display: "flex",
   paddingRight: theme.spacing(1),
 }));
+
+const ProgressContainer = styled("div")({
+  width: 20,
+  minWidth: 20,
+  height: 20,
+  display: "flex",
+  marginInline: 16,
+});
