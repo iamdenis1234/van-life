@@ -42,5 +42,16 @@ export default defineConfig(({ mode }) => {
     esbuild: {
       drop: mode === "production" ? ["console", "debugger"] : [],
     },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: function (id) {
+            if (id.includes("node_modules")) {
+              return "vendor";
+            }
+          },
+        },
+      },
+    },
   };
 });
