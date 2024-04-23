@@ -1,5 +1,4 @@
 import { styled, Typography } from "@mui/material";
-import { useSearchParams } from "react-router-dom";
 import { Filters } from "./Filters.jsx";
 import { Pagination } from "./Pagination.jsx";
 import { SortOrder } from "./SortOrder.jsx";
@@ -8,14 +7,11 @@ import { VanElements } from "./VanElements.jsx";
 export { VansContent };
 
 function VansContent({ vansData }) {
-  const [searchParams] = useSearchParams();
-  const search = searchParams.get("search");
-
   return (
     <>
-      {search && (
+      {vansData.search && (
         <StyledTypography>
-          Search results for «{search}». Found{" "}
+          Search results for «{vansData.search}». Found{" "}
           <HighlightTotal>{vansData.totalVans}</HighlightTotal> vans
         </StyledTypography>
       )}
