@@ -107,22 +107,3 @@ function App() {
     </QueryClientProvider>
   );
 }
-
-// TODO: consider this https://reactrouter.com/en/main/route/error-element#throwing-responses
-
-// TODO: add the ability to delete the current user's account
-
-// TODO: We recommend naming props from the component’s own point of view rather than the context in which it is being used.
-//  https://legacy.reactjs.org/docs/components-and-props.html#:~:text=We%20recommend%20naming%20props%20from%20the%20component%E2%80%99s%20own%20point%20of%20view%20rather%20than%20the%20context%20in%20which%20it%20is%20being%20used.
-
-// TODO: maybe remove some 'container' kind of components and apply
-//  their styles to direct children
-
-// TODO: consider renaming some "Container" kind of components to something
-//  more meaningful
-
-// TODO: maybe make all styled components follow bem external geometry and positioning rules
-//  https://en.bem.info/methodology/css/#external-geometry-and-positioning
-
-// TODO: do not expose type of the component in its name, instead of
-//  FilterChip/ClearFilterButton use Filter/ClearFilter, etc.
