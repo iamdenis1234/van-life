@@ -2,7 +2,7 @@ import { styled, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import { CustomContainer } from "../../../components/CustomContainer.jsx";
-import { CustomProgress } from "../../../components/CustomProgress.jsx";
+import { CustomProgress } from "../../../components/CustomProgress/CustomProgress.jsx";
 import { vansQuery } from "./loader.js";
 import { NoVansFound } from "./NoVansFound.jsx";
 import { VansContent } from "./VansContent.jsx";

@@ -1,6 +1,6 @@
 import { styled, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { CustomProgress } from "../../../components/CustomProgress.jsx";
+import { CustomProgress } from "../../../components/CustomProgress/CustomProgress.jsx";
 import { userInfoQuery } from "./loader.js";
 
 export { Profile };

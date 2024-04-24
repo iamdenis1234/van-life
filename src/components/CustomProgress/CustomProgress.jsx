@@ -1,5 +1,5 @@
-import Ellipsis from "/public/assets/images/Ellipsis-1s-200px.svg?react";
 import { styled, SvgIcon } from "@mui/material";
+import Ellipsis from "./Ellipsis-1s-200px.svg?react";
 
 export { CustomProgress };
 
