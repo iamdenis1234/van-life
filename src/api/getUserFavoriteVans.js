@@ -1,5 +1,4 @@
-import { getDocs, query, where } from "firebase/firestore";
-import { getUserFavoriteIds, vansCollectionRef } from "./api.js";
+import { algoliaDefault, getUserFavoriteIds } from "./api.js";
 
 export { getUserFavoriteVans };
 
@@ -13,7 +12,15 @@ async function getUserFavoriteVans() {
 }
 
 async function getUserFavoriteVansByIds(ids) {
-  const q = query(vansCollectionRef, where("id", "in", ids));
-  const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map((van) => van.data());
+  const filters = getIdsFilters(ids);
+  const result = await algoliaDefault.search("", {
+    filters,
+    attributesToHighlight: [],
+  });
+  return result.hits;
+}
+
+function getIdsFilters(ids) {
+  const filters = ids.map((id) => `id:${id}`);
+  return filters.join(" OR ");
 }
