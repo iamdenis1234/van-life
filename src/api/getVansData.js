@@ -89,9 +89,6 @@ function isInRange(page) {
 }
 
 function getFilters(types) {
-  if (types.length === 0) {
-    return "";
-  }
   const typeFilters = types.map((type) => `type:${type}`);
   return typeFilters.join(" OR ");
 }
