@@ -1,4 +1,4 @@
-import parse from "html-react-parser";
+import { createElement } from "react";
 
 export { getParsedVan };
 
@@ -7,8 +7,8 @@ function getParsedVan(vanHit) {
     vanHit;
 
   const highlightedReactElements = {
-    name: parse(_highlightResult.name.value),
-    price: parse(_highlightResult.price.value),
+    name: parseHighlight(_highlightResult.name.value),
+    price: parseHighlight(_highlightResult.price.value),
   };
 
   return {
@@ -20,4 +20,15 @@ function getParsedVan(vanHit) {
     description,
     highlightedReactElements,
   };
+}
+
+function parseHighlight(string) {
+  const parts = string.split(/(<em>.*?<\/em>)/);
+  return parts.map((part, index) => {
+    if (part.startsWith("<em>")) {
+      const highlighted = part.replace(/<\/?em>/g, "");
+      return createElement("em", { key: index }, highlighted);
+    }
+    return part;
+  });
 }
