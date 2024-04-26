@@ -1,5 +1,6 @@
 import { Pagination as PaginationMui, styled } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
+import { useColorMode } from "../../../context/ColorModeContext.js";
 import { useCustomSubmit } from "../../../hooks/useCustomSubmit.js";
 
 export { Pagination };
@@ -7,6 +8,7 @@ export { Pagination };
 function Pagination({ totalPages }) {
   const submit = useCustomSubmit();
   const [searchParams] = useSearchParams();
+  const { colorMode } = useColorMode();
   const page = usePage(totalPages);
 
   function handlePageChange(event, value) {
@@ -29,7 +31,7 @@ function Pagination({ totalPages }) {
   return (
     <StyledPagination
       count={totalPages}
-      color="primaryDark"
+      color={colorMode === "dark" ? "primary" : "primaryDark"}
       variant="outlined"
       shape="rounded"
       size="large"

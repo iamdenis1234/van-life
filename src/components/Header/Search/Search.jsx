@@ -11,7 +11,7 @@ function Search() {
   return (
     <>
       <Tooltip title="Search vans">
-        <IconButton onClick={() => setModalOpen(true)} color="inherit">
+        <IconButton onClick={() => setModalOpen(true)}>
           <SearchIcon />
         </IconButton>
       </Tooltip>

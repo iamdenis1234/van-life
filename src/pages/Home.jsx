@@ -31,6 +31,8 @@ const Section = styled("section")(({ theme }) => ({
     gridTemplateColumns: "1fr auto",
     alignItems: "center",
   },
+  position: "relative",
+  zIndex: 0,
   maxWidth: theme.breakpoints.values.lg,
   marginInline: "auto",
   overflow: "hidden",
@@ -55,7 +57,7 @@ const HomeButton = styled(CustomButton)(({ theme }) => ({
 const Img = styled("div")(({ theme }) => ({
   height: 350,
   width: 420,
-  boxShadow: "0 0 28px 29px white inset",
+  boxShadow: `-13px 5px 18px 29px ${theme.palette.background.default} inset`,
   backgroundImage: "url(/assets/images/modest-explorer.webp)",
   backgroundSize: "contain",
   backgroundRepeat: "no-repeat",

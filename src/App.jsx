@@ -1,3 +1,4 @@
+import { CssBaseline } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import React from "react";
@@ -8,6 +9,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { Error } from "./components/Error.jsx";
+import { ColorModeProvider } from "./context/ColorModeProvider.jsx";
+import { ThemeProvider } from "./context/ThemeProvider.jsx";
 import { About } from "./pages/About.jsx";
 import { Home } from "./pages/Home.jsx";
 import { action as loginAction } from "./pages/login/action.js";
@@ -101,9 +104,14 @@ const router = createBrowserRouter(
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-      <ReactQueryDevtools />
-    </QueryClientProvider>
+    <ColorModeProvider>
+      <ThemeProvider>
+        <CssBaseline enableColorScheme={true} />
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+          <ReactQueryDevtools />
+        </QueryClientProvider>
+      </ThemeProvider>
+    </ColorModeProvider>
   );
 }

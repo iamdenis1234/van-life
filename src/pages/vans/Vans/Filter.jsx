@@ -50,8 +50,6 @@ function Filter({ type }) {
   );
 }
 
-const StyledLabel = styled(Typography, {
-  shouldForwardProp: (prop) => prop !== "color",
-})(({ color, theme }) => ({
-  color: theme.palette[color].main,
+const StyledLabel = styled(Typography)(({ theme }) => ({
+  color: theme.palette.text.primary,
 }));

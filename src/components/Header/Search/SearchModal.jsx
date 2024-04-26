@@ -80,6 +80,9 @@ const Container = styled("div")(({ theme }) => ({
     width: 600,
     marginTop: 70,
     marginInline: "auto",
+    border:
+      theme.palette.mode === "dark" &&
+      `1px solid ${theme.palette.text.primary}`,
     borderRadius: theme.shape.borderRadius,
   },
   paddingBlock: theme.spacing(2),

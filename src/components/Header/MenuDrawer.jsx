@@ -1,5 +1,5 @@
 import { Close } from "@mui/icons-material";
-import { Drawer, IconButton, styled } from "@mui/material";
+import { darken, Drawer, IconButton, styled } from "@mui/material";
 
 export { MenuDrawer };
 
@@ -30,7 +30,10 @@ const StyledDrawer = styled(Drawer)(({ theme }) => ({
   "& .MuiDrawer-paper": {
     overflow: "hidden",
     backdropFilter: theme.filters.blur,
-    backgroundColor: theme.palette.background.transparent,
+    backgroundColor:
+      theme.palette.mode === "dark"
+        ? darken(theme.palette.background.transparent, 1)
+        : theme.palette.background.transparent,
   },
 }));
 
@@ -47,11 +50,11 @@ const DecorImg = styled("img")({
   zIndex: -1,
 });
 
-const BirdsOnTree = styled(DecorImg)({
+const BirdsOnTree = styled(DecorImg)(({ theme }) => ({
   width: 123,
-  filter: "contrast(0.7)",
+  filter: theme.palette.mode === "dark" ? "contrast(1)" : "contrast(0.7)",
   top: 16,
-});
+}));
 
 const RoadSign = styled(DecorImg)({
   width: 121,

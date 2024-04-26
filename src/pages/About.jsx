@@ -36,7 +36,7 @@ function About() {
           <VanReadySubtitle variant="h3" component="p">
             Your van is ready.
           </VanReadySubtitle>
-          <Button color="luxury" size="large" component={Link} to="/vans">
+          <Button color="inverse" size="large" component={Link} to="/vans">
             Explore our vans
           </Button>
         </ExploreContainer>

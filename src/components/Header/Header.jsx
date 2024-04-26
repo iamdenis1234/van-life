@@ -16,11 +16,14 @@ import { MenuDrawer } from "./MenuDrawer.jsx";
 import { NavItem } from "./NavItem.jsx";
 import { NavList } from "./NavList.jsx";
 import { Search } from "./Search/Search.jsx";
+import { ToggleColorMode } from "./ToggleColorMode.jsx";
 
 export { Header };
 
+const customMdBreakpointInPx = 864;
+
 function Header() {
-  const mdUpBreakpointMatches = useBreakpointUp("md");
+  const mdUpBreakpointMatches = useBreakpointUp(customMdBreakpointInPx);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isScrolled = useScrollTrigger({
     disableHysteresis: true,
@@ -32,19 +35,13 @@ function Header() {
   }
 
   return (
-    <HeaderAppBar
-      position="sticky"
-      elevation={0}
-      color="background"
-      isScrolled={isScrolled}
-    >
+    <HeaderAppBar position="sticky" elevation={0} isScrolled={isScrolled}>
       <CustomContainer>
         <HeaderToolbar component="nav" disableGutters>
           <StyledLogo component={Link} to="/" />
           <NavSearchContainer>
             <Tooltip title="Project repository">
               <IconButton
-                color="inherit"
                 component="a"
                 href="https://github.com/iamdenis1234/van-life"
                 target="_blank"
@@ -52,6 +49,7 @@ function Header() {
                 <GitHub />
               </IconButton>
             </Tooltip>
+            <ToggleColorMode />
             <Search />
             <NavItem to="/user">
               <Tooltip title="Your profile">
@@ -105,7 +103,7 @@ const StyledNavList = styled(NavList)(({ theme }) => ({
   paddingBlock: theme.spacing(7),
   rowGap: theme.spacing(3),
 
-  [theme.breakpoints.up("md")]: {
+  [theme.breakpoints.up(customMdBreakpointInPx)]: {
     flexDirection: "row",
     paddingBlock: 0,
     marginLeft: theme.spacing(2),
@@ -117,7 +115,7 @@ const NavSearchContainer = styled("div")(({ theme }) => ({
   display: "flex",
   columnGap: theme.spacing(3),
   alignItems: "center",
-  "@media (max-width: 410px)": {
+  "@media (max-width: 510px)": {
     columnGap: theme.spacing(1),
   },
 }));
