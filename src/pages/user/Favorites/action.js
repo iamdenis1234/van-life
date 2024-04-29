@@ -8,7 +8,7 @@ function action(queryClient) {
     const id = formData.get("id");
     await removeFromFavorites(id);
     await invalidateQueries(queryClient);
-    return "deleted";
+    return null;
   };
 }
 
