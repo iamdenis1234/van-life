@@ -1,6 +1,5 @@
-import { getDocs, query, where } from "firebase/firestore";
 import { CustomError } from "../utils/CustomError.js";
-import { getUserFavoriteIds, isLoggedIn, vansCollectionRef } from "./api.js";
+import { algoliaDefault, getUserFavoriteIds, isLoggedIn } from "./api.js";
 
 export { getVan };
 
@@ -8,27 +7,31 @@ async function getVan(id) {
   if (await isLoggedIn()) {
     return await getVanWithFavorite(id);
   }
-  return await getVanFromDB(id);
+  return await getVanFromAlgolia(id);
 }
 
 async function getVanWithFavorite(id) {
   const [van, favorite] = await Promise.all([
-    getVanFromDB(id),
+    getVanFromAlgolia(id),
     isIdInFavorites(id),
   ]);
   van.favorite = favorite;
   return van;
 }
 
-async function getVanFromDB(id) {
-  const q = query(vansCollectionRef, where("id", "==", id));
-  const querySnapshot = await getDocs(q);
-  if (querySnapshot.empty) {
+async function getVanFromAlgolia(id) {
+  const { hits } = await algoliaDefault.search("", {
+    filters: `id:${id}`,
+    attributesToHighlight: [],
+  });
+
+  if (!hits.length) {
     throw new CustomError(`Van not found`, {
       detailMessage: `Van with id "${id}" not found`,
     });
   }
-  return querySnapshot.docs[0].data();
+
+  return hits[0];
 }
 
 async function isIdInFavorites(id) {
