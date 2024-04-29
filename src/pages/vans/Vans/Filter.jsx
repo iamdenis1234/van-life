@@ -1,13 +1,12 @@
 import { Checkbox, FormControlLabel, styled, Typography } from "@mui/material";
-import { useSearchParams } from "react-router-dom";
-import { useCustomSubmit } from "../../../hooks/useCustomSubmit.js";
+import { useSearchParams, useSubmit } from "react-router-dom";
 import { deletePageFromSearchParams } from "./deletePageFromSearchParams.js";
 
 export { Filter };
 
 function Filter({ type }) {
   const [searchParams] = useSearchParams();
-  const submit = useCustomSubmit();
+  const submit = useSubmit();
   const selectedTypes = searchParams.getAll("type");
   const name = type.name;
   const count = type.count;
@@ -16,17 +15,13 @@ function Filter({ type }) {
     return selectedTypes.includes(name);
   }
 
-  // Although we could use declarative form submission with these Checkboxes
-  // because they are native browser Checkboxes, we use imperative submission
-  // to be consistent with non-native Select used for ordering
   function handleChange(event) {
     const newSearchParams = new URLSearchParams(searchParams);
     const { name, value, checked } = event.target;
-    if (checked) {
-      newSearchParams.append(name, value);
-    } else {
-      newSearchParams.delete(name, value);
-    }
+    checked
+      ? newSearchParams.append(name, value)
+      : newSearchParams.delete(name, value);
+    newSearchParams.sort();
     submit(deletePageFromSearchParams(newSearchParams));
   }
 

@@ -5,15 +5,14 @@ import {
   Select,
   styled,
 } from "@mui/material";
-import { useSearchParams } from "react-router-dom";
-import { useCustomSubmit } from "../../../hooks/useCustomSubmit.js";
+import { useSearchParams, useSubmit } from "react-router-dom";
 import { deletePageFromSearchParams } from "./deletePageFromSearchParams.js";
 
 export { SortOrder };
 
 function SortOrder() {
   const [searchParams] = useSearchParams();
-  const submit = useCustomSubmit();
+  const submit = useSubmit();
   const order = useSelectedOrder();
 
   function handleChange(event) {
@@ -22,6 +21,7 @@ function SortOrder() {
     value === ORDER_VALUES[0]
       ? newSearchParams.delete("order")
       : newSearchParams.set("order", value);
+    newSearchParams.sort();
     submit(deletePageFromSearchParams(newSearchParams));
   }
 

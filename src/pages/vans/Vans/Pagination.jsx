@@ -1,12 +1,11 @@
 import { Pagination as PaginationMui, styled } from "@mui/material";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useSubmit } from "react-router-dom";
 import { useColorMode } from "../../../context/ColorModeContext.js";
-import { useCustomSubmit } from "../../../hooks/useCustomSubmit.js";
 
 export { Pagination };
 
 function Pagination({ totalPages }) {
-  const submit = useCustomSubmit();
+  const submit = useSubmit();
   const [searchParams] = useSearchParams();
   const { colorMode } = useColorMode();
   const page = usePage(totalPages);
@@ -16,11 +15,11 @@ function Pagination({ totalPages }) {
     if (isSamePage(page)) {
       return;
     }
-
     const newSearchParams = new URLSearchParams(searchParams);
     page === 1
       ? newSearchParams.delete("page")
       : newSearchParams.set("page", page);
+    newSearchParams.sort();
     submit(newSearchParams);
   }
 
