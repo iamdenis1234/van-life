@@ -11,8 +11,7 @@ export { Vans };
 
 function Vans() {
   const [searchParams] = useSearchParams();
-  const query = useQuery(vansQuery(searchParams));
-  const { data: vansData, isPending } = query;
+  const { data: vansData, isPending } = useQuery(vansQuery(searchParams));
 
   function renderContent() {
     if (isPending) {
