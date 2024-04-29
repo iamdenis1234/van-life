@@ -19,7 +19,7 @@ function SortOrder() {
   function handleChange(event) {
     const { value } = event.target;
     const newSearchParams = new URLSearchParams(searchParams);
-    value === orderValues[0]
+    value === ORDER_VALUES[0]
       ? newSearchParams.delete("order")
       : newSearchParams.set("order", value);
     submit(deletePageFromSearchParams(newSearchParams));
@@ -36,9 +36,9 @@ function SortOrder() {
         value={order}
         onChange={handleChange}
       >
-        <MenuItem value={orderValues[0]}>Default</MenuItem>
-        <MenuItem value={orderValues[1]}>Low price first</MenuItem>
-        <MenuItem value={orderValues[2]}>High price first</MenuItem>
+        <MenuItem value={ORDER_VALUES[0]}>Default</MenuItem>
+        <MenuItem value={ORDER_VALUES[1]}>Low price first</MenuItem>
+        <MenuItem value={ORDER_VALUES[2]}>High price first</MenuItem>
       </Select>
     </StyledFormControl>
   );
@@ -56,10 +56,10 @@ function useSelectedOrder() {
 function getOrderFromDefinedValues(order) {
   // User could change order param by hand making the Select empty
   // We're preventing this, making the UI more consistent
-  if (!orderValues.includes(order)) {
-    order = orderValues[0];
+  if (!ORDER_VALUES.includes(order)) {
+    order = ORDER_VALUES[0];
   }
   return order;
 }
 
-const orderValues = ["default", "lowPriceFirst", "highPriceFirst"];
+const ORDER_VALUES = ["default", "lowPriceFirst", "highPriceFirst"];
