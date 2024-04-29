@@ -1,7 +1,7 @@
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
+import "@fontsource/poppins/300.css";
+import "@fontsource/poppins/400.css";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/600.css";
 import "@fontsource/dancing-script/700.css";
 import { alpha, createTheme as createThemeMui } from "@mui/material";
 import { getCustomColor } from "../utils/getCustomColor.js";
@@ -77,6 +77,9 @@ function getDesignTokens(mode) {
       borderRadius: 10,
     },
     typography: {
+      fontFamily: "Poppins, sans-serif",
+      fontWeightBold: 600,
+
       logo: {
         fontFamily: "'Dancing Script', cursive",
         fontWeight: 700,

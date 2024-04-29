@@ -71,6 +71,6 @@ const StyledLink = styled(Link)({
 });
 
 const StyledCardMedia = styled(CardMedia)({
-  width: 90,
-  height: 90,
+  width: 105,
+  height: 105,
 });

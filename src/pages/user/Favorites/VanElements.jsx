@@ -13,5 +13,5 @@ const Container = styled("div")(({ theme }) => ({
   gap: theme.spacing(2),
   marginBottom: theme.spacing(1),
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, min(300px, 100%))",
+  gridTemplateColumns: "repeat(auto-fit, min(350px, 100%))",
 }));
