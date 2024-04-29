@@ -19,17 +19,12 @@ const colorsLight = {
 
 const colorsDark = {
   ...colorsLight,
-  // Mui website
-  background: "rgba(15,18,20,1)",
-  // GitHub
-  // background: "rgba(13,17,23,1)",
+  // Don't forget to update background color in base.css
+  background: "hsl(204, 14%, 7%)",
   vanTypes: {
     luxury: "hsl(0, 0%, 89%)",
   },
-  // Mui website
-  // text: "rgb(246, 247, 248)",
-  // Mine
-  text: "hsl(207,35%,94%)",
+  text: "hsl(207, 18%, 94%)",
 };
 
 const lightTheme = createTheme("light");
