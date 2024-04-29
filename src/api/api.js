@@ -83,7 +83,6 @@ async function logInWithEmailAndPassword(email, password) {
   try {
     return await signInWithEmailAndPassword(auth, email, password);
   } catch (e) {
-    console.log(e);
     throw new CustomError("No user with those credentials found!");
   }
 }
