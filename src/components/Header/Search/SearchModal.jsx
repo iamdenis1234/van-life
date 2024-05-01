@@ -1,6 +1,7 @@
 import { Close } from "@mui/icons-material";
-import { Divider, IconButton, Modal, styled, Typography } from "@mui/material";
+import { IconButton, Modal, styled, Typography } from "@mui/material";
 import { useState } from "react";
+import { useColorMode } from "../../../context/ColorModeContext.js";
 import { SearchInput } from "./SearchInput.jsx";
 import { SearchResult } from "./SearchResult.jsx";
 import { useVansSearch } from "./useVansSearch.js";
@@ -8,6 +9,7 @@ import { useVansSearch } from "./useVansSearch.js";
 export { SearchModal };
 
 function SearchModal({ open, onClose }) {
+  const { colorMode } = useColorMode();
   const [searchInput, setSearchInput] = useState("");
   const { search, debouncedSearch, isFetching, status, result } =
     useVansSearch();
@@ -32,16 +34,14 @@ function SearchModal({ open, onClose }) {
         <Section>
           <Description>Search by name, type, price or description</Description>
         </Section>
-        <Divider />
-        <Section>
+        <SearchInputSection>
           <SearchInput
             isFetching={isFetching}
             value={searchInput}
             onChange={handleChangeInput}
             onClear={handleClearInput}
           />
-        </Section>
-        <Divider />
+        </SearchInputSection>
         <SearchResultContainer>
           {status === "success" && (
             <SearchResult
@@ -51,6 +51,19 @@ function SearchModal({ open, onClose }) {
             />
           )}
         </SearchResultContainer>
+        <AlgoliaContainer>
+          Search by
+          <AlgoliaLink href="https://www.algolia.com" target="_blank">
+            <img
+              src={
+                colorMode === "dark"
+                  ? "/assets/images/Algolia-logo-white.svg"
+                  : "/assets/images/Algolia-logo-blue.svg"
+              }
+              alt="algolia logo"
+            />
+          </AlgoliaLink>
+        </AlgoliaContainer>
       </Container>
     </StyledModal>
   );
@@ -73,6 +86,8 @@ const Container = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
   height: "100%",
   overflow: "auto",
+  display: "flex",
+  flexDirection: "column",
   [theme.breakpoints.up("md")]: {
     height: "auto",
     width: 600,
@@ -99,6 +114,26 @@ const SearchResultContainer = styled(Section)(({ theme }) => ({
   flexDirection: "column",
   rowGap: theme.spacing(2),
   marginTop: theme.spacing(4),
-  maxWidth: 450,
+  width: "100%",
+  maxWidth: 420,
   marginInline: "auto",
+}));
+
+const AlgoliaContainer = styled(Section)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "end",
+  columnGap: 5,
+  fontSize: 14,
+  marginTop: "auto",
+  paddingTop: theme.spacing(3),
+}));
+
+const AlgoliaLink = styled("a")({
+  width: 75,
+});
+
+const SearchInputSection = styled(Section)(({ theme }) => ({
+  borderTop: `1px solid ${theme.palette.divider}`,
+  borderBottom: `1px solid ${theme.palette.divider}`,
 }));
