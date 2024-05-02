@@ -1,5 +1,6 @@
 import { styled, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
+import { useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { CustomContainer } from "../../../components/CustomContainer.jsx";
 import { CustomProgress } from "../../../components/CustomProgress/CustomProgress.jsx";
@@ -12,6 +13,11 @@ export { Vans };
 function Vans() {
   const [searchParams] = useSearchParams();
   const { data: vansData, isPending } = useQuery(vansQuery(searchParams));
+  const titleRef = useRef(null);
+
+  function scrollToTitle() {
+    titleRef.current.scrollIntoView({ block: "nearest" });
+  }
 
   function renderContent() {
     if (isPending) {
@@ -19,7 +25,7 @@ function Vans() {
     }
 
     if (vansData.vans.length) {
-      return <VansContent vansData={vansData} />;
+      return <VansContent vansData={vansData} onPageChange={scrollToTitle} />;
     }
 
     return <NoVansFound />;
@@ -27,7 +33,9 @@ function Vans() {
 
   return (
     <Container>
-      <Typography variant="h1">Explore our van options</Typography>
+      <Typography ref={titleRef} variant="h1">
+        Explore our van options
+      </Typography>
       {renderContent()}
     </Container>
   );

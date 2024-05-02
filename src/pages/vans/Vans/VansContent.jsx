@@ -6,7 +6,7 @@ import { VanElements } from "./VanElements.jsx";
 
 export { VansContent };
 
-function VansContent({ vansData }) {
+function VansContent({ vansData, onPageChange }) {
   return (
     <>
       {vansData.search && (
@@ -20,7 +20,7 @@ function VansContent({ vansData }) {
         <SortOrder />
       </FiltersAndSortContainer>
       <VanElements vans={vansData.vans} />
-      <Pagination totalPages={vansData.totalPages} />
+      <Pagination totalPages={vansData.totalPages} onChange={onPageChange} />
     </>
   );
 }

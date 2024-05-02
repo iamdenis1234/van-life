@@ -4,7 +4,7 @@ import { useColorMode } from "../../../context/ColorModeContext.js";
 
 export { Pagination };
 
-function Pagination({ totalPages }) {
+function Pagination({ totalPages, onChange }) {
   const submit = useSubmit();
   const [searchParams] = useSearchParams();
   const { colorMode } = useColorMode();
@@ -21,6 +21,7 @@ function Pagination({ totalPages }) {
       : newSearchParams.set("page", page);
     newSearchParams.sort();
     submit(newSearchParams);
+    onChange();
   }
 
   function isSamePage(newPage) {
