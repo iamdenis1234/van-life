@@ -92,6 +92,7 @@ const Container = styled("div")(({ theme }) => ({
     height: "auto",
     width: 600,
     marginTop: 70,
+    marginBottom: theme.spacing(3),
     marginInline: "auto",
     border:
       theme.palette.mode === "dark" &&
