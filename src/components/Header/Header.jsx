@@ -116,6 +116,6 @@ const NavSearchContainer = styled("div")(({ theme }) => ({
   columnGap: theme.spacing(3),
   alignItems: "center",
   "@media (max-width: 510px)": {
-    columnGap: theme.spacing(1),
+    columnGap: theme.spacing(0.5),
   },
 }));
