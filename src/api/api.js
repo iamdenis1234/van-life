@@ -11,7 +11,6 @@ import {
 import {
   arrayRemove,
   arrayUnion,
-  collection,
   doc,
   getDoc,
   getFirestore,
@@ -32,7 +31,6 @@ export {
   removeFromFavorites,
   db,
   auth,
-  vansCollectionRef,
   algoliaDefault,
   algoliaClient,
 };
@@ -59,8 +57,6 @@ const algoliaClient = algoliasearch(
 );
 
 const algoliaDefault = algoliaClient.initIndex("vans");
-
-const vansCollectionRef = collection(db, "vans");
 
 async function getUserFavoriteIds() {
   const userRef = doc(db, "users", auth.currentUser.uid);
